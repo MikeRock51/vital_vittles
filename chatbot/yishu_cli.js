@@ -19,19 +19,15 @@ async function main() {
     )
   );
 
-  const systemMessage = "Your name is Yishu. You are a food and nutrition specialist bot. You provide expert assistance on all matters related to food, nutrition and health";
-  const chatHistory = [{role: "system", content: systemMessage}];
+  const systemMessage =
+    "Your name is Yishu. You are a food and nutrition specialist bot. You provide expert assistance on all matters related to food, nutrition and health";
+  const chatHistory = [{ role: "system", content: systemMessage }];
 
   while (true) {
     const userInput = readlineSync.question(colors.yellow("You: "));
     try {
-    //   const messages = chatHistory.map(([role, content]) => ({
-    //     role,
-    //     content,
-    //   }));
+      const messages = chatHistory;
 
-      const messages = chatHistory
-      
       messages.push({ role: "user", content: userInput });
       // console.log(messages);
 
@@ -47,8 +43,8 @@ async function main() {
       }
 
       console.log(colors.green("Yishu ") + completionText);
-      chatHistory.push({role: "user", content: userInput});
-      chatHistory.push({role: "assistant", content: completionText});
+      chatHistory.push({ role: "user", content: userInput });
+      chatHistory.push({ role: "assistant", content: completionText });
     } catch (error) {
       console.error(colors.red(error));
     }

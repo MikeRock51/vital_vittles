@@ -9,7 +9,7 @@
     "prod-server": "node --require @babel/register server.js",
     "dev": "nodemon --exec babel-node --presets @babel/preset-env server.js"
   },
-  "author": "Team 113",
+  "author": "Yishu Zhongxin",
   "license": "ISC",
   "dependencies": {
     "colors": "^1.4.0",

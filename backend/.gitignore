@@ -1,0 +1,6 @@
+*.json
+*.swp
+*.swo
+.env
+*.rdb
+.venv

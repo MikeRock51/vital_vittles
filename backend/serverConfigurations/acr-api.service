@@ -1,0 +1,15 @@
+[Unit]
+Description=Gunicorn instance to start African Cuisines Recipes API
+After=network.target
+
+[Service]
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/acr-api
+ExecStart=/home/ubuntu/acr-api/startGunicorns
+StandardOutput=file:/tmp/acr-access.log
+StandardError=file:/tmp/acr-error.log
+Restart=always
+
+[Install]
+WantedBy=default.target

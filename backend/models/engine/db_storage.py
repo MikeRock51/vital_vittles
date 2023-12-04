@@ -8,6 +8,7 @@ from typing import Dict
 from dotenv import load_dotenv
 from math import ceil
 from sqlalchemy.exc import ArgumentError
+from sqlalchemy.exc import NoResultFound
 
 load_dotenv()
 
@@ -139,10 +140,13 @@ class DBStorage:
 
     def getByEmail(self, email: str):
         """Retrieves the user with the given email from database"""
-        User = self.allModels()['User']
-        user = self.__session.query(User).filter_by(email=email).one()
-        return user
-    
+        try:
+            User = self.allModels()['User']
+            user = self.__session.query(User).filter_by(email=email).one()
+            return user
+        except NoResultFound:
+            raise ValueError("User does not exist")
+            
     def createChatHistory(self, userID):
         from models.chat.chat import Chat
         systemMessage = "Your name is Yishu. You are a food and nutrition specialist bot. You provide expert assistance on all matters related to food, nutrition and health"

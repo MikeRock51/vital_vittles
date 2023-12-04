@@ -13,6 +13,7 @@ from sqlalchemy.exc import IntegrityError
 from api.v1.auth import auth
 from flasgger.utils import swag_from
 from os import path
+from models.chat.chat import Chat
 
 DOCS_DIR = path.dirname(__file__) + '/documentations/users'
 
@@ -49,6 +50,8 @@ def createUser():
         userData['username'] = "_".join(username.split())
         user = User(**userData)
         user.save()
+
+        chatHistory = storage.createChatHistory(userID=user.id)
     except ValueError as ve:
         return jsonify({
             "status": "error",

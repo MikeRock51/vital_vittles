@@ -23,3 +23,4 @@ from api.v1.views.index import *
 from api.v1.views.users import *
 from api.v1.views.session import *
 from api.v1.views.recipes import *
+# from api.v1.views.chats import *

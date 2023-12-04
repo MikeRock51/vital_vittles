@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """The chat model"""
 
-from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy import Column, String, ForeignKey, Text
 from models.base_model import BaseModel, Base
 
 class Chat(BaseModel, Base):

@@ -107,10 +107,12 @@ class DBStorage:
         """Returns a dictionary of all models"""
         from models.user import User
         from models.recipe import Recipe
+        from models.chat.chat import Chat
 
         return {
             "User": User,
-            "Recipe": Recipe
+            "Recipe": Recipe,
+            "Chat": Chat
         }
 
     def new(self, obj) -> None:

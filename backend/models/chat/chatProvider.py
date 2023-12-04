@@ -13,6 +13,7 @@ if not api_key:
 
 client = OpenAI(api_key=api_key)
 
+
 def createChat():
     system_message = "Your name is Yishu. You are a food and nutrition specialist bot. You provide expert assistance on all matters related to food, nutrition and health"
     chat_history = [{"role": "system", "content": system_message}]
@@ -25,8 +26,8 @@ def createChat():
             messages.append({"role": "user", "content": user_input})
 
             completion = client.chat.completions.create(model="gpt-3.5-turbo",
-            messages=messages,
-            max_tokens=150)
+                                                        messages=messages,
+                                                        max_tokens=150)
 
             completion_text = completion.choices[0].message.content
 
@@ -36,10 +37,12 @@ def createChat():
 
             print(colored("Yishu: " + completion_text, "green"))
             chat_history.append({"role": "user", "content": user_input})
-            chat_history.append({"role": "assistant", "content": completion_text})
+            chat_history.append(
+                {"role": "assistant", "content": completion_text})
 
         except Exception as e:
             print(colored(str(e), "red"))
+
 
 if __name__ == "__main__":
     main()

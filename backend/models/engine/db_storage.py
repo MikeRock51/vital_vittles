@@ -142,6 +142,13 @@ class DBStorage:
         User = self.allModels()['User']
         user = self.__session.query(User).filter_by(email=email).one()
         return user
+    
+    def createChatHistory(self, userID):
+        from models.chat.chat import Chat
+        systemMessage = "Your name is Yishu. You are a food and nutrition specialist bot. You provide expert assistance on all matters related to food, nutrition and health"
+        chat = Chat(userID=userID, chat={"role": "system", "content": systemMessage})
+        chat.save()
+
 
     def close(self) -> None:
         """Removes the current session"""

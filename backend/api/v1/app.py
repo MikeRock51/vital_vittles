@@ -37,7 +37,8 @@ def badRequest(error):
     """Handles 400 errors"""
     return jsonify({
         "status": "error",
-        "message": "Bad request"
+        "message": error.description or "Bad request",
+        "data:": None
     }), 400
 
 @app.errorhandler(401)
@@ -45,7 +46,8 @@ def unauthorized(error):
     """Handles 401 errors"""
     return jsonify({
         "status": "error",
-        "message": "Unauthorized"
+        "message": error.description or "Unauthorized",
+        "data:": None
     }), 401
 
 @app.errorhandler(403)
@@ -53,7 +55,8 @@ def forbidden(error):
     """Handles 403 errors"""
     return jsonify({
         "status": "error",
-        "message": "Forbidden"
+        "message": error.description or "Forbidden",
+        "data:": None
     }), 403
 
 @app.errorhandler(404)
@@ -61,7 +64,8 @@ def notFound(error):
     """Handles 404 errors"""
     return jsonify({
         "status": "error",
-        "message": "Not Found"
+        "message": error.description or "Not Found",
+        "data:": None
     }), 404
 
 app.config['SWAGGER'] = {

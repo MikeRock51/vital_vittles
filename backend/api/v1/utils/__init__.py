@@ -87,3 +87,9 @@ class Utils:
             "total_pages": data['total_pages'],
             "data": [recipe.toDict(detailed=detailed) for recipe in data['data']]
         }
+
+class VError(ValueError):
+    """A custom value error"""
+    def __init__(self, message, statusCode):
+        super().__init__(message)
+        self.statusCode = statusCode

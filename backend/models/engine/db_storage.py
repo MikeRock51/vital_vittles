@@ -163,15 +163,18 @@ class DBStorage:
         except Exception as e:
             raise ValueError(e)
 
-    def getChatHistory(self, sessionID):
+    def getChatHistory(self, sessionID, userID):
         """Retrieves the chat history based on sessionID"""
+        from api.v1.utils import VError
         ChatSession = self.allModels()['ChatSession']
-        try:
-            session = self.__session.query(ChatSession).filter_by(id=sessionID).first()
-            print(session.toDict())
-            return [chat.toDict() for chat in session.chats]
-        except NoResultFound:
-            raise ValueError("Session not found")
+        session = self.__session.query(ChatSession).filter_by(id=sessionID).first()
+        
+        if not session:
+            raise VError("Chat session not found", 404)
+        elif session.userID != userID:
+            raise VError("You are not authorized to access this chat session", 401)
+        
+        return [chat.toDict() for chat in session.chats]
     
     def getUserSessions(self, userID):
         """Retrieves all chat sessions based on userID"""

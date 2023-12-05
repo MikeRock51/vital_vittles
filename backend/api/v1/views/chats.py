@@ -5,7 +5,7 @@ from models import storage
 from models.roles import UserRole
 from flask import jsonify, abort, request, g
 from api.v1.views import app_views
-from api.v1.utils import Utils
+from api.v1.utils import Utils, VError
 from api.v1.utils.authWrapper import login_required
 from models.user import User
 from models.chat.chat import Chat
@@ -69,16 +69,12 @@ def getSessionChats():
     """Retrieves the chat history of a chat session"""
     requiredFields = ['sessionID']
     data = Utils.getReqJSON(request, requiredFields)
-
-    session = storage.get(ChatSession, data['sessionID'])
-    if not session:
-        abort(404)
     
     chats = None
     try:
-        chats = storage.getChatHistory(session.id)
-    except ValueError:
-        abort(404)
+        chats = storage.getChatHistory(data['sessionID'], g.currentUser.id)
+    except VError as e:
+        abort(e.statusCode, description=str(e))
 
     return jsonify({
         "status": "success",
@@ -91,7 +87,7 @@ def getSessionChats():
 @login_required()
 def processChat():
     """Processes user chat and returns response from the chatbot"""
-    requiredFields = ['content']
+    requiredFields = ['content', 'sessionID']
     try:
         data = Utils.getReqJSON(request, requiredFields)
         chatData = {}

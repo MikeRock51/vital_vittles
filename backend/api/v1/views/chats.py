@@ -31,6 +31,7 @@ def processChat():
 
         chatData['userID'] = g.currentUser.id
         chat = chat(**chatData)
+        
         recipe.save()
     except (ValueError) as e:
         return jsonify({

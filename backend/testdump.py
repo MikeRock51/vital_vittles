@@ -34,13 +34,20 @@ except IntegrityError as e:
     print(extractErrorMessage(e.args[0]))
 
 
+from dotenv import load_dotenv
 from os import getenv
+
+load_dotenv()
+
 USER = getenv("DB_USER")
 HOST = getenv("DB_HOST")
 PWD = getenv("DB_PWD")
 DB = getenv("DB_NAME")
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import create_engine
+from models import storage
+from models.user import User
+from models.recipe import Recipe
 
 engine = create_engine(
              f"mysql+mysqldb://{USER}:{PWD}@{HOST}/{DB}",

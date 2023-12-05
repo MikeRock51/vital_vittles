@@ -14,7 +14,7 @@ if not api_key:
 client = OpenAI(api_key=api_key)
 
 
-def createChat():
+def getChatResponse():
     system_message = "Your name is Yishu. You are a food and nutrition specialist bot. You provide expert assistance on all matters related to food, nutrition and health"
     chat_history = [{"role": "system", "content": system_message}]
 

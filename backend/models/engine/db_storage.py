@@ -148,11 +148,17 @@ class DBStorage:
             raise ValueError("User does not exist")
             
     def createChatHistory(self, userID):
+        """Prepopulates new users chat history with system message"""
         from models.chat.chat import Chat
         systemMessage = "Your name is Yishu. You are a food and nutrition specialist bot. You provide expert assistance on all matters related to food, nutrition and health"
         chat = Chat(userID=userID, chat={"role": "system", "content": systemMessage})
         chat.save()
 
+    def getChatHistory(self, userID):
+        """Retrieves user's chat history based on userID"""
+        Chat = self.allModels()['Chat']
+        chatHistory = self.__session.query(Chat).filter_by(id=userID).all()
+        return chatHistory
 
     def close(self) -> None:
         """Removes the current session"""

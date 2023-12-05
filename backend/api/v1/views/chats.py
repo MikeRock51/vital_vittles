@@ -33,39 +33,39 @@ def processChat():
 
         chatData['userID'] = g.currentUser.id
         chatData['role'] = 'user'
-        print(chatData)
+        
         newChat = Chat(**chatData)
         chatHistory = storage.getChatHistory(g.currentUser.id)
         if chatHistory == []:
             chatHistory = storage.createChatHistory(g.currentUser.id)
 
-        chatHistory = [chat['chat'] for chat in chatHistory]
+        chatHistory = [{'role': chat.get('role'), 'content': chat.get(
+            'content')} for chat in chatHistory]
         chatHistory.append(chatData)
         chatData.pop("userID")
-        # print(chatHistory)
-        
+
         chatResponse = None
-        # try:
-        #     chatResponse = getChatResponse(chatHistory)
-        #     chatResponse = Chat(**chatResponse)
-        #     newChat.save()
-        #     chatResponse.save()
-        # except Exception as e:
-        #     return jsonify({
-        #     "status": "error",
-        #     "message": str(e)
-        # }), 400
+        try:
+            chatResponse = getChatResponse(chatHistory)
+            chatResponse['userID'] = g.currentUser.id
+            chatResponse = Chat(**chatResponse)
+            newChat.save()
+            chatResponse.save()
+        except Exception as e:
+            return jsonify({
+                "status": "error",
+                "message": str(e)
+            }), 400
     except (ValueError) as e:
         return jsonify({
             "status": "error",
             "message": Utils.extractErrorMessage(str(e))
         }), 400
 
-    # data = recipe.toDict(detailed=True)
     return jsonify({
         "status": "success",
         "message": "Recipe created successfully",
-        # "data": chatResponse.toDict()
+        "data": chatResponse.toDict()
     })
 
 

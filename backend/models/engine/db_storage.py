@@ -151,7 +151,7 @@ class DBStorage:
         """Prepopulates new users chat history with system message"""
         from models.chat.chat import Chat
         systemMessage = "Your name is Yishu. You are a food and nutrition specialist bot. You provide expert assistance on all matters related to food, nutrition and health"
-        chat = Chat(userID=userID, chat={"role": "system", "content": systemMessage})
+        chat = Chat(userID=userID, content=systemMessage, role="system")
         chat.save()
         return [chat.toDict()]
 

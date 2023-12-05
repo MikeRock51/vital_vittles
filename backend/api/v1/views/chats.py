@@ -9,6 +9,7 @@ from api.v1.utils import Utils
 from api.v1.utils.authWrapper import login_required
 from models.user import User
 from models.chat.chat import Chat
+from models.chat.chatSession import ChatSession
 from models.chat.chatProvider import getChatResponse
 import re
 from flasgger.utils import swag_from
@@ -16,6 +17,74 @@ from os import path
 
 DOCS_DIR = path.dirname(__file__) + '/documentations/recipes'
 
+
+@app_views.route('/chat_sessions', methods=['POST'])
+# @swag_from(f'{DOCS_DIR}/post_recipes.yml')
+@login_required()
+def createChatSession():
+    """Creates a new chat session for the current user"""
+    data = request.get_json()
+    newSession = None
+
+    try:
+        newSession = storage.createChatSession(g.currentUser.id, data.get('topic'))
+    except Exception as e:
+        return jsonify({
+            "status": "error",
+            "message": Utils.extractErrorMessage(str(e)),
+            "data:": None
+        }), 503
+
+    return jsonify({
+        "status": "success",
+        "message": "Chat session created successfully",
+        "data": newSession
+    })
+
+@app_views.route('/chat_sessions', methods=['GET'])
+# @swag_from(f'{DOCS_DIR}/post_recipes.yml')
+@login_required()
+def getUserSessions():
+    """Retrieves the authenticated user's chat sessions"""
+    sessions = None
+    try:
+        sessions = storage.getUserSessions(g.currentUser.id)
+    except Exception as e:
+        return jsonify({
+            "status": "error",
+            "message": Utils.extractErrorMessage(str(e)),
+            "data:": None
+        }), 503
+
+    return jsonify({
+        "status": "success",
+        "message": "Chat sessions retrieved successfully",
+        "data": sessions
+    })
+
+@app_views.route('/chats', methods=['GET'])
+# @swag_from(f'{DOCS_DIR}/post_recipes.yml')
+@login_required()
+def getSessionChats():
+    """Retrieves the chat history of a chat session"""
+    requiredFields = ['sessionID']
+    data = Utils.getReqJSON(request, requiredFields)
+
+    session = storage.get(ChatSession, data['sessionID'])
+    if not session:
+        abort(404)
+    
+    chats = None
+    try:
+        chats = storage.getChatHistory(session.id)
+    except ValueError:
+        abort(404)
+
+    return jsonify({
+        "status": "success",
+        "message": "Chat history retrieved successfully",
+        "data": chats
+    })
 
 @app_views.route('/chats', methods=['POST'])
 # @swag_from(f'{DOCS_DIR}/post_recipes.yml')
@@ -64,7 +133,7 @@ def processChat():
 
     return jsonify({
         "status": "success",
-        "message": "Recipe created successfully",
+        "message": "Response generated successfully",
         "data": chatResponse.toDict()
     })
 

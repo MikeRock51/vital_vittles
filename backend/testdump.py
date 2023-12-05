@@ -49,6 +49,7 @@ from models import storage
 from models.user import User
 from models.recipe import Recipe
 from models.chat.chat import Chat
+from models.chat.chatSession import ChatSession
 
 engine = create_engine(
              f"mysql+mysqldb://{USER}:{PWD}@{HOST}/{DB}",
@@ -56,6 +57,9 @@ engine = create_engine(
 
 sessionFactory = sessionmaker(bind=engine, expire_on_commit=False)
 session = scoped_session(sessionFactory)
+
+u = storage.getByEmail('ola@email.com')
+s = storage.createChatSession(u.id, "Bread and Butter")
 
 # >>> systemMessage = "Your name is Yishu. You are a food and nutrition specialist bot. You provide expert assistance on all matters related to food, nutrition and health"
 # >>> chat = Chat(userID=user.id, chat={"role": "system", "content": systemMessage})

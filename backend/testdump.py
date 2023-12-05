@@ -48,6 +48,7 @@ from sqlalchemy import create_engine
 from models import storage
 from models.user import User
 from models.recipe import Recipe
+from models.chat.chat import Chat
 
 engine = create_engine(
              f"mysql+mysqldb://{USER}:{PWD}@{HOST}/{DB}",

@@ -158,7 +158,7 @@ class DBStorage:
     def getChatHistory(self, userID):
         """Retrieves user's chat history based on userID"""
         Chat = self.allModels()['Chat']
-        chatHistory = self.__session.query(Chat).filter_by(userID=userID).all()
+        chatHistory = self.__session.query(Chat).filter_by(userID=userID).order_by(Chat.createdAt.asc()).all()
         return [chat.toDict() for chat in chatHistory]
 
     def close(self) -> None:

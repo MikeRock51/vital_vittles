@@ -34,11 +34,11 @@ def processChat():
         chatData['userID'] = g.currentUser.id
         chatData['role'] = 'user'
         
-        newChat = Chat(**chatData)
         chatHistory = storage.getChatHistory(g.currentUser.id)
         if chatHistory == []:
             chatHistory = storage.createChatHistory(g.currentUser.id)
 
+        newChat = Chat(**chatData)
         chatHistory = [{'role': chat.get('role'), 'content': chat.get(
             'content')} for chat in chatHistory]
         chatHistory.append(chatData)

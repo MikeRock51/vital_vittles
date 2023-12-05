@@ -167,8 +167,9 @@ class DBStorage:
         """Retrieves the chat history based on sessionID"""
         ChatSession = self.allModels()['ChatSession']
         try:
-            chatHistory = self.__session.query(ChatSession).filter_by(id=sessionID).order_by(ChatSession.updatedAt.asc()).all()
-            return [chat.toDict() for chat in chatHistory]
+            session = self.__session.query(ChatSession).filter_by(id=sessionID).first()
+            print(session.toDict())
+            return [chat.toDict() for chat in session.chats]
         except NoResultFound:
             raise ValueError("Session not found")
     

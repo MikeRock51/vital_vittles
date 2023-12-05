@@ -9,6 +9,7 @@ from api.v1.utils import Utils
 from api.v1.utils.authWrapper import login_required
 from models.user import User
 from models.chat.chat import Chat
+from models.chat.chatSession import ChatSession
 from models.chat.chatProvider import getChatResponse
 import re
 from flasgger.utils import swag_from
@@ -59,6 +60,30 @@ def getUserSessions():
         "status": "success",
         "message": "Chat sessions retrieved successfully",
         "data": sessions
+    })
+
+@app_views.route('/chats', methods=['GET'])
+# @swag_from(f'{DOCS_DIR}/post_recipes.yml')
+@login_required()
+def getSessionChats():
+    """Retrieves the chat history of a chat session"""
+    requiredFields = ['sessionID']
+    data = Utils.getReqJSON(request, requiredFields)
+
+    session = storage.get(ChatSession, data['sessionID'])
+    if not session:
+        abort(404)
+    
+    chats = None
+    try:
+        chats = storage.getChatHistory(session.id)
+    except ValueError:
+        abort(404)
+
+    return jsonify({
+        "status": "success",
+        "message": "Chat history retrieved successfully",
+        "data": chats
     })
 
 @app_views.route('/chats', methods=['POST'])

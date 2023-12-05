@@ -1,6 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 import Toast from './providers/ToastProvider';
+import toast from "react-hot-toast";
+
+toast.success("Toast setup successfully!");
 
 function App() {
   return (

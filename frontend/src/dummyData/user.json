@@ -1,0 +1,10 @@
+{
+    "status": "success",
+    "message": "Current user retrieved successfully",
+    "data": {
+      "firstname": "Michael",
+      "lastname": "Olasunkanmi",
+      "username": "Ollywayne",
+      "id": "2de148a6-3512-4654-a062-c0baa40f19db"
+    }
+}

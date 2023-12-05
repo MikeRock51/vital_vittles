@@ -1,0 +1,310 @@
+{
+    "status": "success",
+    "message": "Successfully fetched recipes",
+    "page": 1,
+    "page_size": 10,
+    "total_page_items": 10,
+    "total_pages": 103,
+    "data": [
+      {
+        "name": "Malagasy Bolakaso with Coconut Sauce",
+        "cuisine": "Malagasy",
+        "id": "00495e13-9d52-4e52-be18-693f6ac9605b",
+        "prep_time_minutes": 10,
+        "cook_time_minutes": 20,
+        "total_time_minutes": 30,
+        "calories_per_serving": 300,
+        "serving_size": 4,
+        "ingredients": [
+          "2 cups cassava flour",
+          "2 cups water",
+          "1/2 teaspoon salt",
+          "Coconut sauce (recipe follows)"
+        ],
+        "instructions": [
+          "In a bowl, combine cassava flour, water, and salt. Mix until you have a smooth batter.",
+          "Heat a non-stick skillet or flat pan over medium heat. Pour a ladle of the cassava batter onto the hot skillet and quickly swirl it to spread it out thinly like a crepe. Cover and cook until the top is set, about 2-3 minutes.",
+          "Repeat with the remaining batter to make bolakaso pancakes.",
+          "Serve the Bolakaso with Coconut Sauce. Enjoy your Malagasy dish!"
+        ]
+      },
+      {
+        "name": "Kenyan Kachumbari",
+        "cuisine": "African",
+        "id": "0057c0f2-163e-4ea4-9e15-c2aaaa9d939f",
+        "prep_time_minutes": 15,
+        "cook_time_minutes": 0,
+        "total_time_minutes": 15,
+        "calories_per_serving": 100,
+        "serving_size": 4,
+        "ingredients": [
+          "4 tomatoes, diced",
+          "1 red onion, finely chopped",
+          "2 scallions (green onions), chopped",
+          "2-3 green chilies, finely chopped (adjust to taste)",
+          "1 cucumber, diced",
+          "1/4 cup fresh cilantro, chopped",
+          "1/4 cup fresh mint, chopped",
+          "Juice of 2-3 limes",
+          "Salt and pepper to taste"
+        ],
+        "instructions": [
+          "In a large bowl, combine diced tomatoes, finely chopped red onion, chopped scallions, finely chopped green chilies, diced cucumber, chopped fresh cilantro, and chopped fresh mint.",
+          "Squeeze the juice of 2-3 limes over the mixture. Season with salt and pepper to taste.",
+          "Toss all the ingredients together until well combined.",
+          "Refrigerate the Kenyan Kachumbari for at least 30 minutes before serving to allow the flavors to meld.",
+          "Serve the Kachumbari as a refreshing African salad or condiment."
+        ]
+      },
+      {
+        "name": "Egusi Soup",
+        "cuisine": "West African",
+        "id": "007bfcd0-07d7-4777-ba20-c0ee4ea3e416",
+        "prep_time_minutes": 30,
+        "cook_time_minutes": 60,
+        "total_time_minutes": 90,
+        "calories_per_serving": 450,
+        "serving_size": 4,
+        "ingredients": [
+          "1 cup of egusi seeds (ground melon seeds)",
+          "2 cups of water",
+          "2 pounds of meat or fish",
+          "1/2 cup of palm oil",
+          "1 onion, chopped",
+          "2 cloves of garlic, minced",
+          "2 scotch bonnet peppers, chopped",
+          "2 cups of chopped vegetables (spinach or bitterleaf)",
+          "1 teaspoon of ground crayfish",
+          "Salt and pepper to taste"
+        ],
+        "instructions": [
+          "In a bowl, mix egusi seeds with water to create a thick paste.",
+          "In a pot, cook the meat or fish until it's cooked through and tender. Remove and set aside.",
+          "In the same pot, heat palm oil and saut\u00e9 chopped onions, minced garlic, and scotch bonnet peppers until soft.",
+          "Add the egusi paste and cook, stirring continuously, until it thickens and the oil starts to separate.",
+          "Return the cooked meat or fish to the pot and add chopped vegetables, ground crayfish, salt, and pepper.",
+          "Simmer for about 15-20 minutes, or until the soup is well blended and heated through.",
+          "Serve the Egusi Soup hot with fufu or pounded yam."
+        ]
+      },
+      {
+        "name": "Cameroonian Kwem",
+        "cuisine": "African",
+        "id": "00b5aad1-26b6-4198-8023-320fa1a7c3c1",
+        "prep_time_minutes": 20,
+        "cook_time_minutes": 30,
+        "total_time_minutes": 50,
+        "calories_per_serving": 400,
+        "serving_size": 6,
+        "ingredients": [
+          "2 cups cornmeal",
+          "1/4 cup groundnut paste (peanut butter)",
+          "2 tablespoons red palm oil",
+          "1 onion, finely chopped",
+          "2 cloves garlic, minced",
+          "2 tomatoes, chopped",
+          "1/4 cup crayfish powder",
+          "1/4 cup smoked fish flakes",
+          "1/4 cup chopped okra",
+          "2-3 scotch bonnet peppers (atarodo), chopped (adjust to taste)",
+          "Salt and pepper to taste",
+          "Water"
+        ],
+        "instructions": [
+          "In a pot, combine cornmeal and enough water to create a thick paste. Mix well.",
+          "In a separate pot, heat red palm oil over medium heat. Add finely chopped onions and saut\u00e9 until they become soft and translucent.",
+          "Stir in minced garlic and cook for another minute until fragrant.",
+          "Add chopped tomatoes, crayfish powder, smoked fish flakes, chopped okra, chopped scotch bonnet peppers, salt, and pepper to the pot. Cook until the tomatoes break down and form a thick sauce.",
+          "Gradually add the cornmeal paste to the sauce, stirring constantly to prevent lumps. Cook until the mixture thickens and pulls away from the sides of the pot.",
+          "Stir in groundnut paste (peanut butter) and continue to cook until well incorporated.",
+          "Serve the Cameroonian Kwem hot as a delightful African dish."
+        ]
+      },
+      {
+        "name": "Fufu and Light Soup",
+        "cuisine": "West African",
+        "id": "00e27398-6917-45ed-a758-c50cd7334c48",
+        "prep_time_minutes": 15,
+        "cook_time_minutes": 30,
+        "total_time_minutes": 45,
+        "calories_per_serving": 300,
+        "serving_size": 2,
+        "ingredients": [
+          "2 cups of fufu (cassava or plantain)",
+          "2 cups of light soup (fish or chicken)",
+          "1 onion, chopped",
+          "2 tomatoes, chopped",
+          "1 teaspoon of palm oil",
+          "1 teaspoon of ground pepper",
+          "1 teaspoon of ginger",
+          "1 teaspoon of garlic",
+          "Salt to taste"
+        ],
+        "instructions": [
+          "Prepare the fufu according to package instructions and set it aside.",
+          "In a separate pot, heat the palm oil and add chopped onions, tomatoes, ginger, and garlic.",
+          "Cook until the mixture softens and begins to release its aroma.",
+          "Add the light soup and ground pepper, and simmer for about 10-15 minutes.",
+          "Serve the light soup over the fufu and enjoy!"
+        ]
+      },
+      {
+        "name": "Senegalese Poulet Yassa au Citron",
+        "cuisine": "Senegalese",
+        "id": "00fcb822-0adf-42ff-9442-a49c59fdd5ad",
+        "prep_time_minutes": 60,
+        "cook_time_minutes": 30,
+        "total_time_minutes": 90,
+        "calories_per_serving": 350,
+        "serving_size": 4,
+        "ingredients": [
+          "4 bone-in chicken thighs or drumsticks",
+          "2 onions, thinly sliced",
+          "4 cloves garlic, minced",
+          "2-3 tablespoons vegetable oil",
+          "Juice of 2-3 lemons",
+          "1 teaspoon Dijon mustard",
+          "1/2 teaspoon ground cayenne pepper (adjust to taste)",
+          "Salt and black pepper to taste",
+          "Cooked rice or couscous for serving"
+        ],
+        "instructions": [
+          "In a bowl, combine minced garlic, lemon juice, Dijon mustard, ground cayenne pepper, salt, and black pepper. Mix well to make the marinade.",
+          "Place chicken pieces in a dish and pour the marinade over them. Let the chicken marinate for at least 1 hour, or overnight for best flavor.",
+          "Heat vegetable oil in a skillet over medium-high heat. Remove chicken from the marinade (reserve the marinade) and sear until golden brown on both sides. Remove the chicken from the skillet and set aside.",
+          "In the same skillet, add thinly sliced onions and saut\u00e9 until they are caramelized and browned.",
+          "Return the seared chicken to the skillet with the caramelized onions. Pour in the reserved marinade and simmer until the chicken is cooked through and the sauce thickens.",
+          "Serve Senegalese Poulet Yassa au Citron hot with cooked rice or couscous.",
+          "Enjoy this flavorful Senegalese chicken dish!"
+        ]
+      },
+      {
+        "name": "Tanzanian Makange with Coconut Milk and Chapati",
+        "cuisine": "Tanzanian",
+        "id": "0126a756-1bca-491a-ac58-43c03c549565",
+        "prep_time_minutes": 20,
+        "cook_time_minutes": 45,
+        "total_time_minutes": 65,
+        "calories_per_serving": 420,
+        "serving_size": 4,
+        "ingredients": [
+          "For Makange (Tanzanian Cassava in Coconut Milk):",
+          "2 lbs cassava, peeled and cut into chunks",
+          "1 can (14 oz) coconut milk",
+          "1/4 cup brown sugar",
+          "1/4 teaspoon ground cinnamon",
+          "1/4 teaspoon ground cardamom",
+          "1/4 teaspoon ground cloves",
+          "1/4 teaspoon vanilla extract",
+          "For Chapati (Tanzanian Flatbread):",
+          "2 cups all-purpose flour",
+          "1 teaspoon salt",
+          "Water, as needed",
+          "Vegetable oil, for frying"
+        ],
+        "instructions": [
+          "For Makange (Tanzanian Cassava in Coconut Milk):",
+          "In a pot, combine cassava chunks, coconut milk, brown sugar, ground cinnamon, ground cardamom, ground cloves, and vanilla extract.",
+          "Simmer over low heat, stirring occasionally, until cassava is tender and the sauce has thickened.",
+          "For Chapati (Tanzanian Flatbread):",
+          "In a bowl, mix all-purpose flour and salt. Gradually add water and knead into a soft dough.",
+          "Divide the dough into small balls and roll them out into thin circles.",
+          "Heat a skillet or griddle over medium-high heat and cook the chapatis with a little vegetable oil until they are golden brown on both sides.",
+          "Serve Tanzanian Makange with Coconut Milk alongside Chapati for a delightful Tanzanian meal."
+        ]
+      },
+      {
+        "name": "Moroccan Rfissa with Lentils",
+        "cuisine": "Moroccan",
+        "id": "01771415-9355-4e68-aa09-39e0bdacbfb9",
+        "prep_time_minutes": 20,
+        "cook_time_minutes": 60,
+        "total_time_minutes": 80,
+        "calories_per_serving": 380,
+        "serving_size": 4,
+        "ingredients": [
+          "2 cups dried lentils",
+          "1 cup fenugreek seeds",
+          "1 onion, chopped",
+          "2 cloves garlic, minced",
+          "2 tomatoes, chopped",
+          "2 tablespoons vegetable oil",
+          "1 teaspoon ground coriander",
+          "1 teaspoon ground cumin",
+          "Salt and pepper to taste",
+          "Rfissa bread or flatbread, for serving"
+        ],
+        "instructions": [
+          "Soak dried lentils and fenugreek seeds in water overnight. Drain and rinse.",
+          "In a large pot, heat vegetable oil over medium-high heat. Add chopped onions and minced garlic. Saut\u00e9 until onions are translucent.",
+          "Stir in chopped tomatoes and cook until they soften.",
+          "Add soaked lentils and fenugreek seeds to the pot and cook for a few minutes.",
+          "Season with ground coriander, ground cumin, salt, and pepper. Add enough water to cover the lentils and bring to a boil.",
+          "Reduce heat and simmer until lentils are tender and the mixture thickens.",
+          "Serve Moroccan Rfissa with lentils over Rfissa bread or flatbread. Enjoy your Moroccan dish!"
+        ]
+      },
+      {
+        "name": "Ghanaian Tuo Zaafi with Kontomire Stew and Tilapia",
+        "cuisine": "Ghanaian",
+        "id": "018e4b7b-404a-4eb6-8c7e-71fc36108a73",
+        "prep_time_minutes": 30,
+        "cook_time_minutes": 45,
+        "total_time_minutes": 75,
+        "calories_per_serving": 580,
+        "serving_size": 4,
+        "ingredients": [
+          "4 cups cornmeal",
+          "8 cups water",
+          "2 cups kontomire leaves (cocoyam leaves), chopped",
+          "4 tilapia fish fillets",
+          "2 onions, chopped",
+          "2 tomatoes, chopped",
+          "2 cloves garlic, minced",
+          "2 tablespoons palm oil",
+          "1 teaspoon ground ginger",
+          "1 teaspoon ground cayenne pepper",
+          "Salt and pepper to taste"
+        ],
+        "instructions": [
+          "In a large pot, bring water to a boil. Slowly add cornmeal while stirring continuously to avoid lumps. Cook until it forms a smooth, stretchy dough (tuo zaafi).",
+          "In a separate pot, heat palm oil over medium-high heat. Add chopped onions and minced garlic. Saut\u00e9 until onions are translucent.",
+          "Stir in chopped tomatoes, ground ginger, ground cayenne pepper, salt, and pepper. Cook until tomatoes soften.",
+          "Add chopped kontomire leaves (cocoyam leaves) to the pot and cook until they wilt.",
+          "Season tilapia fillets with salt and pepper, then grill or pan-fry them until cooked through.",
+          "Serve Ghanaian Tuo Zaafi with Kontomire Stew and Grilled Tilapia for an authentic Ghanaian meal."
+        ]
+      },
+      {
+        "name": "Tunisian Lablabi Soup",
+        "cuisine": "Tunisian",
+        "id": "0192427a-ffda-41a7-9d51-bbbd01068aed",
+        "prep_time_minutes": 10,
+        "cook_time_minutes": 15,
+        "total_time_minutes": 25,
+        "calories_per_serving": 300,
+        "serving_size": 4,
+        "ingredients": [
+          "1 can (15 oz) chickpeas, drained and rinsed",
+          "4 slices stale baguette or country bread",
+          "2 cloves garlic, minced",
+          "2 teaspoons ground cumin",
+          "1 teaspoon ground coriander",
+          "1/2 teaspoon cayenne pepper (adjust to taste)",
+          "1/4 cup olive oil",
+          "Juice of 1 lemon",
+          "Salt and black pepper to taste",
+          "Water"
+        ],
+        "instructions": [
+          "In a large pot, combine chickpeas, stale bread slices, minced garlic, ground cumin, ground coriander, and cayenne pepper.",
+          "Add enough water to cover the ingredients and bring to a boil. Reduce the heat and simmer for about 15 minutes.",
+          "Remove the pot from the heat and let it cool slightly.",
+          "Using an immersion blender, blend the soup until smooth. If the soup is too thick, add more water to reach your desired consistency.",
+          "Return the pot to the stove and heat over low heat. Stir in olive oil and lemon juice. Season with salt and black pepper to taste.",
+          "Serve Tunisian Lablabi Soup hot with additional bread slices for dipping.",
+          "Enjoy this Tunisian comfort soup!"
+        ]
+      }
+    ]
+  }

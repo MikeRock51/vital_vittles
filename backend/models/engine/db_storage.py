@@ -161,19 +161,25 @@ class DBStorage:
             chat.save()
             return [session.toDict()]
         except Exception as e:
-            raise e
+            raise ValueError(e)
 
     def getChatHistory(self, sessionID):
         """Retrieves the chat history based on sessionID"""
         ChatSession = self.allModels()['ChatSession']
-        chatHistory = self.__session.query(ChatSession).filter_by(id=sessionID).order_by(ChatSession.updatedAt.desc()).all()
-        return [chat.toDict() for chat in chatHistory]
+        try:
+            chatHistory = self.__session.query(ChatSession).filter_by(id=sessionID).order_by(ChatSession.updatedAt.asc()).all()
+            return [chat.toDict() for chat in chatHistory]
+        except NoResultFound:
+            raise ValueError("Session not found")
     
     def getUserSessions(self, userID):
         """Retrieves all chat sessions based on userID"""
-        ChatSession = self.allModels()['ChatSession']
-        chatHistory = self.__session.query(ChatSession).filter_by(userID=userID).order_by(ChatSession.updatedAt.desc()).all()
-        return [chat.toDict() for chat in chatHistory]
+        try:
+            ChatSession = self.allModels()['ChatSession']
+            chatHistory = self.__session.query(ChatSession).filter_by(userID=userID).order_by(ChatSession.updatedAt.asc()).all()
+            return [chat.toDict() for chat in chatHistory]
+        except Exception as e:
+            raise ValueError(e)
 
     def close(self) -> None:
         """Removes the current session"""

@@ -40,6 +40,27 @@ def createChatSession():
         "data": newSession
     })
 
+@app_views.route('/chat_sessions', methods=['GET'])
+# @swag_from(f'{DOCS_DIR}/post_recipes.yml')
+@login_required()
+def getUserSessions():
+    """Retrieves the authenticated user's chat sessions"""
+    sessions = None
+    try:
+        sessions = storage.getUserSessions(g.currentUser.id)
+    except Exception as e:
+        return jsonify({
+            "status": "error",
+            "message": Utils.extractErrorMessage(str(e)),
+            "data:": None
+        }), 503
+
+    return jsonify({
+        "status": "success",
+        "message": "Chat sessions retrieved successfully",
+        "data": sessions
+    })
+
 @app_views.route('/chats', methods=['POST'])
 # @swag_from(f'{DOCS_DIR}/post_recipes.yml')
 @login_required()

@@ -109,11 +109,13 @@ class DBStorage:
         from models.user import User
         from models.recipe import Recipe
         from models.chat.chat import Chat
+        from models.chat.chatSession import ChatSession
 
         return {
             "User": User,
             "Recipe": Recipe,
-            "Chat": Chat
+            "Chat": Chat,
+            "ChatSession": ChatSession
         }
 
     def new(self, obj) -> None:
@@ -147,18 +149,30 @@ class DBStorage:
         except NoResultFound:
             raise ValueError("User does not exist")
             
-    def createChatHistory(self, userID):
-        """Prepopulates new users chat history with system message"""
-        from models.chat.chat import Chat
-        systemMessage = "Your name is Yishu. You are a food and nutrition specialist bot. You provide expert assistance on all matters related to food, nutrition and health"
-        chat = Chat(userID=userID, content=systemMessage, role="system")
-        chat.save()
-        return [chat.toDict()]
-
-    def getChatHistory(self, userID):
-        """Retrieves user's chat history based on userID"""
+    def createChatSession(self, userID, topic=None):
+        """Creates a chat sessiion for new users and prepopulates the chat history with system message"""
+        ChatSession = self.allModels()['ChatSession']
         Chat = self.allModels()['Chat']
-        chatHistory = self.__session.query(Chat).filter_by(userID=userID).order_by(Chat.createdAt.asc()).all()
+        systemMessage = "Your name is Yishu. You are a food and nutrition specialist bot. You provide expert assistance on all matters related to food, nutrition and health"
+        try:
+            session = ChatSession(userID=userID, topic=topic)
+            chat = Chat(userID=userID, sessionID=session.id, content=systemMessage, role="system")
+            session.save()
+            chat.save()
+            return [session.toDict()]
+        except Exception as e:
+            raise e
+
+    def getChatHistory(self, sessionID):
+        """Retrieves the chat history based on sessionID"""
+        ChatSession = self.allModels()['ChatSession']
+        chatHistory = self.__session.query(ChatSession).filter_by(id=sessionID).all()
+        return [chat.toDict() for chat in chatHistory]
+    
+    def getUserSessions(self, userID):
+        """Retrieves all chat sessions based on userID"""
+        ChatSession = self.allModels()['ChatSession']
+        chatHistory = self.__session.query(ChatSession).filter_by(id=sessionID).all()
         return [chat.toDict() for chat in chatHistory]
 
     def close(self) -> None:

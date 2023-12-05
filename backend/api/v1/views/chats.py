@@ -17,6 +17,46 @@ from os import path
 DOCS_DIR = path.dirname(__file__) + '/documentations/recipes'
 
 
+@app_views.route('/chat_session', methods=['POST'])
+# @swag_from(f'{DOCS_DIR}/post_recipes.yml')
+@login_required()
+def createChatSession():
+    """Creates a new chat session for the current user"""
+    try:
+        chatHistory = storage.getChatHistory(g.currentUser.id)
+        if chatHistory == []:
+            chatHistory = storage.createChatHistory(g.currentUser.id)
+
+        newChat = Chat(**chatData)
+        chatHistory = [{'role': chat.get('role'), 'content': chat.get(
+            'content')} for chat in chatHistory]
+        chatHistory.append(chatData)
+        chatData.pop("userID")
+
+        chatResponse = None
+        try:
+            chatResponse = getChatResponse(chatHistory)
+            chatResponse['userID'] = g.currentUser.id
+            chatResponse = Chat(**chatResponse)
+            newChat.save()
+            chatResponse.save()
+        except Exception as e:
+            return jsonify({
+                "status": "error",
+                "message": str(e)
+            }), 400
+    except (ValueError) as e:
+        return jsonify({
+            "status": "error",
+            "message": Utils.extractErrorMessage(str(e))
+        }), 400
+
+    return jsonify({
+        "status": "success",
+        "message": "Recipe created successfully",
+        "data": chatResponse.toDict()
+    })
+
 @app_views.route('/chats', methods=['POST'])
 # @swag_from(f'{DOCS_DIR}/post_recipes.yml')
 @login_required()

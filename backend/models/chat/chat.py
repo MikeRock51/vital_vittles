@@ -10,5 +10,6 @@ class Chat(BaseModel, Base):
     __tablename__ = "chats"
 
     userID = Column(String(60), ForeignKey('users.id'), nullable=False)
+    sessionID = Column(String(60), ForeignKey("chat_sessions.id"), nullable=False)
     content = Column(Text, nullable=False)
     role = Column(String(100), nullable=False)

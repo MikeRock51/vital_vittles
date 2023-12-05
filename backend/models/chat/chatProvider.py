@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 from openai import OpenAI
-from termcolor import colored
 import os
 
 from dotenv import load_dotenv
@@ -17,7 +16,7 @@ client = OpenAI(api_key=api_key)
 def getChatResponse(chatHistory):
     try:
         completion = client.chat.completions.create(
-            model="gpt-3.5-turbo", messages=chatHistory, max_tokens=150)
+            model="gpt-3.5-turbo", messages=chatHistory, max_tokens=200)
 
         completionText = completion.choices[0].message.content
         return {"role": "assistant", "content": completionText}

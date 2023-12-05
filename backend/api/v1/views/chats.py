@@ -99,28 +99,31 @@ def processChat():
         chatData['userID'] = g.currentUser.id
         chatData['role'] = 'user'
         
-        chatHistory = storage.getChatHistory(g.currentUser.id)
+        chatHistory = storage.getChatHistory(chatData['sessionID'], g.currentUser.id)
         if chatHistory == []:
-            chatHistory = storage.createChatHistory(g.currentUser.id)
+            abort(400, description="Invalid chat session!")
 
         newChat = Chat(**chatData)
         chatHistory = [{'role': chat.get('role'), 'content': chat.get(
             'content')} for chat in chatHistory]
-        chatHistory.append(chatData)
         chatData.pop("userID")
+        chatData.pop("sessionID")
+        chatHistory.append(chatData)
 
         chatResponse = None
         try:
             chatResponse = getChatResponse(chatHistory)
             chatResponse['userID'] = g.currentUser.id
+            chatResponse['sessionID'] = data['sessionID']
             chatResponse = Chat(**chatResponse)
             newChat.save()
             chatResponse.save()
         except Exception as e:
             return jsonify({
                 "status": "error",
-                "message": str(e)
-            }), 400
+                "message": str(e),
+                "data": None
+            }), 503
     except (ValueError) as e:
         return jsonify({
             "status": "error",

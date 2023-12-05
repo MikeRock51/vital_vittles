@@ -174,7 +174,8 @@ class DBStorage:
         elif session.userID != userID:
             raise VError("You are not authorized to access this chat session", 401)
         
-        return [chat.toDict() for chat in session.chats]
+        history = [chat.toDict() for chat in session.chats]
+        return sorted(history, key=lambda x: x.get('createdAt', ''))
     
     def getUserSessions(self, userID):
         """Retrieves all chat sessions based on userID"""

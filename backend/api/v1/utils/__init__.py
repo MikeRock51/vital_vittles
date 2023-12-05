@@ -16,7 +16,7 @@ class Utils:
         if request:
             data = request.get_json()
             if not data:
-                abort(400)
+                abort(400, description=f"Missing required fields {requiredFields}")
 
             if requiredFields:
                 for field in requiredFields:

@@ -17,44 +17,27 @@ from os import path
 DOCS_DIR = path.dirname(__file__) + '/documentations/recipes'
 
 
-@app_views.route('/chat_session', methods=['POST'])
+@app_views.route('/chat_sessions', methods=['POST'])
 # @swag_from(f'{DOCS_DIR}/post_recipes.yml')
 @login_required()
 def createChatSession():
     """Creates a new chat session for the current user"""
+    data = request.get_json()
+    newSession = None
+
     try:
-        chatHistory = storage.getChatHistory(g.currentUser.id)
-        if chatHistory == []:
-            chatHistory = storage.createChatHistory(g.currentUser.id)
-
-        newChat = Chat(**chatData)
-        chatHistory = [{'role': chat.get('role'), 'content': chat.get(
-            'content')} for chat in chatHistory]
-        chatHistory.append(chatData)
-        chatData.pop("userID")
-
-        chatResponse = None
-        try:
-            chatResponse = getChatResponse(chatHistory)
-            chatResponse['userID'] = g.currentUser.id
-            chatResponse = Chat(**chatResponse)
-            newChat.save()
-            chatResponse.save()
-        except Exception as e:
-            return jsonify({
-                "status": "error",
-                "message": str(e)
-            }), 400
-    except (ValueError) as e:
+        newSession = storage.createChatSession(g.currentUser.id, data.get('topic'))
+    except Exception as e:
         return jsonify({
             "status": "error",
-            "message": Utils.extractErrorMessage(str(e))
-        }), 400
+            "message": Utils.extractErrorMessage(str(e)),
+            "data:": None
+        }), 503
 
     return jsonify({
         "status": "success",
-        "message": "Recipe created successfully",
-        "data": chatResponse.toDict()
+        "message": "Chat session created successfully",
+        "data": newSession
     })
 
 @app_views.route('/chats', methods=['POST'])
@@ -104,7 +87,7 @@ def processChat():
 
     return jsonify({
         "status": "success",
-        "message": "Recipe created successfully",
+        "message": "Response generated successfully",
         "data": chatResponse.toDict()
     })
 

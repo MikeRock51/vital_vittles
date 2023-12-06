@@ -123,7 +123,8 @@ def shipFiles(archivePath):
 
 def installGlobalRequirements():
     """Installs the projects global requirements"""
-    run("pip3 install -r globals.txt")
+    with cd(PSN):
+        run("pip3 install -r globals.txt")
 
 
 def installRequirements():
@@ -166,7 +167,7 @@ def fullDeploy():
     # configureSQL()
     installGlobalRequirements()
     installRequirements()
-    setupDB()
+    # setupDB()
     deployNginxConfig()
     deployServiceFile()
     startUnitService()

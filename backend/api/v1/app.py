@@ -13,7 +13,7 @@ from flasgger import Swagger
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
-app.config['DP_FOLDER'] = path.dirname(__file__) + '/assets/dps/'
+app.config['DP_FOLDER'] = path.dirname(__file__) + '/assets/dps'
 app.json.sort_keys = False
 CORS(app, resources={r'/api/v1/*': {'origins': '*'}}, support_credentials=True)
 app.register_blueprint(app_views)

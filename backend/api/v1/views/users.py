@@ -13,15 +13,7 @@ from sqlalchemy.exc import IntegrityError
 from api.v1.auth import auth
 from flasgger.utils import swag_from
 from os import path
-from werkzeug.utils import secure_filename
 
-
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'gif'}
-
-
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 DOCS_DIR = path.dirname(__file__) + '/documentations/users'
 
@@ -50,6 +42,7 @@ def createUser():
     requiredFields = ['username', 'email', 'password']
     userFields = ['username', 'email', 'password', 'firstname', 'lastname']
     detailed = request.args.get('detailed', True)
+    DP_FOLDER = current_app.config["DP_FOLDER"]
 
     try:
         data = Utils.getReqJSON(request, requiredFields)
@@ -58,11 +51,16 @@ def createUser():
         username = userData['username']
         userData['username'] = "_".join(username.split())
 
-        if 'file' not in request['files']:
-            userData['dp'] = "as"
+        if 'file' not in request.files:
+            userData['dp'] = f'{DP_FOLDER}/defaultDP.png'
+        else:
+            filename = Utils.uploadFile(request, DP_FOLDER)
+            userData['dp'] = filename
+        
+        print(userData)
 
-        user = User(**userData)
-        user.save()
+        # user = User(**userData)
+        # user.save()
     except ValueError as ve:
         return jsonify({
             "status": "error",

@@ -7,23 +7,36 @@ import re
 from flask import abort
 import json
 from json.decoder import JSONDecodeError
+import os
+
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+def allowedFile(filename):
+        return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 class Utils:
     """Utility class"""
+    # def __init__():
+    #     """Constructor"""
+    #     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
     @staticmethod
     def getReqJSON(request, requiredFields: List = None) -> Dict:
         """Extracts JSON data from request"""
         if request:
             data = request.get_json()
             if not data:
-                abort(400, description=f"Missing required fields {requiredFields}")
+                abort(
+                    400, description=f"Missing required fields {requiredFields}")
 
             if requiredFields:
                 for field in requiredFields:
                     if field not in data:
                         raise ValueError(f'Missing required {field}')
             return data
-        
+
     @staticmethod
     def extractErrorMessage(error_message: str) -> str:
         """Extracts the useful part of error message"""
@@ -79,7 +92,7 @@ class Utils:
     def successResponse(data: List, detailed: bool = False, objName='') -> Dict:
         """Constructs a JSON response based on data"""
         return {
-           "status": "success",
+            "status": "success",
             "message": f"Successfully fetched {objName}" if data['data'] != [] else "No match found",
             "page": data['page'],
             "page_size": data['page_size'],
@@ -88,8 +101,27 @@ class Utils:
             "data": [recipe.toDict(detailed=detailed) for recipe in data['data']]
         }
 
+    def uploadFile(request, uploadFolder):
+        """Extracts file from the request object and uploads it to the given upload folder"""
+        from werkzeug.utils import secure_filename
+
+        file = request.files['file']
+        if file.filename == '':
+            abort(400, description="No file selected")
+        if file and not allowedFile(file.filename):
+            abort(400, description=f"Invalid file format! Supported Formats {(', ').join(ALLOWED_EXTENSIONS)}")
+        if not os.path.exists(uploadFolder):
+            os.mkdir(uploadFolder)
+
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(uploadFolder, filename))
+
+        return filename
+                    
+
 class VError(ValueError):
     """A custom value error"""
+
     def __init__(self, message, statusCode):
         super().__init__(message)
         self.statusCode = statusCode

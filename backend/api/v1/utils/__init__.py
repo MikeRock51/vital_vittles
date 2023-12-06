@@ -23,7 +23,7 @@ class Utils:
                     if field not in data:
                         raise ValueError(f'Missing required {field}')
             return data
-
+        
     @staticmethod
     def extractErrorMessage(error_message: str) -> str:
         """Extracts the useful part of error message"""

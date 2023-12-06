@@ -41,6 +41,43 @@ def createChatSession():
         "data": newSession
     })
 
+@app_views.route('/chat_sessions', methods=['PUT'])
+# @swag_from(f'{DOCS_DIR}/post_recipes.yml')
+@login_required()
+def updateChatSession():
+    """Updates a chat session based on sessionID"""
+    requiredFields = ['topic', 'sessionID']
+    data = Utils.getReqJSON(request, requiredFields)
+    session = None
+
+    try:
+        session = storage.get(ChatSession, data['sessionID'])
+        if not session:
+            raise VError("Chat session not found", 404)
+        elif session.userID != g.currentUser.id:
+            raise VError("You are not authorized to access this chat session", 401)
+        
+        setattr(session, 'topic', data.get('topic'))
+        session.save()
+    except VError as e:
+        return jsonify({
+            "status": "error",
+            "message": str(e),
+            "data:": None
+        }), e.statusCode
+    except Exception as e:
+        return jsonify({
+            "status": "error",
+            "message": Utils.extractErrorMessage(str(e)),
+            "data:": None
+        }), 503
+
+    return jsonify({
+        "status": "success",
+        "message": "Chat session updated successfully",
+        "data": session.toDict()
+    })
+
 @app_views.route('/chat_sessions', methods=['GET'])
 # @swag_from(f'{DOCS_DIR}/post_recipes.yml')
 @login_required()

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """User view routes"""
 
-from flask import jsonify, g, request, abort
+from flask import jsonify, g, request, abort, current_app
 from models.user import User
 from models import storage
 from api.v1.views import app_views
@@ -13,7 +13,15 @@ from sqlalchemy.exc import IntegrityError
 from api.v1.auth import auth
 from flasgger.utils import swag_from
 from os import path
-from models.chat.chat import Chat
+from werkzeug.utils import secure_filename
+
+
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'gif'}
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 DOCS_DIR = path.dirname(__file__) + '/documentations/users'
 
@@ -42,16 +50,19 @@ def createUser():
     requiredFields = ['username', 'email', 'password']
     userFields = ['username', 'email', 'password', 'firstname', 'lastname']
     detailed = request.args.get('detailed', True)
+
     try:
         data = Utils.getReqJSON(request, requiredFields)
         userData = {key: value for key,
                     value in data.items() if key in userFields}
         username = userData['username']
         userData['username'] = "_".join(username.split())
+
+        if 'file' not in request['files']:
+            userData['dp'] = "as"
+
         user = User(**userData)
         user.save()
-
-        chatHistory = storage.createChatHistory(userID=user.id)
     except ValueError as ve:
         return jsonify({
             "status": "error",
@@ -66,7 +77,7 @@ def createUser():
     return jsonify({
         "status": "success",
         "message": "Account created successfully",
-        "data": user.toDict(detailed=detailed)
+        # "data": user.toDict(detailed=detailed)
     }), 201
 
 

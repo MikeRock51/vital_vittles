@@ -4,7 +4,7 @@
 from flask import Flask, jsonify, request, g
 from flask_cors import CORS
 from api.v1.views import app_views
-from os import getenv
+from os import getenv, path
 from api.v1.auth import auth
 from models import storage
 from flasgger import Swagger
@@ -13,6 +13,7 @@ from flasgger import Swagger
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
+app.config['DP_FOLDER'] = path.dirname(__file__) + '/assets/dps/'
 app.json.sort_keys = False
 CORS(app, resources={r'/api/v1/*': {'origins': '*'}}, support_credentials=True)
 app.register_blueprint(app_views)

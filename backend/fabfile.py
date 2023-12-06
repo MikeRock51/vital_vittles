@@ -12,6 +12,10 @@ import json
 load_dotenv()
 
 SQL_ROOT_PWD = getenv("SQL_ROOT_PWD")
+USER = getenv("DB_USER")
+HOST = getenv("DB_HOST")
+PWD = getenv("DB_PWD")
+DB = getenv("DB_NAME")
 PSN = getenv("PSN")
 APP_FILES = json.loads(getenv('APP_FILES'))
 
@@ -133,7 +137,7 @@ def installRequirements():
 def setupDB():
     """(Re)Creates and prepopulates database with data"""
     with cd(PSN):
-        run(f"cat setupDatabase.sql | mysql -uroot -p{SQL_ROOT_PWD}")
+        run(f"cat setupDatabase.sql | mysql -h{HOST} -u{USER} -p{SQL_ROOT_PWD}")
         run("python3 createRecipeDataDB.py")
     print("Database is ready!")
 
@@ -159,7 +163,7 @@ def fullDeploy():
     """Performs a full deploy to a new server"""
     deployFiles()
     installPackages()
-    configureSQL()
+    # configureSQL()
     installGlobalRequirements()
     installRequirements()
     setupDB()

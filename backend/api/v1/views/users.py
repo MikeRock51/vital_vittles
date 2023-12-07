@@ -50,17 +50,10 @@ def createUser():
                     value in data.items() if key in userFields}
         username = userData['username']
         userData['username'] = "_".join(username.split())
+        userData['dp'] = f'{DP_FOLDER}/defaultDP.png'
 
-        if 'file' not in request.files:
-            userData['dp'] = f'{DP_FOLDER}/defaultDP.png'
-        else:
-            filename = Utils.uploadFile(request, DP_FOLDER)
-            userData['dp'] = filename
-        
-        print(userData)
-
-        # user = User(**userData)
-        # user.save()
+        user = User(**userData)
+        user.save()
     except ValueError as ve:
         return jsonify({
             "status": "error",
@@ -75,8 +68,39 @@ def createUser():
     return jsonify({
         "status": "success",
         "message": "Account created successfully",
-        # "data": user.toDict(detailed=detailed)
+        "data": user.toDict(detailed=detailed)
     }), 201
+
+@app_views.route('/users/dp', methods=['PUT'])
+# @swag_from(f'{DOCS_DIR}/post_users.yml')
+def uploadDP():
+    """Creates a news user"""
+    DP_FOLDER = current_app.config["DP_FOLDER"]
+    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+    try:
+        if 'file' not in request.files:
+            abort(400, description="File is missing")
+        else:
+            filename = Utils.uploadFile(request, DP_FOLDER, ALLOWED_EXTENSIONS)
+            g.currentUser.dp = filename
+            g.currentUser.save()
+    except ValueError as ve:
+        return jsonify({
+            "status": "error",
+            "message": str(ve)
+        }), 400
+    except IntegrityError as ie:
+        return jsonify({
+            "status": "error",
+        "message": Utils.extractErrorMessage(str(ie))
+        }), 400
+
+    return jsonify({
+        "status": "success",
+        "message": "User DP uploaded successfully",
+        "data": g.currentUser.toDict()
+    }), 200
 
 
 @app_views.route('/users/me')

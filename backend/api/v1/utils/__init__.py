@@ -9,11 +9,9 @@ import json
 from json.decoder import JSONDecodeError
 import os
 
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-
-def allowedFile(filename):
+def allowedFile(filename, allowedExt):
         return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+           filename.rsplit('.', 1)[1].lower() in allowedExt
 
 
 class Utils:
@@ -101,15 +99,15 @@ class Utils:
             "data": [recipe.toDict(detailed=detailed) for recipe in data['data']]
         }
 
-    def uploadFile(request, uploadFolder):
+    def uploadFile(request, uploadFolder, ALLOWED_EXTENSIONS):
         """Extracts file from the request object and uploads it to the given upload folder"""
         from werkzeug.utils import secure_filename
 
         file = request.files['file']
         if file.filename == '':
             abort(400, description="No file selected")
-        if file and not allowedFile(file.filename):
-            abort(400, description=f"Invalid file format! Supported Formats {(', ').join(ALLOWED_EXTENSIONS)}")
+        if file and not allowedFile(file.filename, ALLOWED_EXTENSIONS):
+            abort(400, description=f"Invalid file format! Supported Formats: {(', ').join(ALLOWED_EXTENSIONS)}")
         if not os.path.exists(uploadFolder):
             os.mkdir(uploadFolder)
 

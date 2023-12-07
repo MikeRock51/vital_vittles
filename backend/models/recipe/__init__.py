@@ -20,6 +20,7 @@ class Recipe(BaseModel, Base, RecipeUtils):
     total_time_minutes = Column(Integer, nullable=False)
     calories_per_serving = Column(Integer, nullable=True)
     userID = Column(String(60), ForeignKey('users.id'), nullable=False)
+    # dp = Column(String(384), nullable=False, default="https://icons.iconarchive.com/icons/mcdo-design/closed-notes/256/Diary-Recipe-icon.png")
 
     def __init__(self, *args, **kwargs) -> None:
         """Initialize instance"""

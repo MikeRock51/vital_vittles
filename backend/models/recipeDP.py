@@ -14,4 +14,4 @@ class RecipeDP(BaseModel, Base):
     filePath = Column(String(384), nullable=False, default="https://icons.iconarchive.com/icons/mcdo-design/closed-notes/256/Diary-Recipe-icon.png")
     fileType = Column(String(30), nullable=False, default="link")
     recipeID = Column(String(60), ForeignKey('recipes.id'), nullable=False)
-    recipe = relationship('Recipe', backref='dp', cascade='all, delete')
+    recipe = relationship('Recipe', backref='dps', cascade='all, delete')

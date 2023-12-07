@@ -37,6 +37,7 @@ class Recipe(BaseModel, Base, RecipeUtils):
                  'cook_time_minutes', 'total_time_minutes',
                  'calories_per_serving', 'serving_size', 'userID',
                  'ingredients', 'instructions']
+        instance['dps'] = [dp.filePath for dp in self.dps]
 
         if detailed:
             return Utils.sortDictKeys(instance, order)

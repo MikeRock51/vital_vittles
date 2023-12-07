@@ -2,9 +2,10 @@
 """RESTFUL API actions for recipes"""
 
 from models.recipe import Recipe
+from models.recipeDP import RecipeDP
 from models import storage
 from models.roles import UserRole
-from flask import jsonify, abort, request, g
+from flask import jsonify, abort, request, g, current_app
 from api.v1.views import app_views
 from api.v1.utils import Utils
 from api.v1.utils.authWrapper import login_required
@@ -129,14 +130,19 @@ def createRecipe():
                       'instructions', 'prep_time_minutes', 'cook_time_minutes']
     optionalFields = ['total_time_minutes',
                       'serving_size', 'calories_per_serving']
+    DP_FOLDER = current_app.config['DP_FOLDER'] + 'recipes'
+
     try:
-        recipeData = Utils.getReqJSON(request, requiredFields)
-        for field in recipeData:
-            if field not in requiredFields and field not in optionalFields:
-                recipeData.pop(field)
+        reqJSON = Utils.getReqJSON(request, requiredFields)
+
+        recipeData = {key: value for key, value in reqJSON.items(
+        ) if key in requiredFields or key in optionalFields}
+        
         recipeData['userID'] = g.currentUser.id
         recipe = Recipe(**recipeData)
         recipe.save()
+        dp = RecipeDP(recipeID=recipe.id)
+        dp.save()
     except (ValueError) as e:
         return jsonify({
             "status": "error",
@@ -164,7 +170,7 @@ def updateRecipe(id):
     privilegedRoles = [UserRole.admin, UserRole.moderator, UserRole.editor]
 
     if g.currentUser.id != recipe.userID and g.currentUser.role not in privilegedRoles:
-        abort(401, "Unauthorized access!")
+        abort(401, description="You are not authorized to update this recipe")
 
     try:
         data = Utils.getReqJSON(request)

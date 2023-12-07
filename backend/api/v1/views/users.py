@@ -79,8 +79,8 @@ def createUser():
 @app_views.route('/users/dp', methods=['PUT'])
 # @swag_from(f'{DOCS_DIR}/post_users.yml')
 def uploadDP():
-    """Creates a news user"""
-    DP_FOLDER = f'{current_app.config["DP_FOLDER"]}/users'
+    """Updates a user's Display Picture"""
+    DP_FOLDER = f'{current_app.config["DP_FOLDER"]}/users/{g.currentUser.id}'
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
     try:

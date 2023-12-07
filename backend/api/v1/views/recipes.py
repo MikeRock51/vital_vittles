@@ -13,6 +13,7 @@ from models.user import User
 import re
 from flasgger.utils import swag_from
 from os import path
+from sqlalchemy.exc import IntegrityError
 
 DOCS_DIR = path.dirname(__file__) + '/documentations/recipes'
 
@@ -130,14 +131,13 @@ def createRecipe():
                       'instructions', 'prep_time_minutes', 'cook_time_minutes']
     optionalFields = ['total_time_minutes',
                       'serving_size', 'calories_per_serving']
-    DP_FOLDER = current_app.config['DP_FOLDER'] + 'recipes'
-
+    
     try:
         reqJSON = Utils.getReqJSON(request, requiredFields)
 
         recipeData = {key: value for key, value in reqJSON.items(
         ) if key in requiredFields or key in optionalFields}
-        
+
         recipeData['userID'] = g.currentUser.id
         recipe = Recipe(**recipeData)
         recipe.save()
@@ -155,6 +155,69 @@ def createRecipe():
         "message": "Recipe created successfully",
         "data": data
     })
+
+@app_views.route('/recipes/dp', methods=['PUT'])
+# @swag_from(f'{DOCS_DIR}/post_users.yml')
+def uploadRDP():
+    """Uploads recipes Display Picture"""
+    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+    fileData = request.form.to_dict()
+    requiredFields = ['fileType', 'recipeID']
+    dp = None
+    
+    for field in requiredFields:
+        if field not in fileData:
+            abort(400, description=f"Missing required field: {field}")
+
+    recipe = storage.get(Recipe, fileData['recipeID'])
+
+    if not recipe:
+        abort(404, description="Recipe not found!")
+
+    try:
+        if fileData['fileType'] == 'link':
+            if 'filePath' not in fileData:
+                abort(400, description="Missing required field: filePath")
+
+            for dp in recipe.dps:
+                if dp.filePath == fileData['filePath']:
+                    abort(409, description="This dp already exist")
+
+            dp = RecipeDP(filePath=fileData['filePath'], recipeID=fileData['recipeID'])
+            dp.save()
+        else:
+            DP_FOLDER = f'{current_app.config["DP_FOLDER"]}/recipes/{fileData["recipeID"]}'
+
+            if 'file' not in request.files:
+                abort(400, description="File is missing")
+
+            filename = Utils.uploadFile(
+                request, DP_FOLDER, ALLOWED_EXTENSIONS, fileData['recipeID'])
+            
+            for dp in recipe.dps:
+                if dp.filePath == filename:
+                    abort(409, description="This dp already exist")
+
+            dp = RecipeDP(filePath=filename, recipeID=fileData['recipeID'], fileType="file")
+            dp.save()
+    except ValueError as ve:
+        return jsonify({
+            "status": "error",
+            "message": str(ve),
+            "data": None
+        }), 400
+    except IntegrityError as ie:
+        return jsonify({
+            "status": "error",
+            "message": Utils.extractErrorMessage(str(ie)),
+            "data": None
+        }), 400
+
+    return jsonify({
+        "status": "success",
+        "message": "Recipe image uploaded successfully!",
+        "data": dp.toDict()
+    }), 200
 
 
 @app_views.route('/recipes/<id>', methods=['PUT'])
@@ -198,15 +261,16 @@ def deleteRecipe(id):
     """Deletes the recipe with the id"""
     recipe = storage.get(Recipe, id)
     if not recipe:
-        abort(404)
+        abort(404, description="Recipe not found!")
 
     privilegedRoles = [UserRole.admin, UserRole.moderator]
     if g.currentUser.id != recipe.userID and g.currentUser.role not in privilegedRoles:
-        abort(401)
+        abort(401, description="You are not authorized to delete this recipe!")
 
     storage.delete(recipe)
 
     return jsonify({
         "status": "success",
-        "message": "Recipe deleted successfully!"
+        "message": "Recipe deleted successfully!",
+        "data": None
     }), 200

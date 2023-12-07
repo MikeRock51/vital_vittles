@@ -116,9 +116,9 @@ class Utils:
             abort(
                 400, description=f"Invalid file format! Supported Formats: {(', ').join(ALLOWED_EXTENSIONS)}")
         if not os.path.exists(uploadFolder):
-            os.mkdir(uploadFolder)
+            os.makedirs(uploadFolder)
 
-        filename = f'{itemID}.{getFileExtension(file.filename)}'
+        filename = secure_filename(file.filename)
         file.save(os.path.join(uploadFolder, filename))
 
         return filename

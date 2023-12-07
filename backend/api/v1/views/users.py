@@ -13,6 +13,7 @@ from sqlalchemy.exc import IntegrityError
 from api.v1.auth import auth
 from flasgger.utils import swag_from
 from os import path
+from models.userDP import UserDP
 
 
 DOCS_DIR = path.dirname(__file__) + '/documentations/users'
@@ -52,10 +53,12 @@ def createUser():
                     value in data.items() if key in userFields}
         username = userData['username']
         userData['username'] = "_".join(username.split())
-        userData['dp'] = f'{DP_FOLDER}/defaultUser.png'
+        # userData['dp'] = f'{DP_FOLDER}/defaultUser.png'
 
         user = User(**userData)
         user.save()
+        dp = UserDP(userID=user.id)
+        dp.save()
     except ValueError as ve:
         return jsonify({
             "status": "error",
@@ -78,17 +81,32 @@ def createUser():
 # @swag_from(f'{DOCS_DIR}/post_users.yml')
 def uploadDP():
     """Creates a news user"""
+    fileData = request.form.to_dict()
+    requiredFields = ['fileType']
     DP_FOLDER = f'{current_app.config["DP_FOLDER"]}/users'
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
+    for field in requiredFields:
+        if field not in fileData:
+            abort(400, description=f"Missing required field {field}")
+
     try:
-        if 'file' not in request.files:
-            abort(400, description="File is missing")
+        if fileData['fileType'] == 'link':
+            if 'filePath' not in fileData:
+                abort(400, description="Missing required field filePath")
+
+            dp = UserDP(filePath=fileData.filePath, userID=g.currentUser.id, fileType="link")
+            dp.save()
         else:
-            filename = Utils.uploadFile(
-                request, DP_FOLDER, ALLOWED_EXTENSIONS, g.currentUser.id)
-            g.currentUser.dp = filename
-            g.currentUser.save()
+            if 'file' not in request.files:
+                abort(400, description="File is missing")
+            else:
+                filename = Utils.uploadFile(
+                    request, DP_FOLDER, ALLOWED_EXTENSIONS, g.currentUser.id)
+                dp = UserDP(filePath=f'{DP_FOLDER}/{filename}', userID=g.currentUser.id, fileType="file")
+                dp.save()
+                # g.currentUser.dp = filename
+                # g.currentUser.save()
     except ValueError as ve:
         return jsonify({
             "status": "error",

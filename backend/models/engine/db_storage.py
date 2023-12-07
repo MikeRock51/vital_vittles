@@ -110,12 +110,16 @@ class DBStorage:
         from models.recipe import Recipe
         from models.chat.chat import Chat
         from models.chat.chatSession import ChatSession
+        from models.userDP import UserDP
+        from models.recipeDP import RecipeDP
 
         return {
             "User": User,
             "Recipe": Recipe,
             "Chat": Chat,
-            "ChatSession": ChatSession
+            "ChatSession": ChatSession,
+            "UserDP": UserDP,
+            "RecipeDP": RecipeDP
         }
 
     def new(self, obj) -> None:

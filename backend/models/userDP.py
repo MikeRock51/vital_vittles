@@ -14,4 +14,4 @@ class UserDP(BaseModel, Base):
     filePath = Column(String(384), nullable=False, default="https://icons.iconarchive.com/icons/graphicloads/colorful-long-shadow/256/User-icon.png")
     fileType = Column(String(30), nullable=False, default="link")
     userID = Column(String(60), ForeignKey('users.id'), nullable=False)
-    recipe = relationship('User', backref='dp', cascade='all, delete')
+    user = relationship('User', backref='dp', cascade='all, delete', uselist=False)

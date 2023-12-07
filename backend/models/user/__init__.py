@@ -26,6 +26,7 @@ class User(BaseModel, Base, UserAuth):
         """Returns a dictionary representation of a user instance"""
         instance = super().toDict()
         instance['role'] = instance['role'].value
+        print(self.dp)
         order = ['firstname', 'lastname', 'username', 'role', 'id']
 
         if detailed:

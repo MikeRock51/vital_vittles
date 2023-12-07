@@ -45,7 +45,6 @@ def createUser():
     requiredFields = ['username', 'email', 'password']
     userFields = ['username', 'email', 'password', 'firstname', 'lastname']
     detailed = request.args.get('detailed', True)
-    DP_FOLDER = f'{current_app.config["DP_FOLDER"]}/users'
 
     try:
         data = Utils.getReqJSON(request, requiredFields)
@@ -53,12 +52,12 @@ def createUser():
                     value in data.items() if key in userFields}
         username = userData['username']
         userData['username'] = "_".join(username.split())
-        # userData['dp'] = f'{DP_FOLDER}/defaultUser.png'
+        userData['dp'] = 'defaultDP.png'
 
         user = User(**userData)
         user.save()
-        dp = UserDP(userID=user.id)
-        dp.save()
+        # dp = UserDP(userID=user.id)
+        # dp.save()
     except ValueError as ve:
         return jsonify({
             "status": "error",
@@ -81,32 +80,18 @@ def createUser():
 # @swag_from(f'{DOCS_DIR}/post_users.yml')
 def uploadDP():
     """Creates a news user"""
-    fileData = request.form.to_dict()
-    requiredFields = ['fileType']
     DP_FOLDER = f'{current_app.config["DP_FOLDER"]}/users'
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
-    for field in requiredFields:
-        if field not in fileData:
-            abort(400, description=f"Missing required field {field}")
-
     try:
-        if fileData['fileType'] == 'link':
-            if 'filePath' not in fileData:
-                abort(400, description="Missing required field filePath")
+        if 'file' not in request.files:
+            abort(400, description="File is missing")
 
-            dp = UserDP(filePath=fileData.filePath, userID=g.currentUser.id, fileType="link")
-            dp.save()
-        else:
-            if 'file' not in request.files:
-                abort(400, description="File is missing")
-            else:
-                filename = Utils.uploadFile(
-                    request, DP_FOLDER, ALLOWED_EXTENSIONS, g.currentUser.id)
-                dp = UserDP(filePath=f'{DP_FOLDER}/{filename}', userID=g.currentUser.id, fileType="file")
-                dp.save()
-                # g.currentUser.dp = filename
-                # g.currentUser.save()
+        filename = Utils.uploadFile(
+            request, DP_FOLDER, ALLOWED_EXTENSIONS, g.currentUser.id)
+        # dp = UserDP(filePath=f'{DP_FOLDER}/{filename}', userID=g.currentUser.id, fileType="file")
+        g.currentUser.dp = filename
+        g.currentUser.save()
     except ValueError as ve:
         return jsonify({
             "status": "error",
@@ -204,18 +189,20 @@ def deleteUser(id):
     """Deletes the user with the user id"""
     user = storage.get(User, id)
     if not user:
-        abort(404)
+        abort(404, description="User not found")
     if user is not g.currentUser and g.currentUser.role != UserRole.admin:
-        abort(401)
+        abort(401, description="You are not authorized to delete this user")
     try:
         user.delete()
     except Exception as e:
         return jsonify({
             "status": "error",
-            "message": Utils.extractErrorMessage(str(e))
+            "message": Utils.extractErrorMessage(str(e)),
+            "data": None
         })
 
     return jsonify({
         "status": "success",
-        "message": "User deleted successfully"
+        "message": "User deleted successfully",
+        "data": None
     })

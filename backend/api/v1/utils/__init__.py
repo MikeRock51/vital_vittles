@@ -9,9 +9,15 @@ import json
 from json.decoder import JSONDecodeError
 import os
 
+
 def allowedFile(filename, allowedExt):
-        return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in allowedExt
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1].lower() in allowedExt
+
+
+def getFileExtension(filename):
+    if '.' in filename:
+        return filename.rsplit('.', 1)[1].lower()
 
 
 class Utils:
@@ -107,15 +113,16 @@ class Utils:
         if file.filename == '':
             abort(400, description="No file selected")
         if file and not allowedFile(file.filename, ALLOWED_EXTENSIONS):
-            abort(400, description=f"Invalid file format! Supported Formats: {(', ').join(ALLOWED_EXTENSIONS)}")
+            abort(
+                400, description=f"Invalid file format! Supported Formats: {(', ').join(ALLOWED_EXTENSIONS)}")
         if not os.path.exists(uploadFolder):
             os.mkdir(uploadFolder)
 
-        filename = f'{itemID}_{secure_filename(file.filename)}'
+        filename = f'{itemID}.{getFileExtension(file.filename)}'
         file.save(os.path.join(uploadFolder, filename))
 
         return filename
-                    
+
 
 class VError(ValueError):
     """A custom value error"""

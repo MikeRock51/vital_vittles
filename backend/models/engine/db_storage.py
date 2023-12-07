@@ -110,7 +110,7 @@ class DBStorage:
         from models.recipe import Recipe
         from models.chat.chat import Chat
         from models.chat.chatSession import ChatSession
-        from models.userDP import UserDP
+        # from models.userDP import UserDP
         from models.recipeDP import RecipeDP
 
         return {
@@ -118,7 +118,7 @@ class DBStorage:
             "Recipe": Recipe,
             "Chat": Chat,
             "ChatSession": ChatSession,
-            "UserDP": UserDP,
+            # "UserDP": UserDP,
             "RecipeDP": RecipeDP
         }
 

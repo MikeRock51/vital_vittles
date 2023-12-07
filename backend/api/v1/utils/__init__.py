@@ -99,7 +99,7 @@ class Utils:
             "data": [recipe.toDict(detailed=detailed) for recipe in data['data']]
         }
 
-    def uploadFile(request, uploadFolder, ALLOWED_EXTENSIONS):
+    def uploadFile(request, uploadFolder, ALLOWED_EXTENSIONS, itemID):
         """Extracts file from the request object and uploads it to the given upload folder"""
         from werkzeug.utils import secure_filename
 
@@ -111,7 +111,7 @@ class Utils:
         if not os.path.exists(uploadFolder):
             os.mkdir(uploadFolder)
 
-        filename = secure_filename(file.filename)
+        filename = f'{itemID}_{secure_filename(file.filename)}'
         file.save(os.path.join(uploadFolder, filename))
 
         return filename

@@ -17,6 +17,7 @@ from os import path
 
 DOCS_DIR = path.dirname(__file__) + '/documentations/users'
 
+
 @app_views.route('/users')
 @swag_from(f'{DOCS_DIR}/all_users.yml')
 @login_required([UserRole.admin])
@@ -35,6 +36,7 @@ def allUsers():
             "message": str(e)
         }), 400
 
+
 @app_views.route('/users', methods=['POST'])
 @swag_from(f'{DOCS_DIR}/post_users.yml')
 def createUser():
@@ -42,7 +44,7 @@ def createUser():
     requiredFields = ['username', 'email', 'password']
     userFields = ['username', 'email', 'password', 'firstname', 'lastname']
     detailed = request.args.get('detailed', True)
-    DP_FOLDER = current_app.config["DP_FOLDER"]
+    DP_FOLDER = f'{current_app.config["DP_FOLDER"]}/users'
 
     try:
         data = Utils.getReqJSON(request, requiredFields)
@@ -50,7 +52,7 @@ def createUser():
                     value in data.items() if key in userFields}
         username = userData['username']
         userData['username'] = "_".join(username.split())
-        userData['dp'] = f'{DP_FOLDER}/defaultDP.png'
+        userData['dp'] = f'{DP_FOLDER}/defaultUser.png'
 
         user = User(**userData)
         user.save()
@@ -62,7 +64,7 @@ def createUser():
     except IntegrityError as ie:
         return jsonify({
             "status": "error",
-        "message": Utils.extractErrorMessage(str(ie))
+            "message": Utils.extractErrorMessage(str(ie))
         }), 400
 
     return jsonify({
@@ -71,18 +73,20 @@ def createUser():
         "data": user.toDict(detailed=detailed)
     }), 201
 
+
 @app_views.route('/users/dp', methods=['PUT'])
 # @swag_from(f'{DOCS_DIR}/post_users.yml')
 def uploadDP():
     """Creates a news user"""
-    DP_FOLDER = current_app.config["DP_FOLDER"]
+    DP_FOLDER = f'{current_app.config["DP_FOLDER"]}/users'
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
     try:
         if 'file' not in request.files:
             abort(400, description="File is missing")
         else:
-            filename = Utils.uploadFile(request, DP_FOLDER, ALLOWED_EXTENSIONS)
+            filename = Utils.uploadFile(
+                request, DP_FOLDER, ALLOWED_EXTENSIONS, g.currentUser.id)
             g.currentUser.dp = filename
             g.currentUser.save()
     except ValueError as ve:
@@ -93,7 +97,7 @@ def uploadDP():
     except IntegrityError as ie:
         return jsonify({
             "status": "error",
-        "message": Utils.extractErrorMessage(str(ie))
+            "message": Utils.extractErrorMessage(str(ie))
         }), 400
 
     return jsonify({
@@ -115,6 +119,7 @@ def getCurrentUser():
         "data": g.currentUser.toDict(detailed=detailed)
     })
 
+
 @app_views.route('/users/<id>')
 @swag_from(f'{DOCS_DIR}/get_user.yml')
 @login_required()
@@ -134,6 +139,7 @@ def getUserByID(id):
         "message": "User retrieved successfully",
         "data": user.toDict(detailed=detailed)
     })
+
 
 @app_views.route('/users/<id>', methods=['PUT'])
 @swag_from(f'{DOCS_DIR}/put_users.yml')

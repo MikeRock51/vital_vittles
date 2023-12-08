@@ -85,9 +85,9 @@ def uploadRDP():
 
 
 @app_views.route('/recipes/dps/<dpID>', methods=['GET'])
-# @swag_from(f'{DOCS_DIR}/post_users.yml')
+@swag_from(f'{DOCS_DIR}/recipes/get_recipe_dp.yml')
 def getDP(dpID):
-    """Retrieves a dp file based on ID"""
+    """Retrieves a recipe dp file based on ID"""
     response = None
 
     try:

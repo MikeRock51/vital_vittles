@@ -128,20 +128,19 @@ def getrecipeDPs(recipeID):
     }), 200
 
 @app_views.route('/recipes/dps/<dpID>', methods=['DELETE'])
-# @swag_from(f'{DOCS_DIR}/post_users.yml')
+@swag_from(f'{DOCS_DIR}/recipes/delete_recipe_dp.yml')
 @login_required()
 def deleteDP(dpID):
-    """Deletes a dp file based on ID"""
+    """Deletes a recipe dp based on ID"""
     privilegedRoles = [UserRole.admin, UserRole.moderator]
-    response = None
-
+    
     try:
         dp = storage.get(RecipeDP, dpID)
         if not dp:
             abort(404, description="DP not found!")
 
         if dp.userID != g.currentUser.id and g.currentUser.role not in privilegedRoles:
-            abort(401, description="You are not authorized to delete this image!")
+            abort(401, description="You are not authorized to delete this dp!")
 
         if dp.fileType == 'file':
             DP_FOLDER = f'{current_app.config["DP_FOLDER"]}/recipes/{dp.recipeID}'

@@ -71,7 +71,7 @@ def updateChatSession():
     })
 
 @app_views.route('/chat_sessions', methods=['GET'])
-# @swag_from(f'{DOCS_DIR}/post_recipes.yml')
+@swag_from(f'{DOCS_DIR}/get_user_sessions.yml')
 @login_required()
 def getUserSessions():
     """Retrieves the authenticated user's chat sessions"""
@@ -83,7 +83,7 @@ def getUserSessions():
             "status": "error",
             "message": Utils.extractErrorMessage(str(e)),
             "data:": None
-        }), 503
+        }), 509
 
     return jsonify({
         "status": "success",
@@ -91,17 +91,14 @@ def getUserSessions():
         "data": sessions
     })
 
-@app_views.route('/chats', methods=['GET'])
-# @swag_from(f'{DOCS_DIR}/post_recipes.yml')
+@app_views.route('/chats/<sessionID>', methods=['GET'])
+@swag_from(f'{DOCS_DIR}/get_chats.yml')
 @login_required()
-def getSessionChats():
+def getSessionChats(sessionID):
     """Retrieves the chat history of a chat session"""
-    requiredFields = ['sessionID']
-    data = Utils.getReqJSON(request, requiredFields)
-    
     chats = None
     try:
-        chats = storage.getChatHistory(data['sessionID'], g.currentUser.id)
+        chats = storage.getChatHistory(sessionID, g.currentUser.id)
     except VError as e:
         abort(e.statusCode, description=str(e))
 

@@ -115,14 +115,11 @@ def getDP(dpID):
 
     return response
 
-@app_views.route('/recipes/dps', methods=['GET'])
-# @swag_from(f'{DOCS_DIR}/post_users.yml')
-def getrecipeDPs():
-    """Retrieves a dps objects asociated with the recipeID"""
-    requiredFields = ['recipeID']
-    data = Utils.getReqJSON(request, requiredFields)
-    
-    dps = storage.getByItemID(RecipeDP, "recipeID", data['recipeID'])
+@app_views.route('/recipes/<recipeID>/dps', methods=['GET'])
+@swag_from(f'{DOCS_DIR}/recipes/get_recipe_dps.yml')
+def getrecipeDPs(recipeID):
+    """Retrieves all dp objects asociated with a recipe"""
+    dps = storage.getByItemID(RecipeDP, "recipeID", recipeID)
     
     return jsonify({
         "status": "success",

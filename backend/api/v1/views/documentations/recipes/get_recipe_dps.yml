@@ -1,0 +1,17 @@
+Retrieves all dp objects asociated with a recipe
+---
+tags:
+  - Recipes
+parameters:
+  - name: recipeID
+    in: body
+    description: The unique id of the recipe to query.
+    required: true
+responses:
+  200:
+    description: Successful operation
+  400:
+    description: Bad request
+  404:
+    description: Recipe not found
+

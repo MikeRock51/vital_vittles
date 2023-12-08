@@ -14,7 +14,7 @@ from flasgger.utils import swag_from
 from os import path
 from sqlalchemy.exc import IntegrityError
 
-DOCS_DIR = path.dirname(__file__) + '/documentations/recipes'
+DOCS_DIR = path.dirname(__file__) + '/documentations'
 
 
 @app_views.route('/recipes/dps', methods=['PUT'])
@@ -171,18 +171,21 @@ def deleteDP(dpID):
     }), 204
 
 @app_views.route('/users/dp', methods=['PUT'])
-# @swag_from(f'{DOCS_DIR}/post_users.yml')
+@swag_from(f'{DOCS_DIR}/users/put_user_dp.yml')
+@login_required()
 def uploadDP():
-    """Updates a user's Display Picture"""
+    """Uploads and updates a user's Display Picture"""
     DP_FOLDER = f'{current_app.config["DP_FOLDER"]}/users/{g.currentUser.id}'
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+    print("For HERERERERE")
 
     try:
         if 'file' not in request.files:
             abort(400, description="File is missing")
 
         filename = Utils.uploadFile(
-            request, DP_FOLDER, ALLOWED_EXTENSIONS, g.currentUser.id)
+            request, DP_FOLDER, ALLOWED_EXTENSIONS)
         
         Utils.deleteFile(f'{DP_FOLDER}/{g.currentUser.dp}')
         g.currentUser.dp = filename

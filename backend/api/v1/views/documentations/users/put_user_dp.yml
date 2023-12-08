@@ -1,0 +1,19 @@
+Upload and Update User's Display Picture
+---
+tags:
+  - Users
+security:
+  - Auth: []
+consumes:
+  - multipart/form-data
+parameters:
+  - name: file
+    in: formData
+    description: The image file to be uploaded (PNG, JPG, JPEG, or GIF).
+    required: true
+    type: file
+responses:
+  200:
+    description: Successful operation
+  400:
+    description: Bad request

@@ -104,7 +104,7 @@ class Utils:
             "data": [recipe.toDict(detailed=detailed) for recipe in data['data']]
         }
 
-    def uploadFile(request, uploadFolder, ALLOWED_EXTENSIONS, itemID):
+    def uploadFile(request, uploadFolder, ALLOWED_EXTENSIONS):
         """Extracts file from the request object and uploads it to the given upload folder"""
         from werkzeug.utils import secure_filename
 

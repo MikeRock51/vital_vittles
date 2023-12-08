@@ -5,7 +5,7 @@ from models.recipe import Recipe
 from models.recipeDP import RecipeDP
 from models import storage
 from models.roles import UserRole
-from flask import jsonify, abort, request, g, current_app
+from flask import jsonify, abort, request, g, current_app, make_response, send_from_directory
 from api.v1.views import app_views
 from api.v1.utils import Utils
 from api.v1.utils.authWrapper import login_required
@@ -218,6 +218,36 @@ def uploadRDP():
         "message": "Recipe image uploaded successfully!",
         "data": dp.toDict()
     }), 200
+
+@app_views.route('/recipes/dps', methods=['GET'])
+# @swag_from(f'{DOCS_DIR}/post_users.yml')
+def getDP():
+    """Retrieves a dp file based on ID"""
+    requiredFields = ['dpID']
+    data = Utils.getReqJSON(request, requiredFields)
+    response = None
+
+    try:
+        dp = storage.get(RecipeDP, data['dpID'])
+        if not dp:
+            abort(404, description="DP not found!")
+
+        DP_FOLDER = f'{current_app.config["DP_FOLDER"]}/recipes/{dp.recipeID}'
+        response = make_response(send_from_directory(DP_FOLDER, dp.filePath))
+    except ValueError as ve:
+        return jsonify({
+            "status": "error",
+            "message": str(ve),
+            "data": None
+        }), 400
+    except IntegrityError as ie:
+        return jsonify({
+            "status": "error",
+            "message": Utils.extractErrorMessage(str(ie)),
+            "data": None
+        }), 400
+
+    return response
 
 
 @app_views.route('/recipes/<id>', methods=['PUT'])

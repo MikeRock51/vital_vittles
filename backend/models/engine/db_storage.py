@@ -143,6 +143,14 @@ class DBStorage:
         if obj in models.values():
             instance = self.__session.query(obj).filter(obj.id == id).first()
             return instance
+        
+    def getByItemID(self, obj, item, id: str):
+        """Retrieves all obj instances with the given item id"""
+        models = self.allModels()
+
+        if obj in models.values():
+            instance = self.__session.query(obj).filter(getattr(obj, item) == id).all()
+            return instance
 
     def getByEmail(self, email: str):
         """Retrieves the user with the given email from database"""

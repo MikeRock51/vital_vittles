@@ -32,13 +32,12 @@ class Utils:
         if request:
             data = request.get_json()
             if not data:
-                abort(
-                    400, description=f"Missing required fields {requiredFields}")
+                abort(400, description="Requires JSON object!")
 
             if requiredFields:
                 for field in requiredFields:
                     if field not in data:
-                        raise ValueError(f'Missing required {field}')
+                        abort(400, description=f'Missing required {field}')
             return data
 
     @staticmethod

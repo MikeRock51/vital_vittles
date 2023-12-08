@@ -109,7 +109,7 @@ def getSessionChats(sessionID):
     })
 
 @app_views.route('/chats', methods=['POST'])
-# @swag_from(f'{DOCS_DIR}/post_recipes.yml')
+@swag_from(f'{DOCS_DIR}/post_chats.yml')
 @login_required()
 def processChat():
     """Processes user chat and returns response from the chatbot"""

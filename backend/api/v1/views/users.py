@@ -56,8 +56,6 @@ def createUser():
 
         user = User(**userData)
         user.save()
-        # dp = UserDP(userID=user.id)
-        # dp.save()
     except ValueError as ve:
         return jsonify({
             "status": "error",
@@ -74,40 +72,6 @@ def createUser():
         "message": "Account created successfully",
         "data": user.toDict(detailed=detailed)
     }), 201
-
-
-@app_views.route('/users/dp', methods=['PUT'])
-# @swag_from(f'{DOCS_DIR}/post_users.yml')
-def uploadDP():
-    """Updates a user's Display Picture"""
-    DP_FOLDER = f'{current_app.config["DP_FOLDER"]}/users/{g.currentUser.id}'
-    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-
-    try:
-        if 'file' not in request.files:
-            abort(400, description="File is missing")
-
-        filename = Utils.uploadFile(
-            request, DP_FOLDER, ALLOWED_EXTENSIONS, g.currentUser.id)
-        # dp = UserDP(filePath=f'{DP_FOLDER}/{filename}', userID=g.currentUser.id, fileType="file")
-        g.currentUser.dp = filename
-        g.currentUser.save()
-    except ValueError as ve:
-        return jsonify({
-            "status": "error",
-            "message": str(ve)
-        }), 400
-    except IntegrityError as ie:
-        return jsonify({
-            "status": "error",
-            "message": Utils.extractErrorMessage(str(ie))
-        }), 400
-
-    return jsonify({
-        "status": "success",
-        "message": "User DP uploaded successfully",
-        "data": g.currentUser.toDict()
-    }), 200
 
 
 @app_views.route('/users/me')

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function NavBar() {
   return (
     <div className="font-sans">
-      <nav className="bg-red-700 p-4 shadow-md">
+      <nav className="bg-orange-700 p-4 shadow-md">
         <div className="container mx-auto flex justify-between items-center">
           <ul className="flex space-x-72">
             <li className="mr-6">

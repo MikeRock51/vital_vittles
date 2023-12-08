@@ -122,6 +122,14 @@ class Utils:
         file.save(os.path.join(uploadFolder, filename))
 
         return filename
+    
+    def deleteFile(filePath: str) -> None:
+        """Deletes the files at filePath if it exists"""
+        try:
+            os.remove(filePath)
+        except FileNotFoundError:
+            print("File not found! Moving on...")
+            pass
 
 
 class VError(ValueError):

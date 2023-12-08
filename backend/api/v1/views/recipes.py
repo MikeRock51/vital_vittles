@@ -158,6 +158,7 @@ def createRecipe():
 
 @app_views.route('/recipes/dp', methods=['PUT'])
 # @swag_from(f'{DOCS_DIR}/post_users.yml')
+@login_required()
 def uploadRDP():
     """Uploads recipes Display Picture"""
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
@@ -219,18 +220,19 @@ def uploadRDP():
         "data": dp.toDict()
     }), 200
 
-@app_views.route('/recipes/dps', methods=['GET'])
+@app_views.route('/recipes/dps/<dpID>', methods=['GET'])
 # @swag_from(f'{DOCS_DIR}/post_users.yml')
-def getDP():
+def getDP(dpID):
     """Retrieves a dp file based on ID"""
-    requiredFields = ['dpID']
-    data = Utils.getReqJSON(request, requiredFields)
     response = None
 
     try:
-        dp = storage.get(RecipeDP, data['dpID'])
+        dp = storage.get(RecipeDP, dpID)
         if not dp:
             abort(404, description="DP not found!")
+
+        if dp.fileType != 'file':
+            abort(406, description="Only dps with fileType: file is acceptable!")
 
         DP_FOLDER = f'{current_app.config["DP_FOLDER"]}/recipes/{dp.recipeID}'
         response = make_response(send_from_directory(DP_FOLDER, dp.filePath))
@@ -248,6 +250,46 @@ def getDP():
         }), 400
 
     return response
+
+@app_views.route('/recipes/dps/<dpID>', methods=['DELETE'])
+# @swag_from(f'{DOCS_DIR}/post_users.yml')
+@login_required()
+def deleteDP(dpID):
+    """Deletes a dp file based on ID"""
+    privilegedRoles = [UserRole.admin, UserRole.moderator]
+    response = None
+
+    try:
+        dp = storage.get(RecipeDP, dpID)
+        if not dp:
+            abort(404, description="DP not found!")
+
+        if dp.userID != g.currentUser.id and g.currentUser.role not in privilegedRoles:
+            abort(401, description="You are not authorized to delete this image!")
+
+        if dp.fileType == 'file':
+            DP_FOLDER = f'{current_app.config["DP_FOLDER"]}/recipes/{dp.recipeID}'
+            Utils.deleteFile(f'{DP_FOLDER}/{dp.filePath}')
+
+        storage.delete(dp)
+    except ValueError as ve:
+        return jsonify({
+            "status": "error",
+            "message": str(ve),
+            "data": None
+        }), 400
+    except IntegrityError as ie:
+        return jsonify({
+            "status": "error",
+            "message": Utils.extractErrorMessage(str(ie)),
+            "data": None
+        }), 400
+
+    return jsonify({
+        "status": "success",
+        "message": "DP deleted successfully!",
+        "data": None
+    }), 204
 
 
 @app_views.route('/recipes/<id>', methods=['PUT'])

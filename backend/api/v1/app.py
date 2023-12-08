@@ -78,6 +78,15 @@ def unauthorized(error):
         "data:": None
     }), 409
 
+@app.errorhandler(406)
+def unauthorized(error):
+    """Handles 406 errors"""
+    return jsonify({
+        "status": "error",
+        "message": error.description or "Resource unacceptable!",
+        "data:": None
+    }), 409
+
 app.config['SWAGGER'] = {
     'title': 'African Cuisines Recipe Restful API',
     'description': 'A RESTFUL API that provides detailed information about African cuisines. As well as step by step instructions on how to make them.',

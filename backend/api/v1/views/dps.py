@@ -18,10 +18,10 @@ DOCS_DIR = path.dirname(__file__) + '/documentations'
 
 
 @app_views.route('/recipes/dps', methods=['PUT'])
-# @swag_from(f'{DOCS_DIR}/post_users.yml')
+@swag_from(f'{DOCS_DIR}/recipes/put_recipe_dp.yml')
 @login_required()
 def uploadRDP():
-    """Uploads recipes Display Picture"""
+    """Uploads a recipe's display picture"""
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
     fileData = request.form.to_dict()
     requiredFields = ['fileType', 'recipeID']
@@ -55,7 +55,7 @@ def uploadRDP():
                 abort(400, description="File is missing")
 
             filename = Utils.uploadFile(
-                request, DP_FOLDER, ALLOWED_EXTENSIONS, fileData['recipeID'])
+                request, DP_FOLDER, ALLOWED_EXTENSIONS)
 
             for dp in recipe.dps:
                 if dp.filePath == filename:

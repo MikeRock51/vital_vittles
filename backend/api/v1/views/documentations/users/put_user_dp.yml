@@ -13,7 +13,9 @@ parameters:
     required: true
     type: file
 responses:
-  200:
-    description: Successful operation
+  201:
+    description: Successful upload
   400:
     description: Bad request
+  401:
+    description: Unauthorized request

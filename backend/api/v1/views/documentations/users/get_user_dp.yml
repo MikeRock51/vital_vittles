@@ -1,0 +1,11 @@
+Retrieves the current users display picture file
+---
+tags:
+  - Users
+security:
+  - Auth: []
+responses:
+  200:
+    description: Successful operation
+  401:
+    description: Unauthorized request

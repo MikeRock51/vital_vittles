@@ -178,8 +178,6 @@ def uploadDP():
     DP_FOLDER = f'{current_app.config["DP_FOLDER"]}/users/{g.currentUser.id}'
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
-    print("For HERERERERE")
-
     try:
         if 'file' not in request.files:
             abort(400, description="File is missing")
@@ -205,15 +203,14 @@ def uploadDP():
         "status": "success",
         "message": "User DP uploaded successfully",
         "data": g.currentUser.toDict()
-    }), 200
+    }), 201
 
 
 @app_views.route('/users/dp', methods=['GET'])
-# @swag_from(f'{DOCS_DIR}/post_users.yml')
+@swag_from(f'{DOCS_DIR}/users/get_user_dp.yml')
+@login_required()
 def getUserDP():
-    """Retrieves a dp file based on ID"""
-    response = None
-
+    """Retrieves the current users display picture file"""
     DP_FOLDER = f'{current_app.config["DP_FOLDER"]}/users/{g.currentUser.id}'
     response = make_response(send_from_directory(DP_FOLDER, g.currentUser.dp))
     

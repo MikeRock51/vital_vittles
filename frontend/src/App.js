@@ -7,6 +7,9 @@ import Home from "./pages/Home";
 import FoodDetails from "./pages/FoodDetails";
 import AppLayout from "./ui/AppLayout";
 import Error from "./ui/Error";
+// import { lazy } from "react";
+
+// const Home = lazy(() => import("./pages/Home"));
 
 const router = createBrowserRouter([
   {
@@ -19,7 +22,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/food",
+        path: "/food/:id",
         element: <FoodDetails />,
       },
     ],

@@ -1,8 +1,8 @@
-"""Handle dp orphans
+"""Unique session topic
 
-Revision ID: 276f8508c82b
-Revises: 85c228eebee8
-Create Date: 2023-12-07 15:45:14.372410
+Revision ID: 832a852781cc
+Revises: 
+Create Date: 2023-12-08 16:19:07.095583
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '276f8508c82b'
-down_revision = '85c228eebee8'
+revision = '832a852781cc'
+down_revision = None
 branch_labels = None
 depends_on = None
 

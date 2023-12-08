@@ -7,8 +7,7 @@ from sqlalchemy import create_engine, and_
 from typing import Dict
 from dotenv import load_dotenv
 from math import ceil
-from sqlalchemy.exc import ArgumentError
-from sqlalchemy.exc import NoResultFound
+from sqlalchemy.exc import ArgumentError, NoResultFound, IntegrityError
 
 load_dotenv()
 
@@ -163,6 +162,8 @@ class DBStorage:
             
     def createChatSession(self, userID, topic=None):
         """Creates a chat sessiion for new users and prepopulates the chat history with system message"""
+        from api.v1.utils import VError
+
         ChatSession = self.allModels()['ChatSession']
         Chat = self.allModels()['Chat']
         systemMessage = "Your name is Yishu. You are a food and nutrition specialist bot. You provide expert assistance on all matters related to food, nutrition and health"
@@ -172,8 +173,8 @@ class DBStorage:
             session.save()
             chat.save()
             return [session.toDict()]
-        except Exception as e:
-            raise ValueError(e)
+        except IntegrityError:
+            raise VError("This chat topic already exist", 409)
 
     def getChatHistory(self, sessionID, userID):
         """Retrieves the chat history based on sessionID"""

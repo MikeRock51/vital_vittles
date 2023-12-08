@@ -15,11 +15,11 @@ import re
 from flasgger.utils import swag_from
 from os import path
 
-DOCS_DIR = path.dirname(__file__) + '/documentations/recipes'
+DOCS_DIR = path.dirname(__file__) + '/documentations/chats'
 
 
 @app_views.route('/chat_sessions', methods=['POST'])
-# @swag_from(f'{DOCS_DIR}/post_recipes.yml')
+@swag_from(f'{DOCS_DIR}/post_chat_session.yml')
 @login_required()
 def createChatSession():
     """Creates a new chat session for the current user"""
@@ -28,18 +28,14 @@ def createChatSession():
 
     try:
         newSession = storage.createChatSession(g.currentUser.id, data.get('topic'))
-    except Exception as e:
-        return jsonify({
-            "status": "error",
-            "message": Utils.extractErrorMessage(str(e)),
-            "data:": None
-        }), 503
+    except VError as ev:
+        abort(ev.statusCode, description=str(ev))
 
     return jsonify({
         "status": "success",
         "message": "Chat session created successfully",
         "data": newSession
-    })
+    }), 201
 
 @app_views.route('/chat_sessions', methods=['PUT'])
 # @swag_from(f'{DOCS_DIR}/post_recipes.yml')

@@ -10,7 +10,7 @@ class ChatSession(BaseModel, Base):
     """Defines the ChatSession schema"""
     __tablename__ = "chat_sessions"
 
-    topic = Column(String(128), nullable=False)
+    topic = Column(String(128), nullable=False, unique=True)
     chats = relationship('Chat', backref='session', cascade='all, delete')
     userID = Column(String(60), ForeignKey('users.id'), nullable=False)
 

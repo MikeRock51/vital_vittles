@@ -11,9 +11,9 @@ from models.user import User
 from models.chat.chat import Chat
 from models.chat.chatSession import ChatSession
 from models.chat.chatProvider import getChatResponse
-import re
 from flasgger.utils import swag_from
 from os import path
+from sqlalchemy.exc import IntegrityError
 
 DOCS_DIR = path.dirname(__file__) + '/documentations/chats'
 
@@ -38,7 +38,7 @@ def createChatSession():
     }), 201
 
 @app_views.route('/chat_sessions', methods=['PUT'])
-# @swag_from(f'{DOCS_DIR}/post_recipes.yml')
+@swag_from(f'{DOCS_DIR}/put_chat_session.yml')
 @login_required()
 def updateChatSession():
     """Updates a chat session based on sessionID"""
@@ -49,24 +49,20 @@ def updateChatSession():
     try:
         session = storage.get(ChatSession, data['sessionID'])
         if not session:
-            raise VError("Chat session not found", 404)
+            abort(404, description="Chat session not found")
         elif session.userID != g.currentUser.id:
-            raise VError("You are not authorized to access this chat session", 401)
+            abort(401, description="You are not authorized to update this chat session")
         
         setattr(session, 'topic', data.get('topic'))
         session.save()
-    except VError as e:
-        return jsonify({
-            "status": "error",
-            "message": str(e),
-            "data:": None
-        }), e.statusCode
+    except IntegrityError as i:
+        abort(409, description="This session topic already exist")
     except Exception as e:
         return jsonify({
             "status": "error",
             "message": Utils.extractErrorMessage(str(e)),
             "data:": None
-        }), 503
+        }), 509
 
     return jsonify({
         "status": "success",

@@ -3,7 +3,6 @@ import { createContext, useContext, useReducer } from "react";
 const RecipesContext = createContext();
 
 const initialState = {
-
     recipes: {
         data: []
     

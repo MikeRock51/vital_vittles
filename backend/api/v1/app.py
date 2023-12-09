@@ -89,7 +89,7 @@ def unauthorized(error):
 
 app.config['SWAGGER'] = {
     'title': 'African Cuisines Recipe Restful API',
-    'description': 'A RESTFUL API that provides detailed information about African cuisines. As well as step by step instructions on how to make them.',
+    'description': 'A RESTFUL API that provides detailed information about African cuisines. As well as step by step instructions on how to make them. It also features a chat route, where you can interact with Yishu, a health and nutrition chatbot',
     'uiversion': 3,
     'version': '1.0.0',
     'securityDefinitions': {

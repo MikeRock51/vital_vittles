@@ -158,6 +158,7 @@ def updateFiles():
     removeOldFiles()
     deployFiles()
     print("Files updated successfully!")
+    restartUnitService()
 
 
 def fullDeploy():

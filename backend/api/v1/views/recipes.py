@@ -140,7 +140,7 @@ def createRecipe():
         recipeData['userID'] = g.currentUser.id
         recipe = Recipe(**recipeData)
         recipe.save()
-        dp = RecipeDP(recipeID=recipe.id)
+        dp = RecipeDP(recipeID=recipe.id, userID=g.currentUser.id)
         dp.save()
     except (ValueError) as e:
         return jsonify({

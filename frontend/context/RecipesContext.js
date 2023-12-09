@@ -3,17 +3,43 @@ import { createContext, useContext, useReducer } from "react";
 const RecipesContext = createContext();
 
 const initialState = {
-    
-}
 
-const reducer = 
+    recipes: {
+        data: []
+    
+},
+    currentPage: 1
+
+function reducer(state,action) {
+   switch (action.type) {
+    case "GET_RECIPES": {
+      const newData = action.payload; 
+      return {
+        ...state,
+        recipes: {
+          data: [...state.recipes.data, ...newData.data],
+        },
+      };
+    }
+      case "CREATE_RECIPES": {
+      return {
+        ...state,
+        recipes: {
+          data: [...state.recipes.data, action.payload],
+        },
+      };
+    }
+    default:
+      return state;
+  }
+}
 
 export default function RecipesProvider({ children }) {
 
 
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [{recipes, currentPage}, dispatch] = useReducer(reducer, initialState);
 
-  return <RecipesContext.Provider>{children}</RecipesContext.Provider>;
+  return <RecipesContext.Provider value={{recipes, currentPage, dispatch}}>{children}</RecipesContext.Provider>;
 }
 
 export function useRecipesContext() {

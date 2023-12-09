@@ -12,6 +12,7 @@ import Profile from "./pages/Profile";
 import CreateRecipe from "./pages/CreateRecipe";
 import MyRecipes from "./pages/MyRecipes";
 import Toast from "./providers/ToastProvider";
+import SignInPage from "./pages/SignIn";
 
 // import { lazy } from "react";
 
@@ -30,6 +31,7 @@ export default function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/recipes" element={<Home />} />
             <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/signin" element={<SignInPage />} />
             <Route path="/food/:id" element={<FoodDetails />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/recipes/create" element={<CreateRecipe />} />

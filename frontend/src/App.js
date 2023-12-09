@@ -1,10 +1,6 @@
 import { Suspense } from "react";
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import FoodDetails from "./pages/FoodDetails";
 import Error from "./ui/Error";
@@ -24,8 +20,10 @@ export default function App() {
   return (
     <Router>
       <Suspense fallback={<Loader />}>
-        <div className="App">
-          <NavBar />
+        <div className="App h-screen">
+          <header className="fixed left-0 right-0 top-0">
+            <NavBar />
+          </header>
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/recipes" element={<Home />} />

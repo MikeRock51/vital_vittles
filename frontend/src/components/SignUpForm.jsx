@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 
 function SignUpForm() {
   return (
-    <div className="bg-[#e2e8f0] sm:w-2/6 py-10 px-auto text-center">
+    <div className="bg-[#e2e8f0] sm:w-2/6 py-10 text-center">
       <h2>Create an Account</h2>
       <Formik
         initialValues={{ email: "", password: "" }}

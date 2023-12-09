@@ -2,7 +2,7 @@ import SignUpForm from "../components/SignUpForm"
 
 function SignUpPage() {
   return (
-    <div className="flex justify-center align-middle">
+    <div className="flex justify-center items-center h-full">
       <SignUpForm />
     </div>
   )

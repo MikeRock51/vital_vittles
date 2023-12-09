@@ -5,6 +5,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 import { useLocation } from "react-router-dom";
+import { useUserStore } from '../stateProvider/authStore'
 
 
 function classNames(...classes) {
@@ -12,14 +13,22 @@ function classNames(...classes) {
 }
 
 export default function Navbar({signOut}) {
+  const { currentUser } = useUserStore();
   const location = useLocation();
-  const navigation = [
+  const authNavs = [
     { name: 'Home', href: '/', current: location.pathname === '/' },
     { name: 'Recipes', href: '/recipes', current: location.pathname === '/recipes' },
     { name: 'Create Recipe', href: '/recipes/create', current: false },
     { name: 'Chat with Yishu', href: '#', current: false },
   ]
 
+  const noAuthNavs = [
+    { name: 'Home', href: '/', current: location.pathname === '/' },
+    { name: 'Sign Up', href: '/signup', current: location.pathname === '/signup' },
+    { name: 'Sign In', href: '/signin', current: location.pathname === '/signin' },
+  ]
+
+  const navigation = currentUser ? authNavs : noAuthNavs
 
   return (
     <Disclosure as="nav" className="bg-primary-700 py-1 shadow-md mb-5 shadow-white">
@@ -29,7 +38,7 @@ export default function Navbar({signOut}) {
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-primary-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className='relative inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-primary-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'>
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
@@ -56,7 +65,7 @@ export default function Navbar({signOut}) {
                         href={item.href}
                         className={classNames(
                           item.current ? 'bg-primary-900 text-white' : 'text-white hover:bg-primary-800',
-                          'rounded-md px-3 py-2 my-auto text-sm font-medium h-fit'
+                          'rounded-md px-3 py-2 my-auto text-sm font-bold h-fit'
                         )}
                         aria-current={item.current ? 'page' : undefined}
                       >
@@ -66,7 +75,8 @@ export default function Navbar({signOut}) {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+
+              {currentUser && <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
                   type="button"
                   className="relative rounded-full bg-primary-900 text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-800"
@@ -127,7 +137,7 @@ export default function Navbar({signOut}) {
                     </Menu.Items>
                   </Transition>
                 </Menu>
-              </div>
+              </div>}
             </div>
           </div>
 

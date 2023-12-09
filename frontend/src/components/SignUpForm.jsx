@@ -1,10 +1,15 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { validateSignUpInput } from "../utils/Validators";
+import { CreateUser } from "../utils/Connector";
 
 function SignUpForm() {
+  const [error, setError ] = useState(false);
+  const navigate = useNavigate();
   const userFields = {
-    firstName: "",
-    lastName: "",
+    firstname: "",
+    lastname: "",
     username: "",
     email: "",
     password: "",
@@ -20,11 +25,14 @@ function SignUpForm() {
           const errors = validateSignUpInput(values)
           return errors;
         }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
+        onSubmit={async (values, { setSubmitting }) => {
+          const successful = await CreateUser(values, setError);
+          if (successful) {
+          setSubmitting(false);
+            setTimeout(() => {
+              navigate('/signin');
+            }, 400);
+        }
         }}
       >
         {({ isSubmitting }) => (
@@ -69,12 +77,13 @@ function SignUpForm() {
               className="formField"
             />
             <ErrorMessage name="confirmPassword" component="div" className="text-primary-600" />
+            <h4 className="text-primary-600">{error && error}</h4>
             <button
               className="block w-full rounded bg-primary-700 hover:bg-primary-300 text-white font-bold px-10 py-2 mt-5"
               type="submit"
               disabled={isSubmitting}
             >
-              Submit
+              {isSubmitting ? "Loading..." : "Submit"}
             </button>
           </Form>
         )}

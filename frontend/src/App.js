@@ -11,6 +11,7 @@ import Loader from "./ui/Loader";
 import Profile from "./pages/Profile";
 import CreateRecipe from "./pages/CreateRecipe";
 import MyRecipes from "./pages/MyRecipes";
+import Toast from "./providers/ToastProvider";
 
 // import { lazy } from "react";
 
@@ -24,6 +25,7 @@ export default function App() {
           <header className="fixed left-0 right-0 top-0">
             <NavBar />
           </header>
+          <Toast />
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/recipes" element={<Home />} />

@@ -5,7 +5,7 @@ import CardItem from "../components/CardItem";
 import { useEffect, useState } from "react";
 import Loader from "../ui/Loader";
 import axios from "axios";
-toast.success("Toast setup successfully!");
+// toast.success("Toast setup successfully!");
 
 const API_URL = "https://acr-api.mikerock.tech/api/v1/recipes";
 const PAGE_SIZE = 10;

@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import FoodDetails from "./pages/FoodDetails";
 import AppLayout from "./ui/AppLayout";
 import Error from "./ui/Error";
+import CreateRecipe from "./pages/CreateRecipe";
 // import { lazy } from "react";
 
 // const Home = lazy(() => import("./pages/Home"));
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/food/:id",
         element: <FoodDetails />,
+      },
+      {
+        path: "/recipe/new",
+        element: <CreateRecipe />,
       },
     ],
   },

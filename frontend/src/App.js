@@ -1,34 +1,44 @@
-import logo from "./logo.svg";
+import { Suspense } from "react";
 import "./App.css";
-import Toast from "./providers/ToastProvider";
-
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import FoodDetails from "./pages/FoodDetails";
-import AppLayout from "./ui/AppLayout";
 import Error from "./ui/Error";
+import SignUpPage from "./pages/SignUp";
+import LandingPage from "./pages/LandingPage";
+import NavBar from "./ui/NavBar";
+import Loader from "./ui/Loader";
+import Profile from "./pages/Profile";
+import CreateRecipe from "./pages/CreateRecipe";
+import MyRecipes from "./pages/MyRecipes";
+import Toast from "./providers/ToastProvider";
+import SignInPage from "./pages/SignIn";
+
 // import { lazy } from "react";
 
 // const Home = lazy(() => import("./pages/Home"));
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <AppLayout />,
-    errorElement: <Error />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/food/:id",
-        element: <FoodDetails />,
-      },
-    ],
-  },
-]);
-
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <Router>
+      <Suspense fallback={<Loader />}>
+        <div className="App h-screen">
+          <header className="fixed left-0 right-0 top-0">
+            <NavBar />
+          </header>
+          <Toast />
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/recipes" element={<Home />} />
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/signin" element={<SignInPage />} />
+            <Route path="/food/:id" element={<FoodDetails />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/recipes/create" element={<CreateRecipe />} />
+            <Route path="/recipes/me" element={<MyRecipes />} />
+          </Routes>
+        </div>
+      </Suspense>
+    </Router>
+  );
 }

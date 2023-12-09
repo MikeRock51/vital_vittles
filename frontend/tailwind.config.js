@@ -23,7 +23,10 @@ module.exports = {
           800: '#a8370b',
           900: '#902f09',
         },
-      }
+      },
+      screens: {
+        'xs': '400px',
+      } 
     },
   },
   plugins: [require("tailwindcss-box-shadow")],

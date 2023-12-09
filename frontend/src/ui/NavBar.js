@@ -14,9 +14,9 @@ function classNames(...classes) {
 export default function Navbar({signOut}) {
   const location = useLocation();
   const navigation = [
+    { name: 'Home', href: '/', current: location.pathname === '/' },
     { name: 'Recipes', href: '/recipes', current: location.pathname === '/recipes' },
-    { name: 'Create Recipe', href: '#', current: false },
-    { name: 'My Recipes', href: '#', current: false },
+    { name: 'Create Recipe', href: '/recipes/create', current: false },
     { name: 'Chat with Yishu', href: '#', current: false },
   ]
 
@@ -103,7 +103,7 @@ export default function Navbar({signOut}) {
                         {({ active }) => (
                           <a
                             href="/profile"
-                            className={classNames(active ? 'bg-primary-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(active ? 'bg-primary-40' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Your Profile
                           </a>
@@ -111,7 +111,17 @@ export default function Navbar({signOut}) {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <button className='block px-4 py-2 text-sm w-full mx-auto hover:bg-primary-100 text-gray-700' onClick={signOut}>Sign out</button>
+                          <a
+                            href="/recipes/me"
+                            className={classNames(active ? 'bg-primary-40' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                          >
+                            My Recipes
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <button className='block px-4 py-2 text-sm w-full mx-auto hover:bg-primary-40 text-gray-700' onClick={signOut}>Sign out</button>
                         )}
                       </Menu.Item>
                     </Menu.Items>

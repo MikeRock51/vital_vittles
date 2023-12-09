@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function createRecipe() {
+export default function CreateRecipe() {
   const [name, setName] = useState(null);
   const [cuisine, setCuisine] = useState("");
   const [cookingTime, setCookingTime] = useState(null);

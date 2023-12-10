@@ -34,7 +34,7 @@ export default function App() {
             <Route path="/signin" element={<SignInPage />} />
             <Route path="/food/:id" element={<FoodDetails />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/recipes/create" element={<CreateRecipe />} />
+            <Route path="/recipes/new" element={<CreateRecipe />} />
             <Route path="/recipes/me" element={<MyRecipes />} />
           </Routes>
         </div>

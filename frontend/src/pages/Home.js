@@ -2,17 +2,26 @@ import Toast from "../providers/ToastProvider";
 import toast from "react-hot-toast";
 
 import CardItem from "../components/CardItem";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Loader from "../ui/Loader";
 import axios from "axios";
+import { useRecipesContext } from "../context/RecipesContext";
+import SearchRecipe from "../components/SearchRecipe";
 // toast.success("Toast setup successfully!");
 
 const API_URL = "https://acr-api.mikerock.tech/api/v1/recipes";
 const PAGE_SIZE = 10;
 
 export default function Home() {
-  const [recipes, setRecipes] = useState({ data: [] });
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [recipes, setRecipes] = useState({ data: [] });
+  // const [currentPage, setCurrentPage] = useState(1);
+
+  const { recipes, currentPage, dispatch, searchTerm, setSearchTerm } =
+    useRecipesContext();
+
+  const handleLoadMore = () => {
+    dispatch({ type: "NEXT_PAGE", payload: currentPage + 1 });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,22 +31,28 @@ export default function Home() {
         );
         const newData = response.data;
         console.log(newData);
-        setRecipes((prevData) => ({
-          data: [...prevData.data, ...newData.data],
-        }));
+
+        dispatch({ type: "GET_RECIPES", payload: newData });
+        // setRecipes((prevData) => ({
+        //   data: [...prevData.data, ...newData.data],
+        // }));
       } catch (error) {
         console.log("Error fetching recipes", error);
       }
     };
 
     fetchData();
-  }, [currentPage]);
+  }, [currentPage, dispatch]);
   return (
-    <div className="mt-5">
+    <div className="mt-20">
       <Toast />
+
+      <SearchRecipe />
+
       <h1 className="mb-4 text-center text-3xl font-bold">
         Amazing Recipes in Africa
       </h1>
+
       {recipes ? (
         <div className="flex flex-col items-center">
           <ul className="flex flex-wrap items-center justify-center gap-20 ">
@@ -48,7 +63,7 @@ export default function Home() {
 
           <button
             className="mx-auto mt-6 rounded-lg bg-orange-300 px-7 py-2.5 text-center text-sm font-bold text-stone-800 outline-none drop-shadow-xl transition-colors duration-300 hover:bg-orange-400 focus:outline-none focus:ring focus:ring-orange-400 focus:ring-offset-2"
-            onClick={() => setCurrentPage((prevPage) => prevPage + 1)}
+            onClick={handleLoadMore}
           >
             Load More...
           </button>

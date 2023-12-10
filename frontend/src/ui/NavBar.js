@@ -21,7 +21,7 @@ export default function Navbar({ signOut }) {
       href: "/recipes",
       current: location.pathname === "/recipes",
     },
-    { name: "Create Recipe", href: "/recipes/create", current: false },
+    { name: "Create Recipe", href: "/recipes/new", current: false },
     { name: "Chat with Yishu", href: "#", current: false },
   ];
 

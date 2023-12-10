@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
@@ -13,12 +13,18 @@ import CreateRecipe from "./pages/CreateRecipe";
 import MyRecipes from "./pages/MyRecipes";
 import Toast from "./providers/ToastProvider";
 import SignInPage from "./pages/SignIn";
+import { useUserStore } from "./stateProvider/authStore";
 
 // import { lazy } from "react";
 
 // const Home = lazy(() => import("./pages/Home"));
 
 export default function App() {
+  // const { currentUser } = useUserStore()
+  
+  useEffect(() => {}, [])
+  // console.log(currentUser)
+
   return (
     <Router>
       <Suspense fallback={<Loader />}>

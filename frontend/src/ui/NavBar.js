@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -11,8 +9,8 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Navbar({ signOut }) {
-  const { currentUser } = useUserStore();
+export default function Navbar() {
+  const { currentUser } = useUserStore()
   const location = useLocation();
   const authNavs = [
     { name: "Home", href: "/", current: location.pathname === "/" },
@@ -156,7 +154,7 @@ export default function Navbar({ signOut }) {
                           {({ active }) => (
                             <button
                               className="mx-auto block w-full px-4 py-2 text-sm text-gray-700 hover:bg-primary-40"
-                              onClick={signOut}
+                              onClick={alert("Logging out...")}
                             >
                               Sign out
                             </button>

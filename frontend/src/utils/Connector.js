@@ -1,12 +1,13 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const API_URL = "https://acr-api.mikerock.tech/api/v1";
+// const API_URL = "https://acr-api.mikerock.tech/api/v1";
+const API_URL = "http://localhost:9000/api/v1";
 
 export async function CreateUser(userData, setError) {
   try {
     const response = await axios.post(API_URL + "/users", userData);
-    console.log(response.data);
+    console.log(response);
     toast.success(response.data.message);
     return true;
   } catch (error) {
@@ -19,7 +20,7 @@ export async function CreateUser(userData, setError) {
 export async function LoginUser(userData, setError) {
   try {
     const response = await axios.post(API_URL + "/login", userData);
-    console.log(response.data);
+    console.log(response);
     toast.success(response.data.message);
     return { token: response.data["auth-token"], user: response.data.data };
   } catch (error) {
@@ -35,11 +36,11 @@ export async function LogoutUser(token) {
       headers: { "auth-token": token },
     });
     console.log(response.data);
-    toast.success("Sign out failed, please try again!");
+    toast.success(response.data.message);
     return true;
   } catch (error) {
     console.log(error);
-    toast.error(error.response.data.message);
+    toast.error("Sign out failed, please try again!");
     return false;
   }
 }

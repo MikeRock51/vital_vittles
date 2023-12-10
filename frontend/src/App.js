@@ -13,7 +13,8 @@ import CreateRecipe from "./pages/CreateRecipe";
 import MyRecipes from "./pages/MyRecipes";
 import Toast from "./providers/ToastProvider";
 import SignInPage from "./pages/SignIn";
-import { useUserStore } from "./stateProvider/authStore";
+
+console.log(process.env.REACT_APP_API_URL)
 
 // import { lazy } from "react";
 

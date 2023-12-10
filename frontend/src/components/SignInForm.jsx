@@ -29,7 +29,7 @@ function SignInForm() {
             setCurrentUser(user);
             setAuthToken(token);
             setSubmitting(false);
-            navigate("/profile");
+            navigate("/recipes");
           }
         }}
       >

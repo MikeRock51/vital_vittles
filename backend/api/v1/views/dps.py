@@ -3,6 +3,7 @@
 
 from models.recipe import Recipe
 from models.recipeDP import RecipeDP
+from models.user import User
 from models import storage
 from models.roles import UserRole
 from flask import jsonify, abort, request, g, current_app, make_response, send_from_directory
@@ -202,12 +203,20 @@ def uploadDP():
     }), 201
 
 
-@app_views.route('/users/dp', methods=['GET'])
+@app_views.route('/users/dp/<userID>', methods=['GET'])
 @swag_from(f'{DOCS_DIR}/users/get_user_dp.yml')
-@login_required()
-def getUserDP():
+# @login_required()
+def getUserDP(userID):
     """Retrieves the current users display picture file"""
-    DP_FOLDER = f'{current_app.config["DP_FOLDER"]}/users/{g.currentUser.id}'
-    response = make_response(send_from_directory(DP_FOLDER, g.currentUser.dp))
+    user = storage.get(User, userID)
+    if not user:
+        abort(404, description="No user with this ID")
+
+    DP_FOLDER = ""
+    if user.dp == 'defaultDP.png':
+        DP_FOLDER = f'{current_app.config["DP_FOLDER"]}/users'
+    else:
+        DP_FOLDER = f'{current_app.config["DP_FOLDER"]}/users/{userID}'
+    response = make_response(send_from_directory(DP_FOLDER, user.dp))
     
     return response

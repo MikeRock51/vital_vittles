@@ -15,7 +15,7 @@ function SignInForm() {
   };
 
   return (
-    <div className="xs:w-4/6 mt-20 w-11/12 bg-[#e2e8f0] py-10 text-center sm:w-4/6 md:w-5/12">
+    <div className="xs:w-4/6 mt-20 w-11/12 bg-[#e2e8f0] py-10 sm:py-14 text-center sm:w-4/6 md:w-5/12">
       <h2>Log into your account</h2>
       <Formik
         initialValues={userFields}
@@ -59,7 +59,7 @@ function SignInForm() {
             />
             <h4 className="text-primary-600">{error && error}</h4>
             <button
-              className="mt-5 block w-full rounded bg-primary-700 px-10 py-2 font-bold text-white hover:bg-primary-300"
+              className="mt-10 block w-full rounded bg-primary-700 px-10 py-2 font-bold text-white hover:bg-primary-300"
               type="submit"
               disabled={isSubmitting}
             >

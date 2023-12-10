@@ -2,16 +2,18 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useUserStore } from "../stateProvider/authStore";
+import { LogoutUser } from "../utils/Connector";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar() {
-  const { currentUser } = useUserStore()
+  const { currentUser, setCurrentUser, authToken, setAuthToken } = useUserStore()
   const location = useLocation();
+  const navigate = useNavigate();
   const authNavs = [
     { name: "Home", href: "/", current: location.pathname === "/" },
     {
@@ -38,6 +40,15 @@ export default function Navbar() {
   ];
 
   const navigation = currentUser ? authNavs : noAuthNavs;
+
+  async function signOut() {
+    const success = await LogoutUser(authToken);
+    if (success) {
+      setCurrentUser(null);
+      setAuthToken(null);
+      navigate('/signin');
+    }
+  }
 
   return (
     <Disclosure
@@ -154,7 +165,7 @@ export default function Navbar() {
                           {({ active }) => (
                             <button
                               className="mx-auto block w-full px-4 py-2 text-sm text-gray-700 hover:bg-primary-40"
-                              onClick={alert("Logging out...")}
+                              onClick={() => signOut()}
                             >
                               Sign out
                             </button>

@@ -2,7 +2,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 // const API_URL = "https://acr-api.mikerock.tech/api/v1";
-const API_URL = "http://localhost:9000/api/v1";
+const API_URL = process.env.REACT_APP_API_URL;
 
 export async function CreateUser(userData, setError) {
   try {
@@ -40,7 +40,7 @@ export async function LogoutUser(token) {
     return true;
   } catch (error) {
     console.log(error);
-    toast.error("Sign out failed, please try again!");
+    // toast.error("Sign out failed, please try again!");
     return false;
   }
 }

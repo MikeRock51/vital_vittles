@@ -14,8 +14,6 @@ import MyRecipes from "./pages/MyRecipes";
 import Toast from "./providers/ToastProvider";
 import SignInPage from "./pages/SignIn";
 
-console.log(process.env.REACT_APP_API_URL)
-
 // import { lazy } from "react";
 
 // const Home = lazy(() => import("./pages/Home"));

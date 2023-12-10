@@ -5,11 +5,12 @@ import { Link } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useUserStore } from "../stateProvider/authStore";
 import { LogoutUser } from "../utils/Connector";
-import { GetUserDP } from "../utils/DataFetcher";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
+
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 export default function Navbar() {
   const { currentUser, setCurrentUser, authToken, setAuthToken } = useUserStore()
@@ -43,18 +44,13 @@ export default function Navbar() {
   const navigation = currentUser ? authNavs : noAuthNavs;
 
   async function signOut() {
-    const success = await LogoutUser(authToken);
-    if (success) {
-      setCurrentUser(null);
-      setAuthToken(null);
-      navigate('/signin');
-    }
+    await LogoutUser(authToken);
+    setCurrentUser(null);
+    setAuthToken(null);
+    navigate('/signin');
   }
 
-  async function getDp() {
-    return await GetUserDP(authToken);
-  }
-
+  
   return (
     <Disclosure
       as="nav"
@@ -125,7 +121,7 @@ export default function Navbar() {
                         <span className="sr-only">Open user menu</span>
                         <img
                           className="h-8 w-8 rounded-full"
-                          src={`http://localhost:9000/api/v1/users/dp/${currentUser.id}` || "https://media.istockphoto.com/id/1389898237/photo/cute-girl-iconic-character-with-glasses-3d-rendering.jpg?s=612x612&w=0&k=20&c=dFG5lmBicdNe33IrFgr8YYrX1rF38DljWS7g84Q78HI="}
+                          src={`${BASE_URL}/users/dp/${currentUser.id}` || "https://media.istockphoto.com/id/1389898237/photo/cute-girl-iconic-character-with-glasses-3d-rendering.jpg?s=612x612&w=0&k=20&c=dFG5lmBicdNe33IrFgr8YYrX1rF38DljWS7g84Q78HI="}
                           alt=""
                         />
                       </Menu.Button>

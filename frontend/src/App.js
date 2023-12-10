@@ -20,8 +20,8 @@ import SignInPage from "./pages/SignIn";
 
 export default function App() {
   // const { currentUser } = useUserStore()
-  
-  useEffect(() => {}, [])
+
+  useEffect(() => {}, []);
   // console.log(currentUser)
 
   return (

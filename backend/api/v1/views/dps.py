@@ -10,7 +10,6 @@ from flask import jsonify, abort, request, g, current_app, make_response, send_f
 from api.v1.views import app_views
 from api.v1.utils import Utils
 from api.v1.utils.authWrapper import login_required
-import re
 from flasgger.utils import swag_from
 from os import path
 from sqlalchemy.exc import IntegrityError

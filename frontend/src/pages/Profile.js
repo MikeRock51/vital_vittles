@@ -17,7 +17,7 @@ function Profile() {
             Good {getTimeOfDay()} {currentUser.firstname}!
           </h2>
         </div>
-        <div className="m-auto">
+        <div className="my-4 sm:m-auto">
           <img
             className="mx-auto h-28 w-28 rounded-full xs:h-36 xs:w-36 md:h-48 md:w-48"
             src={`${BASE_URL}/users/dp/${currentUser.id}`}
@@ -25,7 +25,7 @@ function Profile() {
           />
           <button onClick={() => setShowUploader(!showUploader)} className="text-primary-600 mt-4">Update Profile Picture</button>
         </div>
-        <div className="h-[300px]">
+        <div className="h-[300px] sm:w-[320px] m-auto">
           {showUploader && <FileUploader />}
         </div>
       </div>

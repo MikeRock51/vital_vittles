@@ -1,19 +1,20 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 function FileUploader() {
   const [file, setFile] = useState(null);
 
-  const handleChange = (event) => {
-    setFile(event.target.files[0]);
+  const handleChange = (e) => {
+    setFile(e.target.files[0]);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (!file) {
-      alert("Please select a file to upload.");
+      toast.error("No file selected. Please select a file...");
       return;
     }
-    // Upload the file here
+    
   };
 
   return (

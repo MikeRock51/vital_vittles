@@ -34,6 +34,7 @@ export default function FoodDetails() {
         <img
           className="w-1/2 rounded-2xl"
           src="https://images.pexels.com/photos/11638817/pexels-photo-11638817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          alt=""
         />
         <div className=" leading-6 md:leading-8">
           <h1 className="py-4 text-3xl  font-bold md:tracking-widest">

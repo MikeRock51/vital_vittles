@@ -1,22 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import { useUserStore } from "../stateProvider/authStore";
 import YishuChat from "../ui/chat/YishuChat";
 import UserChat from "../ui/chat/UserChat";
 import ChatSidebar from "../ui/chat/ChatSidebar";
+import MobileChatSidebar from "../ui/chat/MobileChatSidebar";
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 function ChatUI() {
   const { currentUser } = useUserStore();
+  const [ showSidebar, setShowSidebar ] = useState(false);
+
   return (
-    <div className="flex text-gray-800 antialiased" style={{ height: 'calc(100vh - 60px)', minHeight: 'calc(100vh - 20px)' }}>
+    <div
+      className="flex text-gray-800 antialiased"
+      style={{ height: "calc(100vh - 60px)", minHeight: "calc(100vh - 20px)" }}
+    >
       <div className="flex h-full w-full flex-row">
         <ChatSidebar />
+        {/* <MobileChatSidebar />
+        <button
+          className="text-primary-600 focus:outline-none lg:hidden"
+          onClick={() => setShowSidebar(!showSidebar)}
+        >
+          <svg
+            className="h-6 w-6 scale-x-[-1] transform"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
+          </svg>
+        </button> */}
         <div className="flex h-full flex-auto flex-col py-6 sm:p-6">
           <div className="flex h-full flex-auto flex-shrink-0 flex-col rounded-2xl bg-gray-100 p-4">
             <div className="mb-4 flex h-full flex-col overflow-x-auto">
               <div className="flex h-full flex-col">
-                <div className="grid grid-cols-6 sm:grid-cols-12 gap-y-2">
+                <div className="grid grid-cols-6 gap-y-2 sm:grid-cols-12">
                   <YishuChat />
                   <UserChat />
                   <YishuChat />

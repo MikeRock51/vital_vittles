@@ -4,7 +4,7 @@ import ChatSessions from "./ChatSessions";
 
 function ChatSidebar() {
   return (
-    <div className="hidden md:flex w-64 flex-shrink-0 flex-col bg-white py-8 pl-6 pr-2">
+    <div className="flex w-64 flex-shrink-0 flex-col bg-white py-8 pl-6 pr-2">
       <ChatHeader />
       <ChatSessions />
     </div>

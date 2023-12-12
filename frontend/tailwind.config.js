@@ -28,13 +28,15 @@ module.exports = {
         xs: '400px',
       },
       keyframes: {
-        scroll: {
-          '0%': { transform: 'translateX(100%)' },
-          '100%': { transform: 'translateX(-100%)' },
+        vibrate: {
+          '0%, 100%': { transform: 'translate(0)' },
+          '25%': { transform: 'translate(-2px, 2px)' },
+          '50%': { transform: 'translate(2px, -2px)' },
+          '75%': { transform: 'translate(-2px, 2px)' },
         },
       },
       animation: {
-        scroll: 'scroll 10s linear infinite',
+        vibrate: 'vibrate 0.5s ease-in-out infinite',
       },
     },
   },

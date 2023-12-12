@@ -23,8 +23,8 @@ export default function Navbar() {
       href: "/recipes",
       current: location.pathname === "/recipes",
     },
-    { name: "Create Recipe", href: "/recipes/new", current: false },
-    { name: "Chat with Yishu", href: "/yishu", current: false },
+    { name: "Create Recipe", href: "/recipes/new", current: location.pathname === "/recipes/new" },
+    { name: "Chat with Yishu", href: "/yishu", current: location.pathname === "/yishu" },
   ];
 
   const noAuthNavs = [

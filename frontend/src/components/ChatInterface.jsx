@@ -1,26 +1,22 @@
 import React from "react";
 import { useUserStore } from "../stateProvider/authStore";
-import ChatHeader from "../ui/chat/ChatHeader";
-import ChatSessions from "../ui/chat/ChatSessions";
 import YishuChat from "../ui/chat/YishuChat";
 import UserChat from "../ui/chat/UserChat";
+import ChatSidebar from "../ui/chat/ChatSidebar";
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 function ChatUI() {
   const { currentUser } = useUserStore();
   return (
-    <div className="flex text-gray-800 antialiased" style={{ height: 'calc(100vh - 60px)' }}>
+    <div className="flex text-gray-800 antialiased" style={{ height: 'calc(100vh - 60px)', minHeight: 'calc(100vh - 20px)' }}>
       <div className="flex h-full w-full flex-row">
-        <div className="flex w-64 flex-shrink-0 flex-col bg-white py-8 pl-6 pr-2">
-          <ChatHeader />
-          <ChatSessions />
-        </div>
-        <div className="flex h-full flex-auto flex-col p-6">
+        <ChatSidebar />
+        <div className="flex h-full flex-auto flex-col py-6 sm:p-6">
           <div className="flex h-full flex-auto flex-shrink-0 flex-col rounded-2xl bg-gray-100 p-4">
             <div className="mb-4 flex h-full flex-col overflow-x-auto">
               <div className="flex h-full flex-col">
-                <div className="grid grid-cols-12 gap-y-2">
+                <div className="grid grid-cols-6 sm:grid-cols-12 gap-y-2">
                   <YishuChat />
                   <UserChat />
                   <YishuChat />

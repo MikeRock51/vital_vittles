@@ -29,7 +29,7 @@ export default function App() {
     <Router>
       <Suspense fallback={<Loader />}>
         <div className="App h-screen">
-          <header className="fixed left-0 right-0 top-0">
+          <header className="fixed left-0 right-0 top-0 z-20">
             <NavBar />
           </header>
           <Toast />

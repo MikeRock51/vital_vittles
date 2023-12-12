@@ -2,7 +2,7 @@ import Toast from "../providers/ToastProvider";
 import toast from "react-hot-toast";
 
 import CardItem from "../components/CardItem";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Loader from "../ui/Loader";
 import axios from "axios";
 import { useRecipesContext } from "../context/RecipesContext";
@@ -15,39 +15,50 @@ const PAGE_SIZE = 10;
 export default function Home() {
   // const [recipes, setRecipes] = useState({ data: [] });
   // const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState(
+    sessionStorage.getItem("searchTerm")
+      ? sessionStorage.getItem("searchTerm")
+      : "",
+  );
 
-  const { recipes, currentPage, dispatch, searchTerm, setSearchTerm } =
-    useRecipesContext();
+  const { recipes, currentPage, dispatch } = useRecipesContext();
 
   const handleLoadMore = () => {
     dispatch({ type: "NEXT_PAGE", payload: currentPage + 1 });
   };
 
+  // console.log(searchTerm);
+  const fetchData = async () => {
+    console.log(searchTerm);
+    try {
+      const response = await axios.get(
+        `${API_URL}?page=${currentPage}&pageSize=${PAGE_SIZE}&search=${searchTerm}
+        )}`,
+      );
+      const newData = response.data;
+      console.log(newData);
+
+      dispatch({ type: "GET_RECIPES", payload: newData });
+      // setRecipes((prevData) => ({
+      //   data: [...prevData.data, ...newData.data],
+      // }));
+    } catch (error) {
+      console.log("Error fetching recipes", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${API_URL}?page=${currentPage}&pageSize=${PAGE_SIZE}`,
-        );
-        const newData = response.data;
-        console.log(newData);
-
-        dispatch({ type: "GET_RECIPES", payload: newData });
-        // setRecipes((prevData) => ({
-        //   data: [...prevData.data, ...newData.data],
-        // }));
-      } catch (error) {
-        console.log("Error fetching recipes", error);
-      }
-    };
-
     fetchData();
   }, [currentPage, dispatch]);
   return (
     <div className="mt-20">
       <Toast />
 
-      <SearchRecipe />
+      <SearchRecipe
+        fetchData={fetchData}
+        setSearchTerm={setSearchTerm}
+        searchTerm={searchTerm}
+      />
 
       <h1 className="mb-4 text-center text-3xl font-bold">
         Amazing Recipes in Africa

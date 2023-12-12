@@ -11,7 +11,7 @@ function ChatUI() {
   const { currentUser } = useUserStore();
   return (
     <div className="flex text-gray-800 antialiased" style={{ height: 'calc(100vh - 60px)' }}>
-      <div className="flex h-full w-full flex-row overflow-x-hidden">
+      <div className="flex h-full w-full flex-row">
         <div className="flex w-64 flex-shrink-0 flex-col bg-white py-8 pl-6 pr-2">
           <ChatHeader />
           <ChatSessions />
@@ -77,7 +77,7 @@ function ChatUI() {
                 </div>
               </div>
               <div className="ml-4">
-                <button className="flex flex-shrink-0 items-center justify-center rounded-xl bg-indigo-500 px-4 py-1 text-white hover:bg-indigo-600">
+                <button className="flex flex-shrink-0 items-center justify-center rounded-xl bg-primary-500 px-4 py-1 text-white hover:bg-primary-600">
                   <span>Send</span>
                   <span className="ml-2">
                     <svg

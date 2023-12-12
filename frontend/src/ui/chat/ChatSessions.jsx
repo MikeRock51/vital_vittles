@@ -10,7 +10,7 @@ function ChatSessions() {
           4
         </span>
       </div>
-      <div className="-mx-2 mt-4 flex h-52 xs:h-72 flex-col space-y-1 overflow-y-auto">
+      <div className="-mx-2 mt-4 flex flex-col space-y-1 overflow-y-auto" style={{ height: 'calc(100vh - 380px)', minHeight: '80px' }}>
         <ChatSession />
         <ChatSession />
         <ChatSession />
@@ -20,7 +20,7 @@ function ChatSessions() {
         <ChatSession />
         <ChatSession />
       </div>
-      <button className="bg-primary-300 text-white py-2 rounded mt-5" onClick={() => alert("Just Do It!")}>New Session</button>
+      <button className="bg-primary-300 text-white py-2 rounded mt-3 sm:mt-8" onClick={() => alert("Just Do It!")}>New Session</button>
     </div>
   );
 }

@@ -10,7 +10,7 @@ const BASE_URL = process.env.REACT_APP_API_URL;
 function ChatUI() {
   const { currentUser } = useUserStore();
   return (
-    <div className="flex text-gray-800 antialiased">
+    <div className="flex text-gray-800 antialiased" style={{ height: 'calc(100vh - 60px)' }}>
       <div className="flex h-full w-full flex-row overflow-x-hidden">
         <div className="flex w-64 flex-shrink-0 flex-col bg-white py-8 pl-6 pr-2">
           <ChatHeader />
@@ -21,6 +21,13 @@ function ChatUI() {
             <div className="mb-4 flex h-full flex-col overflow-x-auto">
               <div className="flex h-full flex-col">
                 <div className="grid grid-cols-12 gap-y-2">
+                  <YishuChat />
+                  <UserChat />
+                  <YishuChat />
+                  <UserChat />
+                  <YishuChat />
+                  <UserChat />
+
                   <YishuChat />
                   <UserChat />
                 </div>

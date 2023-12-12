@@ -15,7 +15,7 @@ function ChatUI() {
 
   return (
     <div
-      className={`flex text-gray-800 antialiased ${!showSidebar ? "-translate-x-64 sm:-translate-x-0" : ""}`}
+      className={`flex text-gray-800 antialiased transition ease-in-out duration-500 ${!showSidebar ? "-translate-x-64 sm:-translate-x-0" : ""}`}
       style={{ height: "calc(100vh - 60px)", minHeight: "calc(100vh - 20px)" }}
     >
       <div className="flex h-full w-full flex-row">

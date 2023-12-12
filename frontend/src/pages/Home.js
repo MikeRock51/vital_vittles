@@ -2,11 +2,12 @@ import Toast from "../providers/ToastProvider";
 import toast from "react-hot-toast";
 
 import CardItem from "../components/CardItem";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Loader from "../ui/Loader";
 import axios from "axios";
-import { useRecipesContext } from "../context/RecipesContext";
+// import { useRecipesContext } from "../context/RecipesContext";
 import SearchRecipe from "../components/SearchRecipe";
+import { useRecipeStore } from "../stateProvider/recipeStore";
 // toast.success("Toast setup successfully!");
 
 const API_URL = "https://acr-api.mikerock.tech/api/v1/recipes";
@@ -15,34 +16,49 @@ const PAGE_SIZE = 10;
 export default function Home() {
   // const [recipes, setRecipes] = useState({ data: [] });
   // const [currentPage, setCurrentPage] = useState(1);
+  const {
+    recipes,
+    setRecipes,
+    currentPage,
+    setCurrentPage,
+    searchTerm,
+    setSearchTerm,
+  } = useRecipeStore();
+  const [fetch, setFetch] = useState(false);
 
-  const { recipes, currentPage, dispatch, searchTerm, setSearchTerm } =
-    useRecipesContext();
+  // const { recipes, currentPage, dispatch } = useRecipesContext();
 
   const handleLoadMore = () => {
-    dispatch({ type: "NEXT_PAGE", payload: currentPage + 1 });
+    // dispatch({ type: "NEXT_PAGE", payload: currentPage + 1 });
+    setCurrentPage(currentPage + 1);
+  };
+
+  // console.log(searchTerm);
+  const fetchData = async () => {
+    setSearchTerm("");
+    try {
+      const response = await axios.get(
+        `${API_URL}?page=${currentPage}&pageSize=${PAGE_SIZE}${
+          searchTerm ? `&search=${searchTerm}` : ""
+        })}`,
+      );
+      const newData = response?.data?.data;
+      console.log(newData);
+      setCurrentPage(Number(response?.data?.page));
+
+      // dispatch({ type: "GET_RECIPES", payload: newData });
+      setRecipes([...recipes, ...newData]);
+      // setRecipes((prevData) => ({
+      //   data: [...prevData.data, ...newData.data],
+      // }));
+    } catch (error) {
+      console.log("Error fetching recipes", error);
+    }
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${API_URL}?page=${currentPage}&pageSize=${PAGE_SIZE}`,
-        );
-        const newData = response.data;
-        console.log(newData);
-
-        dispatch({ type: "GET_RECIPES", payload: newData });
-        // setRecipes((prevData) => ({
-        //   data: [...prevData.data, ...newData.data],
-        // }));
-      } catch (error) {
-        console.log("Error fetching recipes", error);
-      }
-    };
-
     fetchData();
-  }, [currentPage, dispatch]);
+  }, [currentPage]);
   return (
     <div className="mt-20">
       <Toast />
@@ -56,7 +72,7 @@ export default function Home() {
       {recipes ? (
         <div className="flex flex-col items-center">
           <ul className="flex flex-wrap items-center justify-center gap-20 ">
-            {recipes.data.map((recipe) => (
+            {recipes?.map((recipe) => (
               <CardItem key={recipe.id} id={recipe.id} name={recipe.name} />
             ))}
           </ul>

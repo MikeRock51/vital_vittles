@@ -1,9 +1,9 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
+
 // const API_URL = "https://acr-api.mikerock.tech/api/v1";
 const API_URL = process.env.REACT_APP_API_URL;
-console.log(API_URL)
 
 export async function CreateUser(userData, setError) {
   try {

@@ -13,6 +13,7 @@ import CreateRecipe from "./pages/CreateRecipe";
 import MyRecipes from "./pages/MyRecipes";
 import Toast from "./providers/ToastProvider";
 import SignInPage from "./pages/SignIn";
+import ChatPage from "./pages/ChatPage";
 
 // import { lazy } from "react";
 
@@ -41,6 +42,7 @@ export default function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/recipes/new" element={<CreateRecipe />} />
             <Route path="/recipes/me" element={<MyRecipes />} />
+            <Route path="/yishu" element={<ChatPage />} />
           </Routes>
         </div>
       </Suspense>

@@ -1,10 +1,10 @@
 import axios from "axios";
-import { useRecipesContext } from "../context/RecipesContext";
+// import { useRecipesContext } from "../context/RecipesContext";
 import { useState } from "react";
 import { useRecipeStore } from "../stateProvider/recipeStore";
 
 export default function SearchRecipe() {
-  const { dispatch } = useRecipesContext();
+  // const { dispatch } = useRecipesContext();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const {

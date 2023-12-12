@@ -75,7 +75,11 @@ export default function FoodDetails() {
             </li>
             <li>
               <span className="text-[1.1rem] font-bold">Ingredients: </span>
-              {foodDetails.data.ingredients}
+              <ul>
+                {foodDetails.data.ingredients.map((ingredient) => (
+                  <li>{ingredient}</li>
+                ))}
+              </ul>
             </li>
           </ul>
         </div>
@@ -83,9 +87,12 @@ export default function FoodDetails() {
       <h2 className="mb-4 mt-6 text-center text-xl font-semibold underline md:text-2xl lg:text-3xl">
         Instructions
       </h2>
-      <p className="text-sm md:text-base lg:text-lg">
-        {foodDetails.data.instructions}
-      </p>
+      <ul className="list-item text-sm md:text-base lg:text-lg">
+        {foodDetails.data.instructions.map((instruction) => (
+          <li>{instruction}</li>
+        ))}
+      </ul>
+
       <button
         className="mt-6 text-blue-700 underline"
         onClick={() => navigate(-1)}

@@ -9,6 +9,7 @@ export default function CreateRecipe() {
   const [cookingTime, setCookingTime] = useState("");
   const [totalTime, setTotalTime] = useState("");
   const [calories, setCalories] = useState("");
+  const [prep_time_minutes, setPrepTimeMinutes] = useState("");
   const [servingSize, setServingSize] = useState("");
   const [ingredients, setIngredients] = useState([]);
   const [instructions, setInstructions] = useState([]);
@@ -22,14 +23,16 @@ export default function CreateRecipe() {
     const recipe = {
       name,
       cuisine,
-      cookingTime,
-      totalTime,
-      calories,
-      servingSize,
+      cook_time_minutes: cookingTime,
+      total_time_minutes: totalTime,
+      calories_per_serving: calories,
+      serving_size: servingSize,
+      prep_time_minutes,
       ingredients,
       instructions,
     };
 
+    console.log(recipe);
     try {
       const token = authToken;
 
@@ -116,6 +119,16 @@ export default function CreateRecipe() {
             type="number"
             value={totalTime}
             onChange={(e) => setTotalTime(e.target.value)}
+            className="input grow"
+          />
+        </div>
+
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="font-semibold sm:basis-40">Prep Time</label>
+          <input
+            type="number"
+            value={prep_time_minutes}
+            onChange={(e) => setPrepTimeMinutes(e.target.value)}
             className="input grow"
           />
         </div>

@@ -1,51 +1,49 @@
 import axios from "axios";
 import { useRecipesContext } from "../context/RecipesContext";
 import { useState } from "react";
+import { useRecipeStore } from "../stateProvider/recipeStore";
 
-export default function SearchRecipe({ fetchData, setSearchTerm, searchTerm }) {
+export default function SearchRecipe() {
   const { dispatch } = useRecipesContext();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const {searchTerm, setSearchTerm, currentPage, setCurrentPage, recipes, setRecipes} = useRecipeStore()
 
-  // async function handleSubmit(e) {
-  //   e.preventDefault();
+  async function handleSubmit(e) {
+    e.preventDefault();
 
-  //   if (!searchTerm) return;
-  //   console.log(searchTerm);
+    if (!searchTerm) return;
+    console.log(searchTerm);
 
-  //   try {
-  //     setLoading(true);
-  //     setError(null);
+    try {
+      setLoading(true);
+      setError(null);
 
-  //     const response = await axios.get(
-  //       `https://acr-api.mikerock.tech/api/v1/recipes?search=${searchTerm}`,
-  //     );
+      const response = await axios.get(
+        `https://acr-api.mikerock.tech/api/v1/recipes?page=1&pageSize=10&search=${searchTerm}`,
+      );
 
-  //     const searchData = response.data;
-  //     console.log(searchData);
+      const searchData = response?.data?.data;
+      console.log("search", response?.data);
 
-  //     dispatch({ type: "SEARCH_RECIPES", payload: searchData });
-
-  //     setSearchTerm("");
-  //   } catch (error) {
-  //     console.error("Error fetching recipes", error);
-  //     setError("An error occurred while fetching recipes. Please try again.");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }
+      // dispatch({ type: "SEARCH_RECIPES", payload: searchData });
+      setCurrentPage(Number(response?.data?.page))
+      setRecipes([...searchData]);
+    } catch (error) {
+      console.error("Error fetching recipes", error);
+      setError("An error occurred while fetching recipes. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
-    <form onSubmit={fetchData}>
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Search recipes"
         value={searchTerm}
-        onChange={(e) => {
-          setSearchTerm(e.target.value);
-          sessionStorage.setItem("searchTerm", e.target.value);
-          console.log(searchTerm);
-        }}
+        onChange={(e) => {setSearchTerm(e.target.value)}}
         className="input"
       />
       <button type="submit" disabled={loading}>

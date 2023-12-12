@@ -28,7 +28,7 @@ export default function App() {
   return (
     <Router>
       <Suspense fallback={<Loader />}>
-        <div className="App h-screen">
+        <div className="App h-screen w-screen">
           <header className="fixed left-0 right-0 top-0 z-20">
             <NavBar />
           </header>

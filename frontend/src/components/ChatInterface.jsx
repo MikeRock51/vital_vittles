@@ -11,11 +11,9 @@ function ChatUI() {
   const { currentUser } = useUserStore();
   const [ showSidebar, setShowSidebar ] = useState(false);
 
-  const transform = showSidebar ? "translateX(0)" : "translateX(-100%)";
-
   return (
     <div
-      className={`flex text-gray-800 antialiased transition ease-in-out duration-500 ${!showSidebar ? "-translate-x-64 sm:-translate-x-0" : ""}`}
+      className={`flex text-gray-800 antialiased transition ease-in-out duration-500 relative ${!showSidebar ? "-translate-x-64 sm:-translate-x-0" : ""}`}
       style={{ height: "calc(100vh - 60px)", minHeight: "calc(100vh - 20px)" }}
     >
       <div className="flex h-full w-full flex-row">
@@ -23,7 +21,7 @@ function ChatUI() {
         <MobileChatSidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
         <div className="flex h-full flex-auto flex-col py-6 sm:p-6">
-          <div className="flex h-full w-screen sm:w-auto flex-auto flex-shrink-0 flex-col rounded-2xl bg-gray-100 p-4">
+          <div className={`flex h-full w-screen sm:w-auto flex-auto flex-shrink-0 flex-col rounded-2xl bg-gray-100 p-4`}>
             <div className="mb-4 flex h-full flex-col overflow-x-auto">
               <div className="flex h-full flex-col">
                 <div className="grid grid-cols-6 gap-y-2 sm:grid-cols-12">

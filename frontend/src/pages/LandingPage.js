@@ -28,7 +28,7 @@ function LandingPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-cover bg-center text-white py-20" style={{ backgroundImage: 'url("https://images.pexels.com/photos/19297921/pexels-photo-19297921/free-photo-of-wet-fallen-leaves-lying-on-grass.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")' }}>
+      <section className="bg-cover bg-center text-white py-20" style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://images.pexels.com/photos/19297921/pexels-photo-19297921/free-photo-of-wet-fallen-leaves-lying-on-grass.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")' }}>
         <div className="container mx-auto text-center">
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">Discover the Richness of African Cuisine</h2>
           <p className="text-md md:text-lg lg:text-xl mb-8">
@@ -38,7 +38,7 @@ function LandingPage() {
         </div>
         <div className="container mx-auto flex flex-wrap justify-center md:justify-between">
           {/* Question Cards */}
-          <div className="w-full md:w-1/2 lg:w-1/3 pr-8 mb-8 md:mb-0">
+          <div className="w-full md:w-1/2 lg:w-1/3 pr-8 mb-8 md:mb-0 animate-vibrate">
             <div className="bg-gradient-to-r from-purple-800 to-indigo-900 rounded-lg shadow-lg p-6">
               <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-white">Discover African Culinary Delights</h3>
               <a href="#explore" className="text-blue-300 hover:text-blue-100 transition duration-300 block overflow-hidden">
@@ -48,7 +48,7 @@ function LandingPage() {
               </a>
             </div>
           </div>
-          <div className="w-full md:w-1/2 lg:w-1/3 pr-8 mb-8 md:mb-0">
+          <div className="w-full md:w-1/2 lg:w-1/3 pr-8 mb-8 md:mb-0 animate-vibrate">
             <div className="bg-gradient-to-r from-purple-800 to-indigo-900 rounded-lg shadow-lg p-6">
               <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-white">How Vittle-Vitles Works</h3>
               <a href="#explore" className="text-blue-300 hover:text-blue-100 transition duration-300 block overflow-hidden">

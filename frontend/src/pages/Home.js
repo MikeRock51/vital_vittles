@@ -5,7 +5,7 @@ import CardItem from "../components/CardItem";
 import { useEffect, useState } from "react";
 import Loader from "../ui/Loader";
 import axios from "axios";
-import { useRecipesContext } from "../context/RecipesContext";
+// import { useRecipesContext } from "../context/RecipesContext";
 import SearchRecipe from "../components/SearchRecipe";
 import { useRecipeStore } from "../stateProvider/recipeStore";
 // toast.success("Toast setup successfully!");
@@ -16,8 +16,15 @@ const PAGE_SIZE = 10;
 export default function Home() {
   // const [recipes, setRecipes] = useState({ data: [] });
   // const [currentPage, setCurrentPage] = useState(1);
-  const {recipes, setRecipes, currentPage, setCurrentPage, searchTerm, setSearchTerm } = useRecipeStore()
-  const [fetch, setFetch ] = useState(false);
+  const {
+    recipes,
+    setRecipes,
+    currentPage,
+    setCurrentPage,
+    searchTerm,
+    setSearchTerm,
+  } = useRecipeStore();
+  const [fetch, setFetch] = useState(false);
 
   // const { recipes, currentPage, dispatch } = useRecipesContext();
 
@@ -30,14 +37,17 @@ export default function Home() {
   const fetchData = async () => {
     setSearchTerm("");
     try {
-      const response = await axios.get(`${API_URL}?page=${currentPage}&pageSize=${PAGE_SIZE}${searchTerm ? `&search=${searchTerm}` : ""})}`,
+      const response = await axios.get(
+        `${API_URL}?page=${currentPage}&pageSize=${PAGE_SIZE}${
+          searchTerm ? `&search=${searchTerm}` : ""
+        })}`,
       );
-      const newData = response?.data?.data;;
+      const newData = response?.data?.data;
       console.log(newData);
-      setCurrentPage(Number(response?.data?.page))
+      setCurrentPage(Number(response?.data?.page));
 
       // dispatch({ type: "GET_RECIPES", payload: newData });
-      setRecipes([...recipes, ...newData])
+      setRecipes([...recipes, ...newData]);
       // setRecipes((prevData) => ({
       //   data: [...prevData.data, ...newData.data],
       // }));

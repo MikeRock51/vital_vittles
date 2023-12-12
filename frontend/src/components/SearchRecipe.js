@@ -7,7 +7,14 @@ export default function SearchRecipe() {
   const { dispatch } = useRecipesContext();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const {searchTerm, setSearchTerm, currentPage, setCurrentPage, recipes, setRecipes} = useRecipeStore()
+  const {
+    searchTerm,
+    setSearchTerm,
+    currentPage,
+    setCurrentPage,
+    recipes,
+    setRecipes,
+  } = useRecipeStore();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -27,7 +34,7 @@ export default function SearchRecipe() {
       console.log("search", response?.data);
 
       // dispatch({ type: "SEARCH_RECIPES", payload: searchData });
-      setCurrentPage(Number(response?.data?.page))
+      setCurrentPage(Number(response?.data?.page));
       setRecipes([...searchData]);
     } catch (error) {
       console.error("Error fetching recipes", error);
@@ -38,15 +45,21 @@ export default function SearchRecipe() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="space-x-1 " onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Search recipes"
         value={searchTerm}
-        onChange={(e) => {setSearchTerm(e.target.value)}}
+        onChange={(e) => {
+          setSearchTerm(e.target.value);
+        }}
         className="input"
       />
-      <button type="submit" disabled={loading}>
+      <button
+        className="rounded-3xl border  px-3 py-1.5 hover:bg-orange-200 focus:outline-none focus:ring focus:ring-orange-200 focus:ring-offset-2"
+        type="submit"
+        disabled={loading}
+      >
         {loading ? "Searching..." : "Search"}
       </button>
       {error && <p style={{ color: "red" }}>{error}</p>}

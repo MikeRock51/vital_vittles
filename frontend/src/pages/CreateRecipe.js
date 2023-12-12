@@ -10,8 +10,8 @@ export default function CreateRecipe() {
   const [totalTime, setTotalTime] = useState("");
   const [calories, setCalories] = useState("");
   const [servingSize, setServingSize] = useState("");
-  const [ingredients, setIngredients] = useState("");
-  const [instructions, setInstructions] = useState("");
+  const [ingredients, setIngredients] = useState([]);
+  const [instructions, setInstructions] = useState([]);
 
   const { dispatch } = useRecipesContext();
   const { authToken } = useUserStore();
@@ -50,15 +50,33 @@ export default function CreateRecipe() {
       setTotalTime("");
       setCalories("");
       setServingSize("");
-      setIngredients("");
-      setInstructions("");
+      setIngredients([]);
+      setInstructions([]);
     } catch (error) {
       console.log("Error:", error);
     }
   }
 
+  function handleAddIngredient() {
+    const newIngredient = document.getElementById("ingredients").value;
+    if (!newIngredient) return;
+
+    setIngredients((i) => [...i, newIngredient]);
+    document.getElementById("ingredients").value = "";
+    console.log(ingredients);
+  }
+
+  function handleAddInstruction() {
+    const newInstruction = document.getElementById("instructions").value;
+    if (!newInstruction) return;
+
+    setInstructions((i) => [...i, newInstruction]);
+    document.getElementById("instructions").value = "";
+    console.log(instructions);
+  }
+
   return (
-    <div className="mx-auto mt-28 mt-8 max-w-xl rounded-lg bg-gray-100 p-4 shadow-md">
+    <div className="mx-auto mt-28 max-w-xl rounded-lg bg-gray-100 p-4 shadow-md">
       <h2 className="mb-4 text-center text-xl font-bold">Create Your Recipe</h2>
 
       <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
@@ -121,26 +139,56 @@ export default function CreateRecipe() {
             className="input grow"
           />
         </div>
-
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="font-semibold sm:basis-40">Ingredients</label>
-          <input
-            type="text"
-            value={ingredients}
-            onChange={(e) => setIngredients(e.target.value)}
-            className="input grow"
-          />
+          <div className="flex flex-col">
+            <div>
+              <input
+                id="ingredients"
+                type="text"
+                placeholder="Enter ingredient"
+                className="input grow"
+              />
+              <button
+                type="button"
+                onClick={handleAddIngredient}
+                className="rounded bg-green-500 px-2 py-1 font-bold text-white"
+              >
+                + Add Ingredient
+              </button>
+            </div>
+            <ul>
+              {ingredients.map((ingredient, index) => (
+                <li key={index}>{ingredient}</li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="font-semibold sm:basis-40">Instructions</label>
-          <textarea
-            value={instructions}
-            onChange={(e) => setInstructions(e.target.value)}
-            rows="4"
-            cols="50"
-            className="input grow"
-          ></textarea>
+          <div className="flex flex-col">
+            <div>
+              <input
+                id="instructions"
+                type="text"
+                placeholder="Enter instruction"
+                className="input grow"
+              />
+              <button
+                type="button"
+                onClick={handleAddInstruction}
+                className="rounded bg-green-500 px-2 py-1 font-bold text-white"
+              >
+                + Add Instruction
+              </button>
+            </div>
+            <ul>
+              {instructions.map((instruction, index) => (
+                <li key={index}>{instruction}</li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <button

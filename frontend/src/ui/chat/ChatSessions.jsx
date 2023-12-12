@@ -10,7 +10,7 @@ function ChatSessions() {
           4
         </span>
       </div>
-      <div className="-mx-2 mt-4 flex flex-col space-y-1 overflow-y-auto" style={{ height: 'calc(100vh - 380px)', minHeight: '80px' }}>
+      <div className="-mx-2 mt-4 flex flex-col space-y-1 overflow-y-auto " style={{ height: 'calc(100vh - 380px)', minHeight: '80px' }}>
         <ChatSession />
         <ChatSession />
         <ChatSession />

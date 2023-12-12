@@ -11,35 +11,19 @@ function ChatUI() {
   const { currentUser } = useUserStore();
   const [ showSidebar, setShowSidebar ] = useState(false);
 
+  const transform = showSidebar ? "translateX(0)" : "translateX(-100%)";
+
   return (
     <div
-      className="flex text-gray-800 antialiased"
+      className={`flex text-gray-800 antialiased ${!showSidebar ? "-translate-x-64 sm:-translate-x-0" : ""}`}
       style={{ height: "calc(100vh - 60px)", minHeight: "calc(100vh - 20px)" }}
     >
       <div className="flex h-full w-full flex-row">
         <ChatSidebar />
-        {/* <MobileChatSidebar />
-        <button
-          className="text-primary-600 focus:outline-none lg:hidden"
-          onClick={() => setShowSidebar(!showSidebar)}
-        >
-          <svg
-            className="h-6 w-6 scale-x-[-1] transform"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16m-7 6h7"
-            />
-          </svg>
-        </button> */}
+        <MobileChatSidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+
         <div className="flex h-full flex-auto flex-col py-6 sm:p-6">
-          <div className="flex h-full flex-auto flex-shrink-0 flex-col rounded-2xl bg-gray-100 p-4">
+          <div className="flex h-full w-screen sm:w-auto flex-auto flex-shrink-0 flex-col rounded-2xl bg-gray-100 p-4">
             <div className="mb-4 flex h-full flex-col overflow-x-auto">
               <div className="flex h-full flex-col">
                 <div className="grid grid-cols-6 gap-y-2 sm:grid-cols-12">
@@ -76,34 +60,18 @@ function ChatUI() {
               </div>
               <div className="ml-4 flex-grow">
                 <div className="relative w-full">
-                  <input
+                  <textarea
                     type="text"
-                    className="flex h-10 w-full rounded-xl border pl-4 focus:border-indigo-300 focus:outline-none"
+                    className="flex min-h-10 w-full rounded-xl border pl-4 focus:border-indigo-300 focus:outline-none overflow-hidden"
                   />
-                  <button className="absolute right-0 top-0 flex h-full w-12 items-center justify-center text-gray-400 hover:text-gray-600">
-                    <svg
-                      className="h-6 w-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                      ></path>
-                    </svg>
-                  </button>
+                  
                 </div>
               </div>
               <div className="ml-4">
-                <button className="flex flex-shrink-0 items-center justify-center rounded-xl bg-primary-500 px-4 py-1 text-white hover:bg-primary-600">
-                  <span>Send</span>
+                <button className="flex flex-shrink-0 items-center justify-center rounded-full sm:rounded-xl bg-primary-500 sm:px-4 py-1 text-white hover:bg-primary-600">
                   <span className="ml-2">
                     <svg
-                      className="-mt-px h-4 w-4 rotate-45 transform"
+                      className="-mt-px h-6 w-6 rotate-45 transform"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"

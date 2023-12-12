@@ -125,7 +125,7 @@ export default function Navbar() {
                         <img
                           className="h-8 w-8 rounded-full object-cover"
                           src={`${BASE_URL}/users/dp/${currentUser.id}`}
-                          alt=""
+                          alt={`${currentUser.firstname}'s avatar`}
                         />
                       </Menu.Button>
                     </div>

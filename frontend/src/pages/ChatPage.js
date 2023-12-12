@@ -3,7 +3,7 @@ import ChatUI from '../components/ChatInterface'
 
 function ChatPage() {
   return (
-    <div className='mt-14'>
+    <div className='pt-14'>
         <ChatUI />
     </div>
   )

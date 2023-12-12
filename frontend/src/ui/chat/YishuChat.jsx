@@ -18,6 +18,9 @@ function YishuChat() {
             Welcome, {currentUser.firstname}! My name is Yishu. Your AI
             assistant for all things nutrition. How may I be of help today?
           </div>
+          <div className="absolute bottom-0 right-0 -mb-5 mr-2 text-xs text-gray-500">
+            2 mins ago
+          </div>
         </div>
       </div>
     </div>

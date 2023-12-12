@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
@@ -23,8 +23,8 @@ export default function Navbar() {
       href: "/recipes",
       current: location.pathname === "/recipes",
     },
-    { name: "Create Recipe", href: "/recipes/new", current: false },
-    { name: "Chat with Yishu", href: "#", current: false },
+    { name: "Create Recipe", href: "/recipes/new", current: location.pathname === "/recipes/new" },
+    { name: "Chat with Yishu", href: "/yishu", current: location.pathname === "/yishu" },
   ];
 
   const noAuthNavs = [
@@ -42,6 +42,9 @@ export default function Navbar() {
   ];
 
   const navigation = currentUser ? authNavs : noAuthNavs;
+
+  // TODO
+    // Check if user token is valid, otherwise redirect to login page
 
   async function signOut() {
     await LogoutUser(authToken);
@@ -120,9 +123,9 @@ export default function Navbar() {
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
                         <img
-                          className="h-8 w-8 rounded-full"
-                          src={`${BASE_URL}/users/dp/${currentUser.id}` || "https://media.istockphoto.com/id/1389898237/photo/cute-girl-iconic-character-with-glasses-3d-rendering.jpg?s=612x612&w=0&k=20&c=dFG5lmBicdNe33IrFgr8YYrX1rF38DljWS7g84Q78HI="}
-                          alt=""
+                          className="h-8 w-8 rounded-full object-cover"
+                          src={`${BASE_URL}/users/dp/${currentUser.id}`}
+                          alt={`${currentUser.firstname}'s avatar`}
                         />
                       </Menu.Button>
                     </div>

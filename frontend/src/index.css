@@ -64,3 +64,12 @@ code {
 .formField {
   @apply block w-full my-4 h-9 pl-3 rounded;
 }
+
+
+/* ::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-moz-scrollbar {
+  width: 5px;
+} */

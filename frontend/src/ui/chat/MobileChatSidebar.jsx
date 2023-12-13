@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import ChatHeader from "./ChatHeader";
 import ChatSessions from "./ChatSessions";
 import SidebarToggler from "./SidebarToggler";
+import { useChatStore } from "../../stateProvider/chatStore";
 
-function MobileChatSidebar({ showSidebar, setShowSidebar }) {
+function MobileChatSidebar() {
+  const { showSidebar, setShowSidebar } = useChatStore();
+  
   return (
     <div
       className={`md:hidden fixed left-0 top-0 mt-14 z-10 h-full w-64  transform bg-white py-8 pl-6 pr-2 transition-transform duration-500 ease-in-out ${

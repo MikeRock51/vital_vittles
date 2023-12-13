@@ -5,7 +5,8 @@ function SidebarToggler({ showSidebar, setShowSidebar }) {
         onClick={() => setShowSidebar(!showSidebar)}
         onBlur={(e) => {
           if (!e.relatedTarget) {
-            setTimeout(() => setShowSidebar(false), 5000);
+            // setTimeout(() => setShowSidebar(false), 5000);
+            setShowSidebar(false);
           }
         }}
       >

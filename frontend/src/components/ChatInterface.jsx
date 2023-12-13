@@ -4,21 +4,22 @@ import YishuChat from "../ui/chat/YishuChat";
 import UserChat from "../ui/chat/UserChat";
 import ChatSidebar from "../ui/chat/ChatSidebar";
 import MobileChatSidebar from "../ui/chat/MobileChatSidebar";
+import { useChatStore } from "../stateProvider/chatStore";
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 function ChatUI() {
   const { currentUser } = useUserStore();
-  const [ showSidebar, setShowSidebar ] = useState(false);
+  
 
   return (
     <div
       className={`flex text-gray-800 antialiased relative`}
-      style={{ height: "calc(100vh - 60px)", minHeight: "calc(100vh - 20px)" }}
+      style={{ minHeight: "calc(100vh - 60px)" }}
     >
       <div className="flex h-full w-full flex-row relative">
         <ChatSidebar />
-        <MobileChatSidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+        <MobileChatSidebar />
         <div className="flex h-full flex-auto flex-col py-6 sm:p-6">
           <div className={`flex h-full w-screen sm:w-auto flex-auto flex-shrink-0 flex-col rounded-2xl bg-gray-100 p-4`}>
             <div className="mb-4 flex h-full flex-col overflow-x-auto">
@@ -57,9 +58,9 @@ function ChatUI() {
               </div>
               <div className="ml-4 flex-grow">
                 <div className="relative w-full">
-                  <textarea
+                  <input
                     type="text"
-                    className="flex min-h-10 w-full rounded-xl border pl-4 focus:border-indigo-300 focus:outline-none overflow-hidden"
+                    className="flex min-h-10 w-full h-12 rounded-xl border pl-4 focus:border-indigo-300 focus:outline-none overflow-hidden"
                   />
                   
                 </div>

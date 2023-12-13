@@ -11,7 +11,7 @@ function ChatSession() {
   const menuRef = useRef(null);
   const [renaming, setRenaming] = useState(false);
   const [deleting, setDeleting] = useState(false);
-  const { showSidebar, setShowSidebar } = useChatStore();
+  const { setShowSidebar } = useChatStore();
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);

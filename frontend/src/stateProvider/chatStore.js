@@ -5,6 +5,6 @@ export const useChatStore = create((set) => ({
   setShowSidebar: (show) => set({ showSidebar: show }),
   creating: false,
   setCreating: (state) => set({ creating: state }),
-  userSessions: [],
-  setUserSessions: (sessions) => set({ userSessions: sessions }),
+  chatSessions: [],
+  setChatSessions: (sessions) => set({ chatSessions: sessions }),
 }));

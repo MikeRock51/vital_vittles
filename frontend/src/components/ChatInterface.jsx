@@ -5,15 +5,21 @@ import UserChat from "../ui/chat/UserChat";
 import ChatSidebar from "../ui/chat/ChatSidebar";
 import MobileChatSidebar from "../ui/chat/MobileChatSidebar";
 import { useChatStore } from "../stateProvider/chatStore";
+import { getUserSessions } from "../utils/ChatConnector";
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 function ChatUI() {
-  const { currentUser } = useUserStore();
-  const { userSessions, setUserSessions } = useChatStore();
+  const { currentUser, authToken } = useUserStore();
+  const { chatSessions, setChatSessions } = useChatStore();
+
+  async function fetchSessions() {
+    const sessions = await getUserSessions(authToken);
+    setChatSessions(sessions);
+  }
 
   useEffect(() => {
-    
+    fetchSessions();
   }, [])
 
   return (

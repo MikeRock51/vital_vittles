@@ -29,7 +29,7 @@ function RenameModal({ renaming, setRenaming }) {
         />
         <div className="flex flex-col xs:grid xs:grid-cols-2 mt-4 ">
             <button className="hidden xs:block w-3/5 mx-auto xs:ms-auto xs:me-1 py-1 bg-black hover:bg-gray-800 text-primary-400 rounded-lg" onClick={() => setRenaming(false)}>Close</button>
-            <button className="w-3/5 mx-auto xs:me-auto xs:ms-1 py-1 bg-black hover:bg-gray-800 text-primary-400 rounded-lg" onClick={handleRename}>Rename</button>
+            <button className="w-3/5 mx-auto xs:me-auto xs:ms-1 py-1 bg-black hover:bg-gray-800 text-green-400 rounded-lg" onClick={handleRename}>Rename</button>
         </div>
       </form>
     </Modal>

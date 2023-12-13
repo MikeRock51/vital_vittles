@@ -1,14 +1,16 @@
 import { useState } from "react";
 import Modal from "react-modal";
 import { useChatStore } from "../../../stateProvider/chatStore";
+import { useUserStore } from "../../../stateProvider/authStore";
 
 function NewSessionModal() {
   const { creating, setCreating } = useChatStore();
   const [topic, setTopic] = useState("");
+  const { authToken } = useUserStore();
 
   function handleSubmit(e) {
     e.preventDefault();
-    alert("Handling rename...");
+    // alert("Handling rename...");
   }
 
   return (

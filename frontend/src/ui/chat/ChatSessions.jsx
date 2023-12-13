@@ -3,7 +3,7 @@ import ChatSession from "./ChatSession";
 
 function ChatSessions() {
   return (
-    <div className="mt-8 flex flex-col">
+    <div className="mt-8 flex flex-col max-w-screen">
       <div className="flex flex-row items-center justify-between text-xs">
         <span className="font-bold">Chat Sessions</span>
         <span className="flex h-4 w-4 items-center justify-center rounded-full bg-primary-40">

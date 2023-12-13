@@ -1,4 +1,6 @@
 import React, { useState, useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 
 function ChatSession() {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -13,12 +15,10 @@ function ChatSession() {
   };
 
   const handleRename = () => {
-    // Implement the rename logic here
     closeMenu();
   };
 
   const handleDelete = () => {
-    // Implement the delete logic here
     closeMenu();
   };
 
@@ -33,21 +33,7 @@ function ChatSession() {
       >
         <div className="ml-2 text-sm font-semibold truncate">Butter or Mayonnaise?</div>
         <div className="ml-2 absolute right-2 top-1/2 transform -translate-y-1/2">
-          {/* Horizontal three dots icon */}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            className="h-4 w-4"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M6 12h2m2 0h2m2 0h2m-6 0h2m2 0h2m-6 0h2m2 0h2m2 0h2m2 0h2m-6 0h2m2 0h2m2 0h2m2 0h2m-6 0h2m2 0h2m2 0h2m-6 0h2m2 0h2m2 0h2m2 0h2m-6 0h2m2 0h2m2 0h2m2 0h2m-6 0h2m2 0h2m2 0h2"
-            />
-          </svg>
+          <FontAwesomeIcon icon={faEllipsisH} />
         </div>
       </button>
       {menuVisible && (

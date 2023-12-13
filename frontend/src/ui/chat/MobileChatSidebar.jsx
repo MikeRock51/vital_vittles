@@ -1,32 +1,19 @@
 import React, { useState } from "react";
 import ChatHeader from "./ChatHeader";
 import ChatSessions from "./ChatSessions";
+import SidebarToggler from "./SidebarToggler";
 
-function MobileChatSidebar({showSidebar, setShowSidebar}) {
+function MobileChatSidebar({ showSidebar, setShowSidebar }) {
   return (
-    <div className={`w-5/6 sm:hidden flex flex-shrink-0 flex-col bg-white py-8 pl-6 pr-2 relative`}>
-        <ChatHeader />
-        <ChatSessions />
-        <button
-        className={`text-primary-600 focus:outline-none h-fit absolute -right-6`}
-        onClick={() => setShowSidebar(!showSidebar)}
-      >
-        <svg
-          className="h-6 w-6 scale-x-[-1] transform"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M4 6h16M4 12h16m-7 6h7"
-          />
-        </svg>
-      </button>
-      </div>
+    <div
+      className={`sm:hidden fixed left-0 top-0 mt-14 z-10 h-full w-64  transform bg-white py-8 pl-6 pr-2 transition-transform duration-500 ease-in-out ${
+        showSidebar ? "translate-x-0" : "-translate-x-full"
+      }`}
+    >
+      <ChatHeader />
+      <ChatSessions />
+      <SidebarToggler showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+    </div>
   );
 }
 

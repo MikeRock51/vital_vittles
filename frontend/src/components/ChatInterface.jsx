@@ -13,13 +13,12 @@ function ChatUI() {
 
   return (
     <div
-      className={`flex text-gray-800 antialiased transition ease-in-out duration-500 relative ${!showSidebar ? "-translate-x-64 sm:-translate-x-0" : ""}`}
+      className={`flex text-gray-800 antialiased relative`}
       style={{ height: "calc(100vh - 60px)", minHeight: "calc(100vh - 20px)" }}
     >
-      <div className="flex h-full w-full flex-row">
+      <div className="flex h-full w-full flex-row relative">
         <ChatSidebar />
         <MobileChatSidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
-
         <div className="flex h-full flex-auto flex-col py-6 sm:p-6">
           <div className={`flex h-full w-screen sm:w-auto flex-auto flex-shrink-0 flex-col rounded-2xl bg-gray-100 p-4`}>
             <div className="mb-4 flex h-full flex-col overflow-x-auto">

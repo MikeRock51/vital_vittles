@@ -29,7 +29,7 @@ export default function FoodDetails() {
   if (!foodDetails) return <Loader />;
 
   return (
-    <div className="mx-auto mt-10 rounded-2xl bg-slate-200 px-4 py-6 font-sans sm:px-6 md:px-8 lg:px-12">
+    <div className="mx-auto mt-14 rounded-2xl bg-slate-200 px-4 py-8 font-sans sm:px-6 md:px-8 lg:px-12">
       <div className="flex flex-col-reverse gap-6 md:flex-row">
         <img
           className="w-full rounded-2xl md:w-1/2"
@@ -40,7 +40,7 @@ export default function FoodDetails() {
           <h1 className="py-4 text-2xl font-bold md:text-3xl md:tracking-widest lg:text-4xl">
             {foodDetails.data.name}
           </h1>
-          <ul>
+          <ul className="text-left">
             <li>
               <span className="text-[1.1rem] font-bold">Cuisine:</span>{" "}
               {foodDetails.data.cuisine}
@@ -73,9 +73,9 @@ export default function FoodDetails() {
               <span className="text-[1.1rem] font-bold">Serving Size:</span>
               {foodDetails.data.serving_size}
             </li>
-            <li>
-              <span className="text-[1.1rem] font-bold">Ingredients: </span>
-              <ul>
+            <li className="mt-5 text-left">
+              <span className=" text-[1.1rem] font-bold ">Ingredients: </span>
+              <ul className=" list-disc pl-4 text-left">
                 {foodDetails.data.ingredients.map((ingredient) => (
                   <li>{ingredient}</li>
                 ))}
@@ -87,9 +87,9 @@ export default function FoodDetails() {
       <h2 className="mb-4 mt-6 text-center text-xl font-semibold underline md:text-2xl lg:text-3xl">
         Instructions
       </h2>
-      <ul className="list-item text-sm md:text-base lg:text-lg">
+      <ul className="list-item text-left text-sm md:text-base lg:text-lg">
         {foodDetails.data.instructions.map((instruction) => (
-          <li>{instruction}</li>
+          <li className="list-disc pl-4">{instruction}</li>
         ))}
       </ul>
 

@@ -6,7 +6,7 @@ function UserChat() {
   const { currentUser } = useUserStore();
 
   return (
-    <div className="col-start-1 sm:col-start-6 col-end-13 rounded-lg p-3">
+    <div className="col-start-1 sm:col-start-3 col-end-13 rounded-lg p-3">
       <div className="flex flex-row-reverse items-center justify-start">
         <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-indigo-500">
           <img

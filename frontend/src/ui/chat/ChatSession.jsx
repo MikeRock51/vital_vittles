@@ -3,11 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import MenuItem from "./MenuItem";
 import RenameModal from "./modals/RenameModal";
+import DeleteModal from "./modals/DeleteModal";
 
 function ChatSession() {
   const [menuVisible, setMenuVisible] = useState(false);
   const menuRef = useRef(null);
   const [renaming, setRenaming] = useState(false);
+  const [deleting, setDeleting] = useState(false);
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -18,13 +20,12 @@ function ChatSession() {
   };
 
   function handleRename() {
-    console.log("Renaming...");
     setRenaming(true);
     closeMenu();
   }
 
   function handleDelete() {
-    console.log("Deleting...");
+    setDeleting(true);
     closeMenu();
   }
 
@@ -33,6 +34,7 @@ function ChatSession() {
       {renaming && (
         <RenameModal renaming={renaming} setRenaming={setRenaming} />
       )}
+      {deleting && <DeleteModal deleting={deleting} setDeleting={setDeleting} />}
       <button
         className="relative mr-auto flex flex-row items-center p-2"
         onClick={() => console.log("Selecting Session")}

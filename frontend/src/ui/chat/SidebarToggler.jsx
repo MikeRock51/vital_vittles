@@ -1,11 +1,11 @@
 function SidebarToggler({ showSidebar, setShowSidebar }) {
   return (
     <button
-        className={`absolute -right-8 top-0 mt-6 h-fit text-primary-600 focus:outline-none active:border border-primary-600 rounded`}
+        className={`absolute -right-8 top-0 mt-6 h-fit text-primary-600 focus:outline-none active:border hover:border border-primary-600 rounded`}
         onClick={() => setShowSidebar(!showSidebar)}
         onBlur={(e) => {
           if (!e.relatedTarget) {
-            setTimeout(() => setShowSidebar(!showSidebar), 5000);
+            setTimeout(() => setShowSidebar(false), 5000);
           }
         }}
       >

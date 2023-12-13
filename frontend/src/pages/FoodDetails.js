@@ -18,6 +18,7 @@ export default function FoodDetails() {
         const data = response.data;
         console.log(data);
         setFoodDetails(data);
+        
       } catch (error) {
         console.log("Error fetching food details", error);
       }

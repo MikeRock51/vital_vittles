@@ -13,6 +13,7 @@ import CreateRecipe from "./pages/CreateRecipe";
 import MyRecipes from "./pages/MyRecipes";
 import Toast from "./providers/ToastProvider";
 import SignInPage from "./pages/SignIn";
+import ChatPage from "./pages/ChatPage";
 
 // import { lazy } from "react";
 
@@ -28,7 +29,7 @@ export default function App() {
     <Router>
       <Suspense fallback={<Loader />}>
         <div className="App h-screen">
-          <header className="fixed left-0 right-0 top-0">
+          <header className="fixed left-0 right-0 top-0 z-20">
             <NavBar />
           </header>
           <Toast />
@@ -41,6 +42,7 @@ export default function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/recipes/new" element={<CreateRecipe />} />
             <Route path="/recipes/me" element={<MyRecipes />} />
+            <Route path="/yishu" element={<ChatPage />} />
           </Routes>
         </div>
       </Suspense>

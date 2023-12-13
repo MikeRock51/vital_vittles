@@ -25,8 +25,19 @@ module.exports = {
         },
       },
       screens: {
-        'xs': '400px',
-      } 
+        xs: '400px',
+      },
+      keyframes: {
+        vibrate: {
+          '0%, 100%': { transform: 'translate(0)' },
+          '25%': { transform: 'translate(-2px, 2px)' },
+          '50%': { transform: 'translate(2px, -2px)' },
+          '75%': { transform: 'translate(-2px, 2px)' },
+        },
+      },
+      animation: {
+        vibrate: 'vibrate 0.5s ease-in-out infinite',
+      },
     },
   },
   plugins: [require("tailwindcss-box-shadow")],

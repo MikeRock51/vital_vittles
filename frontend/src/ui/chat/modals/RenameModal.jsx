@@ -14,7 +14,8 @@ function RenameModal({ renaming, setRenaming }) {
       isOpen={renaming}
       onRequestClose={() => setRenaming(false)}
       contentLabel="Change Chat Topic"
-      className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5/6 xs:w-4/6 sm:w-3/5 lg:w-2/5"
+      className="chatModal"
+      overlayClassName="chatModalOverlay"
       appElement={document.getElementById("root")}
     >
       <form className="bg-primary-400 rounded-xl flex flex-col py-5">

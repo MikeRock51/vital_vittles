@@ -11,7 +11,8 @@ function DeleteModal({ deleting, setDeleting }) {
       isOpen={deleting}
       onRequestClose={() => setDeleting(false)}
       contentLabel="Delete Chat Topic"
-      className="fixed left-1/2 top-1/2 w-5/6 -translate-x-1/2 -translate-y-1/2 transform xs:w-4/6 sm:w-3/5 lg:w-2/5"
+      className="chatModal"
+      overlayClassName="chatModalOverlay"
       appElement={document.getElementById("root")}
     >
       <div className="flex flex-col rounded-xl bg-primary-400 py-5">

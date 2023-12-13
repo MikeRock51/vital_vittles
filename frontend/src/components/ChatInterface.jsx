@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useUserStore } from "../stateProvider/authStore";
 import YishuChat from "../ui/chat/YishuChat";
 import UserChat from "../ui/chat/UserChat";
@@ -10,7 +10,11 @@ const BASE_URL = process.env.REACT_APP_API_URL;
 
 function ChatUI() {
   const { currentUser } = useUserStore();
-  
+  const { userSessions, setUserSessions } = useChatStore();
+
+  useEffect(() => {
+    
+  }, [])
 
   return (
     <div
@@ -58,9 +62,11 @@ function ChatUI() {
               </div>
               <div className="ml-4 flex-grow">
                 <div className="relative w-full">
-                  <input
+                  <textarea
                     type="text"
-                    className="flex min-h-10 w-full h-12 rounded-xl border pl-4 focus:border-indigo-300 focus:outline-none overflow-hidden"
+                    rows={2}
+                    className="resize-none flex min-h-10 w-full h-12 rounded-xl border pl-4 focus:border-indigo-300 focus:outline-none overflow-hidden"
+                    placeholder="Type your question here..."
                   />
                   
                 </div>

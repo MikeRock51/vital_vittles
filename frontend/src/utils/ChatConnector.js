@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-export async function createUserSessions(topic, token) {
+export async function createChatSession(topic, token) {
   try {
     const response = await axios.post(
       `${API_URL}/chat_sessions`,

@@ -2,15 +2,24 @@ import { useState } from "react";
 import Modal from "react-modal";
 import { useChatStore } from "../../../stateProvider/chatStore";
 import { useUserStore } from "../../../stateProvider/authStore";
+import { createChatSession } from "../../../utils/ChatConnector";
 
 function NewSessionModal() {
-  const { creating, setCreating } = useChatStore();
+  const { creating, setCreating, chatSessions, setChatSessions } =
+    useChatStore();
   const [topic, setTopic] = useState("");
   const { authToken } = useUserStore();
+  const [loading, setLoading] = useState(false);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    // alert("Handling rename...");
+    setLoading(true);
+    const session = await createChatSession(topic, authToken);
+    if (session) {
+      setChatSessions([...chatSessions, ...session]);
+      setCreating(false);
+    }
+    setLoading(false);
   }
 
   return (
@@ -22,19 +31,33 @@ function NewSessionModal() {
       appElement={document.getElementById("root")}
       overlayClassName="chatModalOverlay"
     >
-      <form className="bg-primary-400 rounded-xl flex flex-col py-5">
-        <h2 className="text-xl md:text-2xl text-white mx-auto mb-4">Create New Chat Session</h2>
-        <hr/>
+      <form className="flex flex-col rounded-xl bg-primary-400 py-5">
+        <h2 className="mx-auto mb-4 text-xl text-white md:text-2xl">
+          Create New Chat Session
+        </h2>
+        <hr />
         <input
           type="text"
           placeholder="Enter Session Topic"
           onChange={(e) => setTopic(e.target.value)}
           value={topic}
-          className="mx-auto mt-4 w-4/5 x-2 h-10 rounded-xl ps-2"
+          className="x-2 mx-auto mt-4 h-10 w-4/5 rounded-xl ps-2"
         />
-        <div className="flex flex-col xs:grid xs:grid-cols-2 mt-4 ">
-            <button className="hidden xs:block w-3/5 mx-auto xs:ms-auto xs:me-1 py-1 bg-black hover:bg-gray-800 text-primary-400 rounded-lg" onClick={() => setCreating(false)}>Cancel</button>
-            <button className="w-3/5 mx-auto xs:me-auto xs:ms-1 py-1 bg-black hover:bg-gray-800 text-green-400 rounded-lg" onClick={handleSubmit}>Proceed</button>
+        <div className="mt-4 flex flex-col xs:grid xs:grid-cols-2 ">
+          <button
+            className="mx-auto disabled:bg-gray-800 hidden w-3/5 rounded-lg bg-black py-1 text-primary-400 hover:bg-gray-800 xs:me-1 xs:ms-auto xs:block"
+            onClick={() => setCreating(false)}
+            disabled={loading}
+          >
+            Cancel
+          </button>
+          <button
+            className="mx-auto disabled:bg-gray-800 w-3/5 rounded-lg bg-black py-1 text-green-400 hover:bg-gray-800 xs:me-auto xs:ms-1"
+            onClick={handleSubmit}
+            disabled={loading}
+          >
+            Proceed
+          </button>
         </div>
       </form>
     </Modal>

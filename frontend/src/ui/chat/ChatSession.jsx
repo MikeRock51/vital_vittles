@@ -6,7 +6,7 @@ import RenameModal from "./modals/RenameModal";
 import DeleteModal from "./modals/DeleteModal";
 import { useChatStore } from "../../stateProvider/chatStore";
 
-function ChatSession() {
+function ChatSession({ topic }) {
   const [menuVisible, setMenuVisible] = useState(false);
   const menuRef = useRef(null);
   const [renaming, setRenaming] = useState(false);
@@ -36,15 +36,15 @@ function ChatSession() {
       )}
       {deleting && <DeleteModal deleting={deleting} setDeleting={setDeleting} />}
       <button
-        className="relative w-full mr-auto flex flex-row items-center p-2 hover:bg-yellow-100 active:bg-yellow-100"
+        className="relative w-5/6 mr-auto flex flex-row items-center p-2 hover:bg-yellow-100 active:bg-yellow-100"
         onClick={() => console.log("Selecting Session")}
       >
         <div className="ml-2 truncate text-sm font-semibold">
-          Butter or Mayonnaise?
+          {topic}
         </div>
       </button>
       <button
-        className="absolute right-2 top-1/2 mx-4 -translate-y-1/2 transform"
+        className="absolute right-2 top-1/2 mx-2 -translate-y-1/2 transform"
         onClick={toggleMenu}
         onBlur={(e) => {
           if (!e.relatedTarget) {
@@ -52,7 +52,7 @@ function ChatSession() {
           }
         }}
       >
-        <FontAwesomeIcon icon={faEllipsisH} />
+        <FontAwesomeIcon icon={faEllipsisH} size="lg" />
       </button>
       {menuVisible && (
         <div

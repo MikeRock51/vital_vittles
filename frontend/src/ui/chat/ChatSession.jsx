@@ -2,10 +2,12 @@ import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import MenuItem from "./MenuItem";
+import RenameModal from "./modals/RenameModal";
 
 function ChatSession() {
   const [menuVisible, setMenuVisible] = useState(false);
   const menuRef = useRef(null);
+  const [renaming, setRenaming] = useState(false);
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -17,16 +19,20 @@ function ChatSession() {
 
   function handleRename() {
     console.log("Renaming...");
+    setRenaming(true);
     closeMenu();
-  };
+  }
 
   function handleDelete() {
     console.log("Deleting...");
     closeMenu();
-  };
+  }
 
   return (
     <div className="border-0` relative inline-flex w-full items-end rounded-xl hover:bg-primary-40 active:bg-primary-40">
+      {renaming && (
+        <RenameModal renaming={renaming} setRenaming={setRenaming} />
+      )}
       <button
         className="relative mr-auto flex flex-row items-center p-2"
         onClick={() => console.log("Selecting Session")}
@@ -37,7 +43,13 @@ function ChatSession() {
       </button>
       <button
         className="absolute right-2 top-1/2 ml-2 -translate-y-1/2 transform"
-        onClick={toggleMenu} >
+        onClick={toggleMenu}
+        onBlur={(e) => {
+          if (!e.relatedTarget) {
+            closeMenu();
+          }
+        }}
+      >
         <FontAwesomeIcon icon={faEllipsisH} />
       </button>
       {menuVisible && (

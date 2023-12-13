@@ -34,7 +34,7 @@ function LandingPage() {
           <p className="text-md md:text-lg lg:text-xl mb-8">
             <span className="typed-text"></span>
           </p>
-          <a href="#explore" className="bg-yellow-500 text-purple-900 px-6 py-3 rounded-full font-semibold hover:bg-yellow-400 transition duration-300">Get Started</a>
+          <a href="/signup" className="bg-yellow-500 text-purple-900 px-6 py-3 rounded-full font-semibold hover:bg-yellow-400 transition duration-300">Get Started</a>
         </div>
         <div className="container mx-auto flex flex-wrap justify-center md:justify-between">
           {/* Question Cards */}

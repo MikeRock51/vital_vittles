@@ -82,3 +82,19 @@ export async function fetchSessionChats(sessionID, token) {
     console.error("Error fetching chat history: ", error.response?.data?.message);
   }
 }
+
+export async function processChat(content, sessionID, token) {
+  try {
+    const response = await axios.post(
+      `${API_URL}/chats`,
+      { content, sessionID },
+      { headers: { "auth-token": token } },
+    );
+    console.log("Chat processed successfully!");
+    console.log(response);
+    return response.data?.data;
+  } catch (error) {
+    console.error(error);
+    toast.error("Error creating your chat: ", error?.response?.data?.message);
+  }
+}

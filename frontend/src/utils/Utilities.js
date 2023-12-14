@@ -14,7 +14,7 @@ export function timeAgo(dateString) {
   const currentDate = new Date();
   const previousDate = new Date(dateString);
 
-  // Convert to local time
+
   previousDate.setTime(previousDate.getTime() - previousDate.getTimezoneOffset() * 60 * 1000);
 
   const timeDifference = currentDate - previousDate;

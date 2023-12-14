@@ -11,7 +11,7 @@ function UserChat() {
         <div className="chatAvatarContainer">
           <img
             className="h-full w-full rounded-full object-cover"
-            src={`${BASE_URL}/users/dp/${currentUser.id}`}
+            src={`${BASE_URL}/users/dp/${currentUser?.id}`}
             alt={`${currentUser?.firstname}'s avatar`}
           />
         </div>

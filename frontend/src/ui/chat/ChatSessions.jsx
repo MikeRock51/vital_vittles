@@ -10,6 +10,15 @@ function ChatSessions() {
   return (
     <div className="relative mt-8 flex flex-col">
       {creating && <NewSessionModal />}
+      <button
+        className="rounded bg-primary-300 py-2 font-semibold text-white mb-5"
+        onClick={() => {
+          setShowSidebar(false);
+          setCreating(true);
+        }}
+      >
+        New Chat
+      </button>
       <div className="flex flex-row items-center justify-between text-xs">
         <span className="font-bold">Chat Sessions</span>
         <span className="flex h-4 w-4 items-center justify-center rounded-full bg-primary-40">
@@ -24,15 +33,6 @@ function ChatSessions() {
           <ChatSession key={session.id} session={session} />
         ))}
       </div>
-      <button
-        className="mt-3 rounded bg-primary-300 py-2 text-white sm:mt-8"
-        onClick={() => {
-          setShowSidebar(false);
-          setCreating(true);
-        }}
-      >
-        New Chat
-      </button>
     </div>
   );
 }

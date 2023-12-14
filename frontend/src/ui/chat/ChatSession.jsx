@@ -11,7 +11,7 @@ function ChatSession({ session }) {
   const menuRef = useRef(null);
   const [renaming, setRenaming] = useState(false);
   const [deleting, setDeleting] = useState(false);
-  const { setShowSidebar } = useChatStore();
+  const { setShowSidebar, setCurrentChat } = useChatStore();
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -37,7 +37,7 @@ function ChatSession({ session }) {
       {deleting && <DeleteModal deleting={deleting} setDeleting={setDeleting} session={session} />}
       <button
         className="relative w-5/6 mr-auto flex flex-row items-center p-2 hover:bg-yellow-100 active:bg-yellow-100"
-        onClick={() => console.log(session)}
+        onClick={() => setCurrentChat(session)}
       >
         <div className="ml-2 truncate text-sm font-semibold">
           {session.topic}

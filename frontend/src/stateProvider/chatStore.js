@@ -7,4 +7,6 @@ export const useChatStore = create((set) => ({
   setCreating: (state) => set({ creating: state }),
   chatSessions: [],
   setChatSessions: (sessions) => set({ chatSessions: sessions }),
+  currentChat: null,
+  setCurrentChat: (chat) => set({ currentChat: chat }),
 }));

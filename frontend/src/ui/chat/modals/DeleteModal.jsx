@@ -7,7 +7,7 @@ import { useChatStore } from "../../../stateProvider/chatStore";
 function DeleteModal({ deleting, setDeleting, session }) {
   const [ loading, setLoading ] = useState(false);
   const { authToken } = useUserStore();
-  const { chatSessions, setChatSessions } = useChatStore();
+  const { chatSessions, setChatSessions, setCurrentChat } = useChatStore();
 
   async function handleDelete(e) {
     e.preventDefault();
@@ -15,6 +15,7 @@ function DeleteModal({ deleting, setDeleting, session }) {
     const success = await deleteChatSession(session.id, authToken)
     if (success) {
       setChatSessions(chatSessions.filter((chat) => chat.id !== session.id));
+      setCurrentChat(null);
     }
     setLoading(false);
     setDeleting(false);

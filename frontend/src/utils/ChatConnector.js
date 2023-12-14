@@ -53,3 +53,18 @@ export async function updateChatSession(newTopic, token, sessionID) {
     toast.error("Error updating your chat: ", error?.response?.data?.message);
   }
 }
+
+
+export async function deleteChatSession(sessionID, token) {
+  try {
+    await axios.delete(
+      `${API_URL}/chat_sessions/${sessionID}`,
+      { headers: { "auth-token": token } },
+    );
+    toast.success("Chat session deleted successfully!");
+    return true;
+  } catch (error) {
+    console.log(error);
+    toast.error("Error deleting chat: ", error?.response?.data?.message);
+  }
+}

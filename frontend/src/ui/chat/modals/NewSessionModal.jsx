@@ -16,7 +16,7 @@ function NewSessionModal() {
     setLoading(true);
     const session = await createChatSession(topic, authToken);
     if (session) {
-      setChatSessions([...chatSessions, ...session]);
+      setChatSessions([...session, ...chatSessions]);
       setCreating(false);
     }
     setLoading(false);

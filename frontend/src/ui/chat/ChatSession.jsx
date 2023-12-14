@@ -34,10 +34,10 @@ function ChatSession({ session }) {
       {renaming && (
         <RenameModal renaming={renaming} setRenaming={setRenaming} session={session} />
       )}
-      {deleting && <DeleteModal deleting={deleting} setDeleting={setDeleting} />}
+      {deleting && <DeleteModal deleting={deleting} setDeleting={setDeleting} session={session} />}
       <button
         className="relative w-5/6 mr-auto flex flex-row items-center p-2 hover:bg-yellow-100 active:bg-yellow-100"
-        onClick={() => console.log("Selecting Session")}
+        onClick={() => console.log(session)}
       >
         <div className="ml-2 truncate text-sm font-semibold">
           {session.topic}

@@ -21,7 +21,7 @@ function ChatSessions() {
         style={{ height: "calc(100vh - 380px)", minHeight: "80px" }}
       >
         {chatSessions?.map((session) => (
-          <ChatSession topic={session.topic} id={session.id} />
+          <ChatSession session={session} />
         ))}
       </div>
       <button

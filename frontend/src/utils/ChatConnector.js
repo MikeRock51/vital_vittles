@@ -37,3 +37,19 @@ export async function getUserSessions(token) {
     );
   }
 }
+
+export async function updateChatSession(newTopic, token, sessionID) {
+  try {
+    const response = await axios.put(
+      `${API_URL}/chat_sessions`,
+      { topic: newTopic, sessionID },
+      { headers: { "auth-token": token } },
+    );
+    toast.success("Chat session updated successfully!");
+    console.log(response);
+    return response.data?.data;
+  } catch (error) {
+    console.log(error);
+    toast.error("Error updating your chat: ", error?.response?.data?.message);
+  }
+}

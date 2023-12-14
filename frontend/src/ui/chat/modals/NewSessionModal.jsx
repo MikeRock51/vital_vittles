@@ -45,14 +45,14 @@ function NewSessionModal() {
         />
         <div className="mt-4 flex flex-col xs:grid xs:grid-cols-2 ">
           <button
-            className="mx-auto disabled:bg-gray-800 hidden w-3/5 rounded-lg bg-black py-1 text-primary-400 hover:bg-gray-800 xs:me-1 xs:ms-auto xs:block"
+            className="modalCloseButton"
             onClick={() => setCreating(false)}
             disabled={loading}
           >
             Cancel
           </button>
           <button
-            className="mx-auto disabled:bg-gray-800 w-3/5 rounded-lg bg-black py-1 text-green-400 hover:bg-gray-800 xs:me-auto xs:ms-1"
+            className="modalActionButton"
             onClick={handleSubmit}
             disabled={loading}
           >

@@ -194,7 +194,7 @@ class DBStorage:
         """Retrieves all chat sessions based on userID"""
         try:
             ChatSession = self.allModels()['ChatSession']
-            chatHistory = self.__session.query(ChatSession).filter_by(userID=userID).order_by(ChatSession.updatedAt.asc()).all()
+            chatHistory = self.__session.query(ChatSession).filter_by(userID=userID).order_by(ChatSession.updatedAt.desc()).all()
             return [chat.toDict() for chat in chatHistory]
         except Exception as e:
             raise ValueError(e)

@@ -6,7 +6,7 @@ import RenameModal from "./modals/RenameModal";
 import DeleteModal from "./modals/DeleteModal";
 import { useChatStore } from "../../stateProvider/chatStore";
 
-function ChatSession({ topic }) {
+function ChatSession({ session }) {
   const [menuVisible, setMenuVisible] = useState(false);
   const menuRef = useRef(null);
   const [renaming, setRenaming] = useState(false);
@@ -32,7 +32,7 @@ function ChatSession({ topic }) {
   return (
     <div className="border-0 relative inline-flex w-full items-end rounded-xl">
       {renaming && (
-        <RenameModal renaming={renaming} setRenaming={setRenaming} />
+        <RenameModal renaming={renaming} setRenaming={setRenaming} session={session} />
       )}
       {deleting && <DeleteModal deleting={deleting} setDeleting={setDeleting} />}
       <button
@@ -40,7 +40,7 @@ function ChatSession({ topic }) {
         onClick={() => console.log("Selecting Session")}
       >
         <div className="ml-2 truncate text-sm font-semibold">
-          {topic}
+          {session.topic}
         </div>
       </button>
       <button

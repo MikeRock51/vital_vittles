@@ -77,6 +77,14 @@ code {
   @apply flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-indigo-500;
 }
 
+.modalCloseButton {
+  @apply mx-auto disabled:bg-gray-800 hidden w-3/5 rounded-lg bg-black py-1 text-primary-400 hover:bg-gray-800 xs:me-1 xs:ms-auto xs:block;
+}
+
+.modalActionButton {
+  @apply mx-auto disabled:bg-gray-800 w-3/5 rounded-lg bg-black py-1 text-green-400 hover:bg-gray-800 xs:me-auto xs:ms-1;
+}
+
 
 /* ::-webkit-scrollbar {
   width: 5px;

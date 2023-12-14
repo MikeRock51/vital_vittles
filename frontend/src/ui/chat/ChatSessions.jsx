@@ -20,7 +20,7 @@ function ChatSessions() {
         className="-mx-2 mt-4 flex flex-col space-y-1 overflow-y-auto "
         style={{ height: "calc(100vh - 380px)", minHeight: "80px" }}
       >
-        {chatSessions.map((session) => (
+        {chatSessions?.map((session) => (
           <ChatSession topic={session.topic} id={session.id} />
         ))}
       </div>

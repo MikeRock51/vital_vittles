@@ -25,7 +25,7 @@ function ChatUI() {
   return (
     <div
       className={`flex text-gray-800 antialiased relative`}
-      style={{ minHeight: "calc(100vh - 60px)" }}
+      style={{ height: "calc(100vh - 60px)", minHeight: "calc(100vh - 60px)" }}
     >
       <div className="flex h-full w-full flex-row relative">
         <ChatSidebar />
@@ -49,7 +49,7 @@ function ChatUI() {
             </div>
             <div className="flex h-16 w-full flex-row items-center rounded-xl bg-white px-4">
               <div>
-                <button className="flex items-center justify-center text-gray-400 hover:text-gray-600">
+                <button className="flex items-center justify-center text-primary-100 hover:text-gray-600">
                   <svg
                     className="h-5 w-5"
                     fill="none"
@@ -66,18 +66,36 @@ function ChatUI() {
                   </svg>
                 </button>
               </div>
-              <div className="ml-4 flex-grow">
-                <div className="relative w-full">
-                  <textarea
-                    type="text"
-                    rows={2}
-                    className="resize-none flex min-h-10 w-full h-12 rounded-xl border pl-4 focus:border-indigo-300 focus:outline-none overflow-hidden"
-                    placeholder="Type your question here..."
-                  />
-                  
-                </div>
-              </div>
-              <div className="ml-4">
+              <div className="ml-4 flex-grow relative">
+  <div className="w-full">
+    <textarea
+      type="text"
+      rows={2}
+      className="resize-none flex min-h-10 w-full h-12 rounded-xl border pl-4 pt-3 focus:border-indigo-300 focus:outline-none overflow-hidden"
+      placeholder="Message Yishu"
+    />
+    <button className="absolute top-0 mt-2 right-0 mr-1 text-primary-600 transform -translate-y-1/2">
+      <span className="ml-2">
+        <svg
+          className="-mt-px h-6 w-6 rotate-45 transform"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+          ></path>
+        </svg>
+      </span>
+    </button>
+  </div>
+</div>
+
+              {/* <div className="ml-4">
                 <button className="flex flex-shrink-0 items-center justify-center rounded-full sm:rounded-xl bg-primary-500 sm:px-4 py-1 text-white hover:bg-primary-600">
                   <span className="ml-2">
                     <svg
@@ -96,7 +114,7 @@ function ChatUI() {
                     </svg>
                   </span>
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

@@ -8,11 +8,11 @@ function UserChat() {
   return (
     <div className="col-start-1 sm:col-start-3 col-end-13 rounded-lg p-3">
       <div className="flex flex-row-reverse items-center justify-start">
-        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-indigo-500">
+        <div className="chatAvatarContainer">
           <img
             className="h-full w-full rounded-full object-cover"
             src={`${BASE_URL}/users/dp/${currentUser.id}`}
-            alt={`${currentUser.firstname}'s avatar`}
+            alt={`${currentUser?.firstname}'s avatar`}
           />
         </div>
         <div className="relative mr-3 rounded-xl bg-indigo-100 px-4 py-2 text-left text-sm shadow">

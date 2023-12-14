@@ -12,10 +12,10 @@ export async function createChatSession(topic, token) {
     );
     toast.success("Chat session created successfully!");
     console.log(response);
-    return response.data.data;
+    return response.data?.data;
   } catch (error) {
     console.log(error);
-    toast.error("Error creating your chat: ", error.response.data.message);
+    toast.error("Error creating your chat: ", error?.response?.data?.message);
   }
 }
 
@@ -28,12 +28,12 @@ export async function getUserSessions(token) {
     });
     console.log("Chat sessions retrieved successfully!");
     console.log(response);
-    return response.data.data;
+    return response.data?.data;
   } catch (error) {
     console.log(error);
     console.error(
       "Error fetching user chat sessions: ",
-      error.response.data.message,
+      error.response?.data?.message,
     );
   }
 }

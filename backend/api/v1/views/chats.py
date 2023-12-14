@@ -108,12 +108,12 @@ def getSessionChats(sessionID):
         "data": chats
     })
 
-@app_views.route('/chat_sessions/<sessionID>', methods=['DELETE'])
-# @swag_from(f'{DOCS_DIR}/get_chats.yml')
+@app_views.route('/chat_sessions/<id>', methods=['DELETE'])
+@swag_from(f'{DOCS_DIR}/delete_chat_session.yml')
 @login_required()
-def deleteChatSession(sessionID):
+def deleteChatSession(id):
     """Deletes a chat session based on sessionID"""
-    session = storage.get(ChatSession, sessionID)
+    session = storage.get(ChatSession, id)
 
     if not session:
         abort(404, description="Chat session not found!")

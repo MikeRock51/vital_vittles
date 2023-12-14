@@ -108,6 +108,31 @@ def getSessionChats(sessionID):
         "data": chats
     })
 
+@app_views.route('/chat_sessions/<sessionID>', methods=['DELETE'])
+# @swag_from(f'{DOCS_DIR}/get_chats.yml')
+@login_required()
+def deleteChatSession(sessionID):
+    """Deletes a chat session based on sessionID"""
+    session = storage.get(ChatSession, sessionID)
+
+    if not session:
+        abort(404, description="Chat session not found!")
+
+    privilegedRoles = [UserRole.admin, UserRole.moderator]
+    if session.userID != g.currentUser.id and g.currentUser.role not in privilegedRoles:
+        abort(401, description="You are not authorized to delete this session!")
+
+    try:
+        storage.delete(session)
+    except VError as e:
+        abort(e.statusCode, description=str(e))
+
+    return jsonify({
+        "status": "success",
+        "message": "Chat session deleted successfully",
+        "data": None
+    })
+
 @app_views.route('/chats', methods=['POST'])
 @swag_from(f'{DOCS_DIR}/post_chats.yml')
 @login_required()

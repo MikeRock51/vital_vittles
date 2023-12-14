@@ -11,7 +11,7 @@ function ChatSessions() {
     <div className="relative mt-8 flex flex-col">
       {creating && <NewSessionModal />}
       <button
-        className="rounded bg-primary-300 py-2 font-semibold text-white mb-5"
+        className="rounded bg-primary-300 hover:opacity-80 py-2 font-semibold text-white mb-5"
         onClick={() => {
           setShowSidebar(false);
           setCreating(true);
@@ -25,6 +25,7 @@ function ChatSessions() {
           {chatSessions && chatSessions.length}
         </span>
       </div>
+      {chatSessions?.length === 0 && <div className="-mx-2 mt-5 ">No chat sessions</div>}
       <div
         className="-mx-2 mt-4 flex flex-col space-y-1 overflow-y-auto "
         style={{ height: "calc(100vh - 380px)", minHeight: "80px" }}

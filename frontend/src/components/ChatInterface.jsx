@@ -16,13 +16,6 @@ function ChatUI() {
 
   async function fetchSessions() {
     const sessions = await getUserSessions(authToken);
-    // if (sessions?.length < 1) {
-    //   const newChat = await createChatSession("New Chat", authToken);
-    //   if (newChat) {
-    //     setChatSessions([newChat]);
-    //     setCurrentChat(newChat);
-    //   }
-    // }
     setChatSessions(sessions);
   }
 

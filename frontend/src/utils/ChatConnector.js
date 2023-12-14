@@ -68,3 +68,17 @@ export async function deleteChatSession(sessionID, token) {
     toast.error("Error deleting chat: ", error?.response?.data?.message);
   }
 }
+
+export async function fetchSessionChats(sessionID, token) {
+  try {
+    const response = await axios.get(
+      `${API_URL}/chats/${sessionID}`,
+      { headers: { "auth-token": token } },
+    );
+    console.log("Session chat history fetched successfully!");
+    return response.data?.data;
+  } catch (error) {
+    console.log(error);
+    console.error("Error fetching chat history: ", error.response?.data?.message);
+  }
+}

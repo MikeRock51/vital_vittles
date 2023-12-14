@@ -1,8 +1,9 @@
 import { useUserStore } from "../../stateProvider/authStore";
+import { timeAgo } from "../../utils/Utilities";
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 
-function UserChat() {
+function UserChat({chatInfo}) {
   const { currentUser } = useUserStore();
 
   return (
@@ -17,11 +18,10 @@ function UserChat() {
         </div>
         <div className="relative mr-3 rounded-xl bg-indigo-100 px-4 py-2 text-left text-sm shadow">
           <div>
-            Hi Yishu! Can you tell me which is the healthier option between
-            butter and Mayonnaise?
+            {chatInfo.content}
           </div>
           <div className="absolute bottom-0 right-0 -mb-5 mr-2 text-xs text-gray-500">
-            2 mins ago
+            {chatInfo.updatedAt && timeAgo(chatInfo.updatedAt)}
           </div>
         </div>
       </div>

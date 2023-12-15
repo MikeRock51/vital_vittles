@@ -38,8 +38,7 @@ export default function Home() {
     setSearchTerm("");
     try {
       const response = await axios.get(
-        `${API_URL}?page=${currentPage}&pageSize=${PAGE_SIZE}${
-          searchTerm ? `&search=${searchTerm}` : ""
+        `${API_URL}?page=${currentPage}&pageSize=${PAGE_SIZE}${searchTerm ? `&search=${searchTerm}` : ""
         })}`,
       );
       const newData = response?.data?.data;
@@ -63,11 +62,14 @@ export default function Home() {
     <div className="mt-20">
       <Toast />
 
-      <SearchRecipe />
 
-      <h1 className="mb-4 text-center text-3xl font-bold">
-        Amazing Recipes in Africa
-      </h1>
+      <div className=" flex justify-between mx-36 py-10">
+
+        <h1 className="mb-4 text-3xl font-bold text-orange-700">
+          Amazing Recipes in Africa
+        </h1>
+        <SearchRecipe />
+      </div>
 
       {recipes ? (
         <div className="flex flex-col items-center">

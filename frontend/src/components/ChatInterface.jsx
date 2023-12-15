@@ -15,11 +15,13 @@ function ChatUI() {
 
   async function fetchSessions() {
     const sessions = await getUserSessions(authToken);
-    if (currentChat && sessions.some(session => session.id === currentChat.id)) {
-    const updatedSessions = [currentChat, ...sessions.filter(session => session.id !== currentChat.id)];
-    setChatSessions(updatedSessions);
-  } else {
-    setChatSessions(sessions);
+    if (sessions) {
+      if (currentChat && sessions.some(session => session.id === currentChat.id)) {
+      const updatedSessions = [currentChat, ...sessions.filter(session => session.id !== currentChat.id)];
+      setChatSessions(updatedSessions);
+    } else {
+      setChatSessions(sessions);
+    }
   }
   }
 
@@ -31,8 +33,8 @@ function ChatUI() {
 
   return (
     <div
-      className={`bg relative flex text-gray-800 antialiased`}
-      style={{ height: "calc(100vh - 60px)", minHeight: "calc(100vh - 60px)" }}
+      className='bg relative flex text-gray-800 antialiased'
+      // style={{ minHeight: "100dvh", }}
     >
       <div className="relative flex h-full w-full flex-row">
         <ChatSidebar />

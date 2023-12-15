@@ -9,7 +9,7 @@ function UserChat({chatInfo}) {
   return (
     <div className="col-start-1 sm:col-start-3 col-end-13 rounded-lg p-3">
       <div className="flex flex-row-reverse items-center justify-start">
-        <div className="chatAvatarContainer">
+        <div className="chatAvatarContainer" title="You">
           <img
             className="h-full w-full rounded-full object-cover"
             src={`${BASE_URL}/users/dp/${currentUser?.id}`}

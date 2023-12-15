@@ -38,13 +38,13 @@ function ChatScreen() {
       <div className="mb-4 flex h-full flex-col overflow-x-auto" ref={chatContainerRef}>
         <div className="flex h-full flex-col">
           <div className="grid grid-cols-6 gap-y-2 sm:grid-cols-12">
-            <YishuChat chatInfo={yishuMessage} id={1} />
+            <YishuChat chatInfo={yishuMessage} key={12168} />
             {chatHistory?.map((chat) => {
               return chat.role === "assistant" ? (
-                <YishuChat id={chat.id} chatInfo={chat} />
+                <YishuChat key={chat.id} chatInfo={chat} />
               ) : (
                 chat.role === "user" && (
-                  <UserChat id={chat.id} chatInfo={chat} />
+                  <UserChat key={chat.id} chatInfo={chat} />
                 )
               );
             })}

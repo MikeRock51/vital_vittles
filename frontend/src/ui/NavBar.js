@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useUserStore } from "../stateProvider/authStore";
 import { LogoutUser } from "../utils/Connector";
+import { usePChatStore } from "../stateProvider/chatStore";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -14,6 +15,7 @@ const BASE_URL = process.env.REACT_APP_API_URL;
 
 export default function Navbar() {
   const { currentUser, setCurrentUser, authToken, setAuthToken } = useUserStore()
+  const { setCurrentChat } = usePChatStore();
   const location = useLocation();
   const navigate = useNavigate();
   const authNavs = [
@@ -50,6 +52,7 @@ export default function Navbar() {
     await LogoutUser(authToken);
     setCurrentUser(null);
     setAuthToken(null);
+    setCurrentChat(null);
     navigate('/signin');
   }
 

@@ -9,6 +9,8 @@ export function validateSignUpInput(inputObject) {
         errors.email = "Invalid email address!";
     } else if (!inputObject.username) {
         errors.username = "Username is required!"
+    } else if (!inputObject.firstname) {
+        errors.username = "First Name is required!"
     } else if (!inputObject.password) {
         errors.password = "Password is required!"
     } else if (inputObject.password.length < 8) {

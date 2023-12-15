@@ -8,6 +8,7 @@ import axios from "axios";
 // import { useRecipesContext } from "../context/RecipesContext";
 import SearchRecipe from "../components/SearchRecipe";
 import { useRecipeStore } from "../stateProvider/recipeStore";
+import RecipeFilteredSearch from "../components/RecipeFilteredSearch";
 // toast.success("Toast setup successfully!");
 
 const API_URL = "https://acr-api.mikerock.tech/api/v1/recipes";
@@ -45,12 +46,7 @@ export default function Home() {
       const newData = response?.data?.data;
       console.log(newData);
       setCurrentPage(Number(response?.data?.page));
-
-      // dispatch({ type: "GET_RECIPES", payload: newData });
       setRecipes([...recipes, ...newData]);
-      // setRecipes((prevData) => ({
-      //   data: [...prevData.data, ...newData.data],
-      // }));
     } catch (error) {
       console.log("Error fetching recipes", error);
     }
@@ -59,15 +55,16 @@ export default function Home() {
   useEffect(() => {
     fetchData();
   }, [currentPage]);
+  
   return (
     <div className="mt-20">
       <Toast />
 
-      <SearchRecipe />
-
       <h1 className="mb-4 text-center text-3xl font-bold">
         Amazing Recipes in Africa
       </h1>
+      {/* <SearchRecipe /> */}
+      <RecipeFilteredSearch />
 
       {recipes ? (
         <div className="flex flex-col items-center">

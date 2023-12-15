@@ -35,7 +35,7 @@ function ChatInputSection() {
   }
 
   return (
-    <div className="mt-8 flex h-16 w-full flex-row items-center rounded-xl bg-white px-4">
+    <div className="flex h-16 w-full flex-row items-center rounded-xl bg-white px-4">
       <div>
         <AttachmentButton />
       </div>
@@ -47,7 +47,7 @@ function ChatInputSection() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             className="min-h-10 flex h-12 w-full resize-none overflow-hidden rounded-xl border pl-4 pt-3 focus:border-indigo-300 focus:outline-none"
-            placeholder="Message Yishu"
+            placeholder="Message Yishu..."
           />
           <button
             className="absolute right-0 top-0 mr-1 mt-2 -translate-y-1/2 transform disabled:text-gray-400 hover:text-primary-600 text-primary-200 md:mr-2"

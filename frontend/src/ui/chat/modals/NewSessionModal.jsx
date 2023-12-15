@@ -1,12 +1,13 @@
 import { useState } from "react";
 import Modal from "react-modal";
-import { useChatStore } from "../../../stateProvider/chatStore";
+import { useChatStore, usePChatStore } from "../../../stateProvider/chatStore";
 import { useUserStore } from "../../../stateProvider/authStore";
 import { createChatSession } from "../../../utils/ChatConnector";
 
 function NewSessionModal() {
   const { creating, setCreating, chatSessions, setChatSessions } =
     useChatStore();
+  const { setCurrentChat } = usePChatStore();
   const [topic, setTopic] = useState("");
   const { authToken } = useUserStore();
   const [loading, setLoading] = useState(false);
@@ -17,6 +18,7 @@ function NewSessionModal() {
     const session = await createChatSession(topic, authToken);
     if (session) {
       setChatSessions([...session, ...chatSessions]);
+      setCurrentChat(session[0])
       setCreating(false);
     }
     setLoading(false);

@@ -13,8 +13,7 @@ function ChatScreen() {
   const [loading, setLoading] = useState(false);
   const { render } = useUIStore();
   const yishuMessage = {
-    content: `Welcome, ${currentUser?.firstname}! My name is Yishu. Your AI
-    assistant for all things nutrition. How may I be of help today?`,
+    content: `Welcome, ${currentUser?.firstname}! My name is Yishu, the food and nutrition specialist bot for Vital Vittles. My expertise lies in providing assistance on African cuisines and various global dishes. Feel free to ask me anything related to food, nutrition, and health, and I'll provide expert guidance.`,
   };
 
   async function getChatHistory() {

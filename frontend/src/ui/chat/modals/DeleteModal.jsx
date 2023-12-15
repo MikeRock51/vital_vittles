@@ -2,12 +2,13 @@ import { useState } from "react";
 import Modal from "react-modal";
 import { deleteChatSession } from "../../../utils/ChatConnector";
 import { useUserStore } from "../../../stateProvider/authStore";
-import { useChatStore } from "../../../stateProvider/chatStore";
+import { useChatStore, usePChatStore } from "../../../stateProvider/chatStore";
 
 function DeleteModal({ deleting, setDeleting, session }) {
   const [ loading, setLoading ] = useState(false);
   const { authToken } = useUserStore();
-  const { chatSessions, setChatSessions, setCurrentChat } = useChatStore();
+  const { chatSessions, setChatSessions } = useChatStore();
+  const { setCurrentChat } = usePChatStore();
 
   async function handleDelete(e) {
     e.preventDefault();

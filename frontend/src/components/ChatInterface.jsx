@@ -15,14 +15,19 @@ function ChatUI() {
 
   async function fetchSessions() {
     const sessions = await getUserSessions(authToken);
+    if (currentChat && sessions.some(session => session.id === currentChat.id)) {
+    const updatedSessions = [currentChat, ...sessions.filter(session => session.id !== currentChat.id)];
+    setChatSessions(updatedSessions);
+  } else {
     setChatSessions(sessions);
+  }
   }
 
   // console.log(currentChat);
 
   useEffect(() => {
     fetchSessions();
-  }, []);
+  }, [currentChat]);
 
   return (
     <div

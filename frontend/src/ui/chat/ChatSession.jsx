@@ -12,7 +12,7 @@ function ChatSession({ session }) {
   const [renaming, setRenaming] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const { setShowSidebar } = useChatStore();
-  const { setCurrentChat } = usePChatStore();
+  const { currentChat, setCurrentChat } = usePChatStore();
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -31,13 +31,13 @@ function ChatSession({ session }) {
   }
 
   return (
-    <div className="border-0 relative inline-flex w-full items-end rounded-xl">
+    <div className={`border-0 relative inline-flex items-end hover:bg-primary-40 rounded-lg w-11/12 ${currentChat?.id === session?.id ? "bg-yellow-100 hover:bg-yellow-100" : ""}`}>
       {renaming && (
         <RenameModal renaming={renaming} setRenaming={setRenaming} session={session} />
       )}
       {deleting && <DeleteModal deleting={deleting} setDeleting={setDeleting} session={session} />}
       <button
-        className="relative w-5/6 mr-auto flex flex-row items-center p-2 hover:bg-yellow-100 active:bg-yellow-100"
+        className='relative w-5/6 mr-auto flex flex-row items-center p-2'
         onClick={() => {
           setCurrentChat(session);
           setShowSidebar(false);
@@ -47,7 +47,7 @@ function ChatSession({ session }) {
           {session.topic}
         </div>
       </button>
-      <button
+      {currentChat?.id === session?.id && <button
         className="absolute right-2 top-1/2 mx-2 -translate-y-1/2 transform"
         onClick={toggleMenu}
         onBlur={(e) => {
@@ -57,7 +57,7 @@ function ChatSession({ session }) {
         }}
       >
         <FontAwesomeIcon icon={faEllipsisH} size="lg" />
-      </button>
+      </button>}
       {menuVisible && (
         <div
           className="absolute right-0 top-0 z-10 mt-2 rounded-lg border bg-white shadow-md"

@@ -1,6 +1,6 @@
 function AttachmentButton() {
   return (
-    <button className="flex items-center justify-center text-primary-600 hover:text-primary-200">
+    <button className="flex items-center justify-center hover:text-primary-600 text-primary-200">
       <svg
         className="h-5 w-5"
         fill="none"

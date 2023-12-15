@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 
 export const useChatStore = create((set) => ({
   showSidebar: false,
@@ -7,6 +8,19 @@ export const useChatStore = create((set) => ({
   setCreating: (state) => set({ creating: state }),
   chatSessions: [],
   setChatSessions: (sessions) => set({ chatSessions: sessions }),
-  currentChat: null,
-  setCurrentChat: (chat) => set({ currentChat: chat }),
+  // currentChat: null,
+  // setCurrentChat: (chat) => set({ currentChat: chat }),
 }));
+
+export const usePChatStore = create(
+  persist(
+    (set) => ({
+      currentChat: null,
+      setCurrentChat: (chat) => set({ currentChat: chat }),
+    }),
+    {
+      storage: createJSONStorage(() => localStorage),
+      name: "chatStore",
+    },
+  ),
+);

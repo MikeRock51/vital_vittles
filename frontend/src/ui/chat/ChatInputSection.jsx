@@ -1,12 +1,12 @@
 import { useState } from "react";
 import AttachmentButton from "./AttachmentButton";
 import { processChat } from "../../utils/ChatConnector";
-import { useChatStore } from "../../stateProvider/chatStore";
+import { usePChatStore } from "../../stateProvider/chatStore";
 import { useUserStore } from "../../stateProvider/authStore";
 
 function ChatInputSection() {
   const [message, setMessage] = useState("");
-  const { currentChat, setCurrentChat } = useChatStore();
+  const { currentChat, setCurrentChat } = usePChatStore();
   const { authToken } = useUserStore();
 
   async function handleProcessChat(e) {
@@ -36,7 +36,7 @@ function ChatInputSection() {
             placeholder="Message Yishu"
           />
           <button
-            className="absolute right-0 top-0 mr-1 mt-2 -translate-y-1/2 transform text-primary-600 hover:text-primary-200"
+            className="absolute right-0 top-0 mr-1 mt-2 -translate-y-1/2 transform hover:text-primary-600 text-primary-200"
             type="submit"
             // onClick={handleProcessChat}
           >

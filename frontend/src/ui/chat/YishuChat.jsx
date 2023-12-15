@@ -1,9 +1,6 @@
-import React from "react";
-import { useUserStore } from "../../stateProvider/authStore";
 import { timeAgo } from "../../utils/Utilities";
 
 function YishuChat({ chatInfo }) {
-  const { currentUser } = useUserStore();
   
   return (
     <div className="col-start-1 col-end-8 sm:col-end-11 rounded-lg p-3">
@@ -15,7 +12,7 @@ function YishuChat({ chatInfo }) {
             alt="Chef illustration icon"
           />
         </div>
-        <div className="relative ml-3 rounded-xl bg-indigo-100 px-4 py-2 text-left text-sm shadow">
+        <div className="relative ml-3 rounded-xl bg-indigo-100 px-4 py-2 text-left text-sm md:text-base md:leading-8 shadow">
           <div>
             {chatInfo.content}
           </div>

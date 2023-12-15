@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useUserStore } from "../stateProvider/authStore";
-import YishuChat from "../ui/chat/YishuChat";
-import UserChat from "../ui/chat/UserChat";
 import ChatSidebar from "../ui/chat/ChatSidebar";
 import MobileChatSidebar from "../ui/chat/MobileChatSidebar";
-import { useChatStore } from "../stateProvider/chatStore";
+import { useChatStore, usePChatStore } from "../stateProvider/chatStore";
 import { createChatSession, getUserSessions } from "../utils/ChatConnector";
 import ChatScreen from "../ui/chat/ChatScreen";
 
@@ -12,7 +10,8 @@ const BASE_URL = process.env.REACT_APP_API_URL;
 
 function ChatUI() {
   const { currentUser, authToken } = useUserStore();
-  const { setChatSessions, currentChat, setCurrentChat } = useChatStore();
+  const { setChatSessions } = useChatStore();
+  const { currentChat, setCurrentChat } = usePChatStore();
 
   async function fetchSessions() {
     const sessions = await getUserSessions(authToken);

@@ -16,7 +16,7 @@ function UserChat({chatInfo}) {
             alt={`${currentUser?.firstname}'s avatar`}
           />
         </div>
-        <div className="relative mr-3 rounded-xl bg-primary-40 px-4 py-2 text-left text-sm shadow">
+        <div className="relative mr-3 rounded-xl bg-primary-40 px-4 py-2 text-left text-sm md:text-base md:leading-8 shadow">
           <div>
             {chatInfo.content}
           </div>

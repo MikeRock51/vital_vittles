@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import YishuChat from "./YishuChat";
 import UserChat from "./UserChat";
-import { useChatStore } from "../../stateProvider/chatStore";
+import { useChatStore, usePChatStore } from "../../stateProvider/chatStore";
 import { fetchSessionChats } from "../../utils/ChatConnector";
 import { useUserStore } from "../../stateProvider/authStore";
 import ChatInputSection from "./ChatInputSection";
 
 function ChatScreen() {
-  const { currentChat } = useChatStore();
+  const { currentChat } = usePChatStore();
   const { currentUser, authToken } = useUserStore();
   const [chatHistory, setChatHistory] = useState([]);
   const [loading, setLoading] = useState(false);

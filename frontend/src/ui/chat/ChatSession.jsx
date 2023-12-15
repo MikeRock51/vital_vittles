@@ -4,14 +4,15 @@ import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import MenuItem from "./MenuItem";
 import RenameModal from "./modals/RenameModal";
 import DeleteModal from "./modals/DeleteModal";
-import { useChatStore } from "../../stateProvider/chatStore";
+import { useChatStore, usePChatStore } from "../../stateProvider/chatStore";
 
 function ChatSession({ session }) {
   const [menuVisible, setMenuVisible] = useState(false);
   const menuRef = useRef(null);
   const [renaming, setRenaming] = useState(false);
   const [deleting, setDeleting] = useState(false);
-  const { setShowSidebar, setCurrentChat } = useChatStore();
+  const { setShowSidebar } = useChatStore();
+  const { setCurrentChat } = usePChatStore();
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);

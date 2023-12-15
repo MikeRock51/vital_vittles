@@ -8,8 +8,8 @@ export const useChatStore = create((set) => ({
   setCreating: (state) => set({ creating: state }),
   chatSessions: [],
   setChatSessions: (sessions) => set({ chatSessions: sessions }),
-  // currentChat: null,
-  // setCurrentChat: (chat) => set({ currentChat: chat }),
+  chatLoading: false,
+  setChatLoading: (loading) => set({ chatLoading: loading }),
 }));
 
 export const usePChatStore = create(
@@ -18,7 +18,7 @@ export const usePChatStore = create(
       currentChat: null,
       setCurrentChat: (chat) => set({ currentChat: chat }),
       chatHistory: null,
-      setChatHistory: (history) => set({ chatHistory: history}),
+      setChatHistory: (history) => set({ chatHistory: history }),
     }),
     {
       storage: createJSONStorage(() => localStorage),

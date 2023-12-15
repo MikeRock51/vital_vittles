@@ -1,7 +1,7 @@
 import { useState } from "react";
 import AttachmentButton from "./AttachmentButton";
 import { processChat } from "../../utils/ChatConnector";
-import { usePChatStore } from "../../stateProvider/chatStore";
+import { useChatStore, usePChatStore } from "../../stateProvider/chatStore";
 import { useUserStore } from "../../stateProvider/authStore";
 import { useUIStore } from "../../stateProvider/uiStore";
 
@@ -9,12 +9,11 @@ function ChatInputSection() {
   const [message, setMessage] = useState("");
   const { currentChat, chatHistory, setChatHistory } = usePChatStore();
   const { authToken } = useUserStore();
-  const { render, setRender } = useUIStore();
-  const [loading, setLoading] = useState(false);
+  const { chatLoading, setChatLoading } = useChatStore();
 
   async function handleProcessChat(e) {
     e.preventDefault();
-    setLoading(true);
+    setChatLoading(true);
     if (!message) return;
 
     setChatHistory([
@@ -30,7 +29,7 @@ function ChatInputSection() {
         ...chat,
       ]);
     }
-    setLoading(false);
+    setChatLoading(false);
     // setRender(!render);
   }
 
@@ -52,7 +51,7 @@ function ChatInputSection() {
           <button
             className="absolute right-0 top-0 mr-1 mt-2 -translate-y-1/2 transform disabled:text-gray-400 hover:text-primary-600 text-primary-200 md:mr-2"
             type="submit"
-            disabled={loading}
+            disabled={chatLoading}
             // onClick={handleProcessChat}
           >
             <span className="ml-2">

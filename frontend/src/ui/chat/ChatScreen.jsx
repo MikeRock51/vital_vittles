@@ -5,24 +5,23 @@ import { useChatStore, usePChatStore } from "../../stateProvider/chatStore";
 import { fetchSessionChats } from "../../utils/ChatConnector";
 import { useUserStore } from "../../stateProvider/authStore";
 import ChatInputSection from "./ChatInputSection";
-import { useUIStore } from "../../stateProvider/uiStore";
+import { LoaderIcon } from "react-hot-toast";
 
 function ChatScreen() {
   const { currentChat, chatHistory, setChatHistory } = usePChatStore();
   const { currentUser, authToken } = useUserStore();
-  const [loading, setLoading] = useState(false);
-  const { render } = useUIStore();
+  const { chatLoading, setChatLoading } = useChatStore();
   const yishuMessage = {
     content: `Welcome, ${currentUser?.firstname}! My name is Yishu, the food and nutrition specialist bot for Vital Vittles. My expertise lies in providing assistance on African cuisines and various global dishes. Feel free to ask me anything related to food, nutrition, and health, and I'll provide expert guidance.`,
   };
 
   async function getChatHistory() {
-    setLoading(true);
+    setChatLoading(true);
     const chats = await fetchSessionChats(currentChat.id, authToken);
     if (chats) {
       setChatHistory(chats);
     }
-    setLoading(false);
+    setChatLoading(false);
   }
 
   useEffect(() => {
@@ -45,6 +44,9 @@ function ChatScreen() {
                 )
               );
             })}
+          </div>
+          <div className="my-8 ml-10">
+            {chatLoading && <LoaderIcon color="green" />}
           </div>
         </div>
       </div>

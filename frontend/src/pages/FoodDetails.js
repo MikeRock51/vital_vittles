@@ -34,7 +34,7 @@ export default function FoodDetails() {
         <img
           className="w-full rounded-2xl md:w-1/2"
           src="https://images.pexels.com/photos/11638817/pexels-photo-11638817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-          alt="Food Image"
+          alt={foodDetails.data.name}
         />
         <div className="leading-6 md:leading-8">
           <h1 className="py-4 text-2xl font-bold md:text-3xl md:tracking-widest lg:text-4xl">
@@ -76,8 +76,8 @@ export default function FoodDetails() {
             <li className="mt-5 text-left">
               <span className=" text-[1.1rem] font-bold ">Ingredients: </span>
               <ul className=" list-disc pl-4 text-left">
-                {foodDetails.data.ingredients.map((ingredient) => (
-                  <li>{ingredient}</li>
+                {foodDetails.data.ingredients.map((ingredient, index) => (
+                  <li key={index}>{ingredient}</li>
                 ))}
               </ul>
             </li>
@@ -88,8 +88,8 @@ export default function FoodDetails() {
         Instructions
       </h2>
       <ul className="list-item text-left text-sm md:text-base lg:text-lg">
-        {foodDetails.data.instructions.map((instruction) => (
-          <li className="list-disc pl-4">{instruction}</li>
+        {foodDetails.data.instructions.map((instruction, index) => (
+          <li key={index} className="list-disc pl-4">{instruction}</li>
         ))}
       </ul>
 

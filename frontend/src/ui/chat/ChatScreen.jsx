@@ -5,12 +5,13 @@ import { useChatStore, usePChatStore } from "../../stateProvider/chatStore";
 import { fetchSessionChats } from "../../utils/ChatConnector";
 import { useUserStore } from "../../stateProvider/authStore";
 import ChatInputSection from "./ChatInputSection";
+import { useUIStore } from "../../stateProvider/uiStore";
 
 function ChatScreen() {
-  const { currentChat } = usePChatStore();
+  const { currentChat, chatHistory, setChatHistory } = usePChatStore();
   const { currentUser, authToken } = useUserStore();
-  const [chatHistory, setChatHistory] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { render } = useUIStore();
   const yishuMessage = {
     content: `Welcome, ${currentUser?.firstname}! My name is Yishu. Your AI
     assistant for all things nutrition. How may I be of help today?`,
@@ -28,7 +29,7 @@ function ChatScreen() {
   useEffect(() => {
     getChatHistory();
     console.log(chatHistory);
-  }, [currentChat]);
+  }, [currentChat, setChatHistory]);
 
   return (
     <div className="flex h-full w-screen flex-auto flex-shrink-0 flex-col rounded-2xl py-4 sm:w-auto">

@@ -184,5 +184,8 @@ def processChat():
     return jsonify({
         "status": "success",
         "message": "Response generated successfully",
-        "data": chatResponse.toDict()
+        "data": [
+            newChat.toDict(),
+            chatResponse.toDict()
+        ]
     })

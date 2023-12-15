@@ -3,21 +3,35 @@ import AttachmentButton from "./AttachmentButton";
 import { processChat } from "../../utils/ChatConnector";
 import { usePChatStore } from "../../stateProvider/chatStore";
 import { useUserStore } from "../../stateProvider/authStore";
+import { useUIStore } from "../../stateProvider/uiStore";
 
 function ChatInputSection() {
   const [message, setMessage] = useState("");
-  const { currentChat, setCurrentChat } = usePChatStore();
+  const { currentChat, chatHistory, setChatHistory } = usePChatStore();
   const { authToken } = useUserStore();
+  const { render, setRender } = useUIStore();
+  const [loading, setLoading] = useState(false);
 
   async function handleProcessChat(e) {
     e.preventDefault();
+    setLoading(true);
+    if (!message) return;
+
+    setChatHistory([
+      ...chatHistory,
+      {content: message, role: "user", updatedAt: new Date().toISOString()},
+    ]);
+
+    setMessage("");
     const chat = await processChat(message, currentChat.id, authToken);
     if (chat) {
-      setCurrentChat((prev) => ({
-        ...prev,
-        content: [prev.content, chat],
-      }));
+      setChatHistory([
+        ...chatHistory,
+        ...chat,
+      ]);
     }
+    setLoading(false);
+    // setRender(!render);
   }
 
   return (
@@ -36,8 +50,9 @@ function ChatInputSection() {
             placeholder="Message Yishu"
           />
           <button
-            className="absolute right-0 top-0 mr-1 mt-2 -translate-y-1/2 transform hover:text-primary-600 text-primary-200"
+            className="absolute right-0 top-0 mr-1 mt-2 -translate-y-1/2 transform disabled:text-gray-400 hover:text-primary-600 text-primary-200 md:mr-2"
             type="submit"
+            disabled={loading}
             // onClick={handleProcessChat}
           >
             <span className="ml-2">

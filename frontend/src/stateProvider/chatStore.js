@@ -17,6 +17,8 @@ export const usePChatStore = create(
     (set) => ({
       currentChat: null,
       setCurrentChat: (chat) => set({ currentChat: chat }),
+      chatHistory: null,
+      setChatHistory: (history) => set({ chatHistory: history}),
     }),
     {
       storage: createJSONStorage(() => localStorage),

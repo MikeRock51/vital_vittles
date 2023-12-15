@@ -27,7 +27,9 @@ export function timeAgo(dateString) {
   const months = Math.floor(days / 30);
   const years = Math.floor(days / 365);
 
-  if (seconds < 60) {
+  if (seconds < 10) {
+    return 'Just now';
+  } else if (seconds < 60) {
     return seconds === 1 ? '1 second ago' : `${seconds} seconds ago`;
   } else if (minutes < 60) {
     return minutes === 1 ? '1 minute ago' : `${minutes} minutes ago`;

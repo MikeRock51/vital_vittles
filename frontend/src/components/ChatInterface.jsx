@@ -11,7 +11,7 @@ const BASE_URL = process.env.REACT_APP_API_URL;
 function ChatUI() {
   const { currentUser, authToken } = useUserStore();
   const { setChatSessions } = useChatStore();
-  const { currentChat, setCurrentChat } = usePChatStore();
+  const { currentChat, setChatHistory } = usePChatStore();
 
   async function fetchSessions() {
     const sessions = await getUserSessions(authToken);

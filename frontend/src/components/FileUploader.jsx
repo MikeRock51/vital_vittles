@@ -33,7 +33,8 @@ function FileUploader({ Uploader, modalIsOpen, setModalIsOpen }) {
       isOpen={modalIsOpen}
       onRequestClose={() => setModalIsOpen(false)}
       contentLabel="File Uploader Modal"
-      className="m-auto sm:w-3/6 "
+      className="sm:w-3/6 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+      appElement={document.getElementById("root")} 
     >
       <form onSubmit={handleSubmit}>
         <div className="flex h-full w-full flex-col items-center justify-center rounded-lg bg-gray-50 px-4 py-8 shadow-md">

@@ -43,16 +43,15 @@ function reducer(state, action) {
 
     case "SEARCH_RECIPES": {
       const newSearchTerm = action.payload;
-      const filteredData = state.recipes.data.filter((recipe) =>
-        recipe.name.toLowerCase().includes(newSearchTerm.toLowerCase()),
-      );
       return {
         ...state,
         recipes: {
-          data: filteredData,
+          data: newSearchTerm,
         },
+        currentPage: 1, // Reset currentPage to 1 when searching
       };
     }
+
     default:
       return state;
   }
@@ -64,17 +63,15 @@ export default function RecipesProvider({ children }) {
     initialState,
   );
 
-  const [searchTerm, setSearchTerm] = useState("");
-
   const contextValue = useMemo(
     () => ({
       recipes,
       currentPage,
       dispatch,
-      searchTerm,
-      setSearchTerm,
+      // searchTerm,
+      // setSearchTerm,
     }),
-    [recipes, currentPage, dispatch, searchTerm, setSearchTerm],
+    [recipes, currentPage, dispatch],
   );
 
   // const memoizedDispatch = useMemo(() => dispatch, [dispatch]);

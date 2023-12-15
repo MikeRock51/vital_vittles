@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useUserStore } from "../stateProvider/authStore";
 import { getTimeOfDay } from "../utils/Utilities";
 import FileUploader from "../components/FileUploader";
@@ -9,13 +9,14 @@ const BASE_URL = process.env.REACT_APP_API_URL;
 function Profile() {
   const { currentUser } = useUserStore();
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
   
   return (
     <div className="mt-24 px-4 sm:px-12 md:px-20">
       <div className="sm:grid sm:grid-cols-2">
         <div className="mx-auto text-left">
           <h2 className="text-2xl sm:text-5xl">
-            Good {getTimeOfDay()} {currentUser.firstname}!
+            Good {getTimeOfDay()} {currentUser?.firstname}!
           </h2>
         </div>
         <div className="my-4 sm:m-auto">

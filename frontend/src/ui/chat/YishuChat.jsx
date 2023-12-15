@@ -4,7 +4,7 @@ import { useUserStore } from "../../stateProvider/authStore";
 function YishuChat() {
   const { currentUser } = useUserStore();
   return (
-    <div className="col-start-1 col-end-8 rounded-lg p-3">
+    <div className="col-start-1 col-end-8 sm:col-end-11 rounded-lg p-3">
       <div className="flex flex-row items-center">
         <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-indigo-500">
           <img
@@ -18,7 +18,7 @@ function YishuChat() {
             Welcome, {currentUser.firstname}! My name is Yishu. Your AI
             assistant for all things nutrition. How may I be of help today?
           </div>
-          <div className="absolute bottom-0 right-0 -mb-5 mr-2 text-xs text-gray-500">
+          <div className="absolute bottom-0 left-0 ml-1 -mb-5 mr-2 text-xs text-gray-500">
             2 mins ago
           </div>
         </div>

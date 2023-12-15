@@ -33,9 +33,10 @@ function ChatScreen() {
     console.log(chatHistory);
   }, [currentChat, setChatHistory]);
 
+
   return (
-    <div className="flex h-full w-screen flex-auto flex-shrink-0 flex-col rounded-2xl pt-4 sm:w-auto">
-      <div className="mb-4 flex h-full min-h-screen flex-col overflow-x-auto" ref={chatContainerRef}>
+    <div className="flex h-full w-screen flex-auto flex-shrink-0 flex-col rounded-2xl pt-4 pb-14 sm:w-auto">
+      <div className="mb-4 flex h-full flex-col overflow-x-auto" ref={chatContainerRef}>
         <div className="flex h-full flex-col">
           <div className="grid grid-cols-6 gap-y-2 sm:grid-cols-12">
             <YishuChat chatInfo={yishuMessage} key={12168} />

@@ -33,8 +33,8 @@ function ChatInputSection() {
   }
 
   return (
-    <div className="flex h-16 w-full md:w-auto flex-row items-center rounded-xl bg-gray-200 px-4 fixed bottom-0 left-0 md:left-64"
-    style={{ minWidth: "calc(100vw - 256px)" }}
+    <div className="flex h-16 w-full md:w-auto flex-row items-center rounded-xl bg-gray-200 px-4 fixed bottom-0 left-0 md:left-[260px]"
+    style={{ minWidth: "calc(100vw - 265px)" }}
     >
       <div>
         <AttachmentButton />

@@ -27,8 +27,8 @@ function ChatSessions() {
       </div>
       {chatSessions?.length === 0 && <div className="-mx-2 mt-5 ">No chat sessions</div>}
       <div
-        className="-mx-2 mt-4 flex flex-col space-y-1 overflow-y-auto "
-        style={{ height: "calc(100vh - 380px)", minHeight: "80px" }}
+        className="-mx-2 mt-4 flex flex-col space-y-1 overflow-y-auto border-b-2  py-2 border-primary-400 "
+        style={{ height: "calc(100vh - 320px)", minHeight: "80px" }}
       >
         {chatSessions?.map((session) => (
           <ChatSession key={session.id} session={session} />

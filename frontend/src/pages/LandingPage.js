@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Typed from 'typed.js';
 
+
 function LandingPage() {
   useEffect(() => {
     // Initialize Typed.js
@@ -34,9 +35,10 @@ function LandingPage() {
           <p className="text-md md:text-lg lg:text-xl mb-8">
             <span className="typed-text"></span>
           </p>
-          <a href="/signup" className="bg-yellow-500 text-purple-900 px-6 py-3 rounded-full font-semibold hover:bg-yellow-400 transition duration-300">Get Started</a>
+
         </div>
         <div className="container mx-auto flex flex-wrap justify-center md:justify-between">
+
           {/* Question Cards */}
           <div className="w-full md:w-1/2 lg:w-1/3 pr-8 mb-8 md:mb-0">
             <div className="bg-gradient-to-r from-purple-800 to-indigo-900 rounded-lg shadow-lg p-6">
@@ -59,26 +61,28 @@ function LandingPage() {
             </div>
           </div>
         </div>
+
+        <a href="/signup" className="bg-yellow-500 text-purple-900 px-12 py-6 rounded-full font-semibold hover:bg-yellow-400 transition duration-300 animate-vibrate">Get Started</a>
       </section>
 
-      { /* Featured Recipes Section */}
+      {/* Featured Recipes Section */}
       <section className="py-16 bg-gray-100">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">Featured Recipes</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Featured Recipe 1 */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <img src="https://images.pexels.com/photos/1239423/pexels-photo-1239423.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Featured Recipe 1" className="w-full h-48 object-cover" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Amala_and_Gbegiri_with_Ewedu_soup.jpg/634px-Amala_and_Gbegiri_with_Ewedu_soup.jpg" alt="Featured Recipe 1" className="w-full h-48 object-cover" />
               <div className="p-6">
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Delicious Pasta</h3>
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Yoruba Amala & Ewedu</h3>
                 <p className="text-gray-600">Indulge in the rich flavors of this mouthwatering pasta dish. Perfect for a cozy dinner with loved ones.</p>
               </div>
             </div>
             {/* Featured Recipe 2 */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <img src="https://images.pexels.com/photos/3764649/pexels-photo-3764649.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Featured Recipe 2" className="w-full h-48 object-cover" />
+              <img src="https://img-global.cpcdn.com/recipes/c7a26899b9e192b9/640x640sq70/photo.webp" alt="Featured Recipe 2" className="w-full h-48 object-cover" />
               <div className="p-6">
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Savory Tacos</h3>
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Delta Banga Soup & Starch</h3>
                 <p className="text-gray-600">Explore the delightful combination of flavors with these savory and delicious tacos. A perfect treat for any occasion.</p>
               </div>
             </div>
@@ -93,42 +97,6 @@ function LandingPage() {
           </div>
         </div>
       </section>
-
-      {/* Popular Recipes Section */}
-      <section id="popular-recipes" className="py-16 bg-gray-100" style={{ backgroundImage: 'url("https://images.pexels.com/photos/67100/pexels-photo-67100.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 text-white">Popular Recipes</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Recipe Card 1 */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <img src="https://images.pexels.com/photos/1239425/pexels-photo-1239425.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Recipe 1" className="w-full h-48 object-cover" />
-              <div className="p-6">
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Grilled Chicken Skewers</h3>
-                <p className="text-gray-600">Delicious and juicy grilled chicken skewers marinated in a flavorful blend of spices.</p>
-              </div>
-            </div>
-            {/* Recipe Card 2 */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <img src="https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Recipe 2" className="w-full h-48 object-cover" />
-              <div className="p-6">
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Baked Salmon</h3>
-                <p className="text-gray-600">A healthy and flavorful baked salmon recipe with a perfect balance of herbs and spices.</p>
-              </div>
-            </div>
-            {/* Recipe Card 3 */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <img src="https://images.pexels.com/photos/4114677/pexels-photo-4114677.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Recipe 3" className="w-full h-48 object-cover" />
-              <div className="p-6">
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Vegetarian Pasta</h3>
-                <p className="text-gray-600">A delicious and hearty vegetarian pasta dish loaded with fresh vegetables and savory sauce.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-
 
       {/* Fun Facts Section */}
       <section className="py-16 bg-gray-900 text-white">
@@ -168,7 +136,7 @@ function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Tip Card 1 */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <img src="https://placekitten.com/803/603" alt="Tip 1" className="w-full h-48 object-cover" />
+              <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Tip 1" className="w-full h-48 object-cover" />
               <div className="p-6">
                 <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Perfecting Flavors</h3>
                 <p className="text-gray-600">Learn how to balance and enhance flavors to create memorable and delicious dishes.</p>
@@ -176,7 +144,7 @@ function LandingPage() {
             </div>
             {/* Tip Card 2 */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <img src="https://placekitten.com/804/604" alt="Tip 2" className="w-full h-48 object-cover" />
+              <img src="https://images.pexels.com/photos/1843653/pexels-photo-1843653.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Tip 2" className="w-full h-48 object-cover" />
               <div className="p-6">
                 <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Knife Skills</h3>
                 <p className="text-gray-600">Master the art of knife handling and slicing techniques for efficient and safe cooking.</p>
@@ -184,7 +152,7 @@ function LandingPage() {
             </div>
             {/* Tip Card 3 */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <img src="https://placekitten.com/805/605" alt="Tip 3" className="w-full h-48 object-cover" />
+              <img src="https://images.pexels.com/photos/2306282/pexels-photo-2306282.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Tip 3" className="w-full h-48 object-cover" />
               <div className="p-6">
                 <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Presentation Matters</h3>
                 <p className="text-gray-600">Discover tips on plating and presentation to make your dishes visually appealing.</p>
@@ -194,42 +162,39 @@ function LandingPage() {
         </div>
       </section>
 
-
-
-
-      {/* Featured Highlights Section */}
+      {/* Team Members Section */}
       <section className="py-16 bg-gray-100">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">Featured Highlights</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">Team Members</h2>
           <div className="flex justify-center gap-8">
-            {/* Circle Card 1: Key Feature */}
-            <div className="bg-blue-500 rounded-full shadow-md overflow-hidden w-48 h-48 flex items-center justify-center">
-              <div>
-                <h3 className="text-lg md:text-xl lg:text-2xl font-semibold mb-2 text-white">Key Feature</h3>
-                <p className="text-sm md:text-base lg:text-lg text-gray-200">Explore the unique and powerful features that set Vittle-Vitles apart.</p>
-              </div>
-            </div>
+            {/* List of team members with their details */}
+            {[
+              { id: 1, name: 'Success', role: 'Interface Virtuoso', passion: 'Fullstack dev', image: 'success.jpg' },
+              { id: 2, name: 'Mike', role: 'Backend Architect', passion: 'fullstack Dev', image: 'mike.jpg' },
+              { id: 3, name: 'Sunkanmi', role: 'Server-side Sage', passion: 'Fullstack Dev', image: 'sunkanmi.JPG' },
+              { id: 4, name: 'George', role: 'Algorithm Architect', passion: 'Fullstack dev', image: 'Gorge.JPG' },
+              { id: 5, name: 'Felicia', role: 'Data Sorceress', passion: 'Data Scientist', image: 'felicia.jpg' },
+              { id: 6, name: 'Sani', role: 'Access Control Guru', passion: 'Fullstack dev', image: 'sani.jpg' },
+            ].map(member => (
+              <div key={member.id} className="flex flex-col items-center">
+                <div className="bg-blue-500 rounded-full shadow-md overflow-hidden w-32 h-32 flex items-center justify-center">
+                  <img
+                    src={`../teamMembersPictures/${member.image}`}
+                    alt={`Team Member ${member.id}`}
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                </div>
+                <div className="mt-4 text-center">
+                  <h3 className="text-lg md:text-xl lg:text-2xl font-semibold mb-2">{member.name}</h3>
+                  <p className="text-gray-600">Role: {member.role}</p>
+                  <p className="text-gray-600">Passionate about: {member.passion}</p>
 
-            {/* Circle Card 2: Special Aspect */}
-            <div className="bg-yellow-700 rounded-full shadow-md overflow-hidden w-48 h-48 flex items-center justify-center">
-              <div>
-                <h3 className="text-lg md:text-xl lg:text-2xl font-semibold mb-2 text-white">Special Aspect</h3>
-                <p className="text-sm md:text-base lg:text-lg text-gray-200">Discover a special and unique aspect that makes Vittle-Vitles stand out.</p>
-                <p className="text-sm md:text-base lg:text-lg text-gray-200">Customize this card to showcase the uniqueness of your platform!</p>
+                </div>
               </div>
-            </div>
-
-            {/* Circle Card 3: Notable Achievement */}
-            <div className="bg-green-700 rounded-full shadow-md overflow-hidden w-48 h-48 flex items-center justify-center">
-              <div>
-                <h3 className="text-lg md:text-lg lg:text-xl font-bold mb-2 text-white">Notable Achievement</h3>
-                <p className="text-sm md:text-base lg:text-lg text-gray-200">Celebrate a notable achievement or recognition received by Vittle-Vitles.</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
-
 
 
 

@@ -4,7 +4,7 @@ function YishuChat({ chatInfo }) {
   return (
     <div className="col-start-1 col-end-8 sm:col-end-11 rounded-lg p-3">
       <div className="flex flex-row items-center">
-        <div className="chatAvatarContainer">
+        <div className="chatAvatarContainer" title="Yishu">
           <img
             className="relative h-auto"
             src="/assets/chef.svg"

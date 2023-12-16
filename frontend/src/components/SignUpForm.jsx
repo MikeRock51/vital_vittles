@@ -43,12 +43,14 @@ function SignUpForm() {
               placeholder="First Name"
               className="formField"
             />
+            <ErrorMessage name="firstname" component="div" className="text-primary-600" />
             <Field
               type="text"
               name="lastname"
               placeholder="Last Name"
               className="formField"
             />
+            <ErrorMessage name="lastname" component="div" className="text-primary-600" />
             <Field
               type="text"
               name="username"

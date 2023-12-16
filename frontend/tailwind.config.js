@@ -42,5 +42,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-box-shadow")],
+  plugins: [require("tailwindcss-box-shadow"), require('@tailwindcss/forms'),],
 };

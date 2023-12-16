@@ -8,4 +8,6 @@ export const useRecipeStore = create(
       setRecipes: (data) => set({ recipes: data }),
       currentPage: 1,
       setCurrentPage: (page) => set({ currentPage: page}),
+      filtersOpen: false,
+      setFiltersOpen: (open) => set({filtersOpen: open}),
     }),);

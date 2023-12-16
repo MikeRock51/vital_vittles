@@ -55,24 +55,23 @@ export default function Home() {
   useEffect(() => {
     fetchData();
   }, [currentPage]);
-  
+
   return (
     <div className="mt-20">
       <Toast />
       {/* <RecipeFilteredSearch /> */}
       <RecipeFilters />
-      <div className=" flex justify-between mx-36 py-5">
-
-        {/* <h1 className="mb-4 text-3xl font-bold text-orange-700">
+      <div className=" flex sm:justify-center  lg:mx-36 py-5">
+        {/* 
+        <h1 className="mb-4 text-3xl font-bold text-orange-700">
           Amazing Recipes in Africa
         </h1> */}
-        {/* <SearchRecipe /> */}
       </div>
       {recipes ? (
         <div className="flex flex-col items-center">
           <ul className="flex flex-wrap items-center justify-center gap-20 ">
             {recipes?.map((recipe) => (
-              <CardItem key={recipe.id} id={recipe.id} name={recipe.name} />
+              <CardItem key={recipe.id} id={recipe.id} name={recipe.name} src={recipe.dps[0]?.filePath} />
             ))}
           </ul>
 

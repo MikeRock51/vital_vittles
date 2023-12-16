@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
 import { useRecipeStore } from "../stateProvider/recipeStore";
+import RecipeFilters from "./RecipeFilters";
 
-export default function SearchRecipe() {
-  // const { dispatch } = useRecipesContext();
+function RecipeFilteredSearch() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const {
@@ -32,7 +32,6 @@ export default function SearchRecipe() {
       const searchData = response?.data?.data;
       console.log("search", response?.data);
 
-      // dispatch({ type: "SEARCH_RECIPES", payload: searchData });
       setCurrentPage(Number(response?.data?.page));
       setRecipes([...searchData]);
     } catch (error) {
@@ -44,24 +43,33 @@ export default function SearchRecipe() {
   }
 
   return (
-    <form className="space-x-1 " onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Search recipes"
-        value={searchTerm}
-        onChange={(e) => {
-          setSearchTerm(e.target.value);
-        }}
-        className="input"
-      />
-      <button
-        className="rounded-3xl border  px-3 py-1.5 hover:bg-orange-200 focus:outline-none focus:ring focus:ring-orange-200 focus:ring-offset-2"
-        type="submit"
-        disabled={loading}
+    <div className="mb-5 px-2 md:p-0">
+      <form
+        className="flex flex-col gap-3 md:ml-5 md:flex-row"
+        onSubmit={handleSubmit}
       >
-        {loading ? "Searching..." : "Search"}
-      </button>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-    </form>
+        <div className="flex">
+          <input
+            type="text"
+            placeholder="Search recipes"
+            className="h-10 w-3/5 rounded-l border-2 border-yellow-500 px-3 focus:border-yellow-200 focus:outline-none disabled:border-gray-500 md:w-5/6"
+            disabled={loading}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+            }}
+          />
+          <button
+            type="submit"
+            className="w-2/5 rounded-r bg-yellow-500 px-2 py-0 font-semibold text-white hover:opacity-75 disabled:bg-gray-500 md:px-3 md:py-1"
+            disabled={loading}
+          >
+            {loading ? "Searching..." : "Search"}
+          </button>
+        </div>
+      </form>
+      <RecipeFilters />
+    </div>
   );
 }
+
+export default RecipeFilteredSearch;

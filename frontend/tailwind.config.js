@@ -13,6 +13,8 @@ module.exports = {
         primary: {
           40: '#fdede7',
           50: '#fcdccf',
+          80: '#fcdccf',
+          90: '#f9b99f',
           100: '#f6956f',
           200: '#f48457',
           300: '#f3723f',
@@ -40,5 +42,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-box-shadow")],
+  plugins: [require("tailwindcss-box-shadow"), require('@tailwindcss/forms'),],
 };

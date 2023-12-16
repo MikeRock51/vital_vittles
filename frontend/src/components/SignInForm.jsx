@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { validateSignInInput } from "../utils/Validators";
-import { CreateUser, LoginUser } from "../utils/Connector";
+import { LoginUser } from "../utils/Connector";
 import { useUserStore } from "../stateProvider/authStore";
 
 function SignInForm() {

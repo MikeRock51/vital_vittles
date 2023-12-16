@@ -1,25 +1,22 @@
-import React from "react";
-import { useUserStore } from "../../stateProvider/authStore";
+import { timeAgo } from "../../utils/Utilities";
 
-function YishuChat() {
-  const { currentUser } = useUserStore();
+function YishuChat({ chatInfo }) {
   return (
     <div className="col-start-1 col-end-8 sm:col-end-11 rounded-lg p-3">
       <div className="flex flex-row items-center">
-        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-indigo-500">
+        <div className="chatAvatarContainer" title="Yishu">
           <img
             className="relative h-auto"
             src="/assets/chef.svg"
             alt="Chef illustration icon"
           />
         </div>
-        <div className="relative ml-3 rounded-xl bg-white px-4 py-2 text-left text-sm shadow">
+        <div className="relative ml-3 rounded-xl bg-indigo-100 px-4 py-2 text-left text-sm md:text-base md:leading-8 shadow">
           <div>
-            Welcome, {currentUser.firstname}! My name is Yishu. Your AI
-            assistant for all things nutrition. How may I be of help today?
+            {chatInfo.content}
           </div>
           <div className="absolute bottom-0 left-0 ml-1 -mb-5 mr-2 text-xs text-gray-500">
-            2 mins ago
+            {chatInfo.updatedAt && timeAgo(chatInfo.updatedAt)}
           </div>
         </div>
       </div>

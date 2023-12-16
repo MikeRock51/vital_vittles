@@ -61,12 +61,12 @@ export default function Home() {
       <Toast />
       {/* <RecipeFilteredSearch /> */}
       <RecipeFilters />
-      <div className=" flex justify-between mx-36 py-10">
-
+      <div className=" flex sm:justify-center  lg:mx-36 py-5">
+        {/* 
         <h1 className="mb-4 text-3xl font-bold text-orange-700">
           Amazing Recipes in Africa
-        </h1>
-        {/* <SearchRecipe /> */}
+        </h1> */}
+
       </div>
       {recipes ? (
         <div className="flex flex-col items-center">

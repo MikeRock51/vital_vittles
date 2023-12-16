@@ -52,7 +52,7 @@ function RecipeFilteredSearch() {
           <input
             type="text"
             placeholder="Search recipes"
-            className="h-10 rounded-l border-2 border-gray-500 px-3 focus:border-gray-200 focus:outline-none disabled:border-gray-500"
+            className="h-10 rounded-l border-2 border-gray-500 px-3 focus:border-gray-400 focus:outline-none disabled:border-gray-500"
             disabled={loading}
             onChange={(e) => {
               setSearchTerm(e.target.value);
@@ -69,7 +69,7 @@ function RecipeFilteredSearch() {
             </button>
           <button
             type="submit"
-            className="rounded-r bg-gray-500 px-2 py-0 font-semibold text-primary-40 hover:opacity-75 disabled:bg-gray-500 md:px-3 md:py-1"
+            className="rounded-r bg-gray-500 px-3 py-1 font-semibold text-primary-40 hover:opacity-75 disabled:bg-gray-500"
             disabled={loading}
             title="Search"
           >

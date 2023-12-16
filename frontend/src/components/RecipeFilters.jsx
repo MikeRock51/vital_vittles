@@ -180,7 +180,7 @@ export default function RecipeFilters() {
         </Transition.Root>
 
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="items-baseline justify-between border-b border-primary-200 pb-5">
+          <div className="items-baseline justify-between border-gray-400 pb-2">
             <h1 className="mb-5 text-left text-4xl font-bold tracking-tight text-gray-900">
               Amazing Recipes in Africa
             </h1>

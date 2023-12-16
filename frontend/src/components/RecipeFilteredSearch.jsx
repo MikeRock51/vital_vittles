@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import { useRecipeStore } from "../stateProvider/recipeStore";
 import RecipeFilters from "./RecipeFilters";
+// import { FunnelIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { FunnelIcon, MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
 function RecipeFilteredSearch() {
   const [loading, setLoading] = useState(false);
@@ -13,6 +15,7 @@ function RecipeFilteredSearch() {
     setCurrentPage,
     recipes,
     setRecipes,
+    setFiltersOpen
   } = useRecipeStore();
 
   async function handleSubmit(e) {
@@ -43,31 +46,40 @@ function RecipeFilteredSearch() {
   }
 
   return (
-    <div className="mb-5 px-2 md:p-0">
-      <form
-        className="flex flex-col gap-3 md:ml-5 md:flex-row"
-        onSubmit={handleSubmit}
-      >
+    <div className="md:p-0">
+      <form className="flex flex-col gap-3 md:flex-row" onSubmit={handleSubmit}>
         <div className="flex">
           <input
             type="text"
             placeholder="Search recipes"
-            className="h-10 w-3/5 rounded-l border-2 border-yellow-500 px-3 focus:border-yellow-200 focus:outline-none disabled:border-gray-500 md:w-5/6"
+            className="h-10 rounded-l border-2 border-gray-500 px-3 focus:border-gray-200 focus:outline-none disabled:border-gray-500"
             disabled={loading}
             onChange={(e) => {
               setSearchTerm(e.target.value);
             }}
           />
+            <button
+              type="button"
+              className="px-3 py-1 bg-gray-500 text-primary-40 hover:opacity-75 disabled:bg-gray-500 border-r border-primary-40"
+              title="Apply filters"
+              onClick={() => setFiltersOpen(true)}
+            >
+              <span className="sr-only">Filters</span>
+              <FunnelIcon className="h-4 w-4" aria-hidden="true" />
+            </button>
           <button
             type="submit"
-            className="w-2/5 rounded-r bg-yellow-500 px-2 py-0 font-semibold text-white hover:opacity-75 disabled:bg-gray-500 md:px-3 md:py-1"
+            className="rounded-r bg-gray-500 px-2 py-0 font-semibold text-primary-40 hover:opacity-75 disabled:bg-gray-500 md:px-3 md:py-1"
             disabled={loading}
+            title="Search"
           >
-            {loading ? "Searching..." : "Search"}
+            {/* {loading ? "Searching..." : "Search"} */}
+            {/* <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" /> */}
+            <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
       </form>
-      <RecipeFilters />
+      {/* <RecipeFilters /> */}
     </div>
   );
 }

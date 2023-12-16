@@ -13,8 +13,8 @@ function Profile() {
     <div className="mt-24 px-4 sm:px-12 md:px-20">
       <div className="sm:grid sm:grid-cols-2">
       <div className="flex items-center justify-center h-screen">
-  <div className="mx-auto text-left p-8 bg-orange-700">
-    <h2 className="text-2xl sm:text-5xl " >
+  <div className="mx-auto text-left p-10 bg-orange-700 h-2/3 text-white" >
+    <h2 className="text-2xl sm:text-5xl py-5" >
       Good {getTimeOfDay()} {currentUser?.firstname} {currentUser?.lastname}!
     </h2>
     <p style={{ fontWeight: 'bold' }}>First Name: {currentUser?.firstname}</p>

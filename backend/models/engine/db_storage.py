@@ -166,7 +166,7 @@ class DBStorage:
 
         ChatSession = self.allModels()['ChatSession']
         Chat = self.allModels()['Chat']
-        systemMessage = "Your name is Yishu. You are a food and nutrition specialist bot. You provide expert assistance on all matters related to food, nutrition and health"
+        systemMessage = "Your name is Yishu. You are a food and nutrition specialist bot for Vital Vittles (Vital vittles is a food and nutrition web application, we provide assistance to users on african cuisines primarily, as well as other cuisines in the world.). You provide expert assistance on all matters related to food, nutrition and health"
         try:
             session = ChatSession(userID=userID, topic=topic)
             chat = Chat(userID=userID, sessionID=session.id, content=systemMessage, role="system")
@@ -194,7 +194,7 @@ class DBStorage:
         """Retrieves all chat sessions based on userID"""
         try:
             ChatSession = self.allModels()['ChatSession']
-            chatHistory = self.__session.query(ChatSession).filter_by(userID=userID).order_by(ChatSession.updatedAt.asc()).all()
+            chatHistory = self.__session.query(ChatSession).filter_by(userID=userID).order_by(ChatSession.updatedAt.desc()).all()
             return [chat.toDict() for chat in chatHistory]
         except Exception as e:
             raise ValueError(e)

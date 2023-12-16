@@ -1,12 +1,30 @@
 import { useState } from "react";
 import Modal from "react-modal";
+import { updateChatSession } from "../../../utils/ChatConnector";
+import { useUserStore } from "../../../stateProvider/authStore";
+import { useChatStore } from "../../../stateProvider/chatStore";
 
-function RenameModal({ renaming, setRenaming }) {
-  const [newTopic, setNewTopic] = useState("Butter or Mayonnaise");
+function RenameModal({ renaming, setRenaming, session }) {
+  const [newTopic, setNewTopic] = useState(session.topic);
+  const { authToken } = useUserStore();
+  const { chatSessions, setChatSessions } = useChatStore();
+  const [loading, setLoading] = useState(false);
 
-  function handleRename(e) {
+  async function handleRename(e) {
     e.preventDefault();
-    alert("Handling rename...");
+    setLoading(true)
+    if (session.topic === newTopic) {
+      setRenaming(false);
+      setLoading(false)
+      return;
+    }
+    const updatedSession = await updateChatSession(newTopic, authToken, session.id);
+    if (updatedSession) {
+      const filteredSessions = chatSessions.filter((chat) => chat.id !== session.id);
+      setChatSessions([updatedSession, ...filteredSessions]);
+    }
+    setRenaming(false);
+    setLoading(false);
   }
 
   return (
@@ -18,18 +36,32 @@ function RenameModal({ renaming, setRenaming }) {
       overlayClassName="chatModalOverlay"
       appElement={document.getElementById("root")}
     >
-      <form className="bg-primary-400 rounded-xl flex flex-col py-5">
-        <h2 className="text-xl md:text-2xl text-white mx-auto mb-4">Change Chat Topic</h2>
-        <hr/>
+      <form className="flex flex-col rounded-xl bg-primary-400 py-5">
+        <h2 className="mx-auto mb-4 text-xl text-white md:text-2xl">
+          Change Chat Topic
+        </h2>
+        <hr />
         <input
           type="text"
           onChange={(e) => setNewTopic(e.target.value)}
           value={newTopic}
-          className="mx-auto mt-4 w-4/5 x-2 h-10 rounded-xl ps-2"
+          className="x-2 mx-auto mt-4 h-10 w-4/5 rounded-xl ps-2"
         />
-        <div className="flex flex-col xs:grid xs:grid-cols-2 mt-4 ">
-            <button className="hidden xs:block w-3/5 mx-auto xs:ms-auto xs:me-1 py-1 bg-black hover:bg-gray-800 text-primary-400 rounded-lg" onClick={() => setRenaming(false)}>Close</button>
-            <button className="w-3/5 mx-auto xs:me-auto xs:ms-1 py-1 bg-black hover:bg-gray-800 text-green-400 rounded-lg" onClick={handleRename}>Rename</button>
+        <div className="mt-4 flex flex-col xs:grid xs:grid-cols-2 ">
+          <button
+            className="modalCloseButton"
+            onClick={() => setRenaming(false)}
+            disabled={loading}
+          >
+            Close
+          </button>
+          <button
+            className="modalActionButton"
+            onClick={handleRename}
+            disabled={loading}
+          >
+            {loading ? "Renaming..." : "Rename"}
+          </button>
         </div>
       </form>
     </Modal>

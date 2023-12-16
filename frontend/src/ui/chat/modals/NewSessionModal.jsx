@@ -1,12 +1,13 @@
 import { useState } from "react";
 import Modal from "react-modal";
-import { useChatStore } from "../../../stateProvider/chatStore";
+import { useChatStore, usePChatStore } from "../../../stateProvider/chatStore";
 import { useUserStore } from "../../../stateProvider/authStore";
 import { createChatSession } from "../../../utils/ChatConnector";
 
 function NewSessionModal() {
   const { creating, setCreating, chatSessions, setChatSessions } =
     useChatStore();
+  const { setCurrentChat } = usePChatStore();
   const [topic, setTopic] = useState("");
   const { authToken } = useUserStore();
   const [loading, setLoading] = useState(false);
@@ -16,7 +17,8 @@ function NewSessionModal() {
     setLoading(true);
     const session = await createChatSession(topic, authToken);
     if (session) {
-      setChatSessions([...chatSessions, ...session]);
+      setChatSessions([...session, ...chatSessions]);
+      setCurrentChat(session[0])
       setCreating(false);
     }
     setLoading(false);
@@ -45,14 +47,14 @@ function NewSessionModal() {
         />
         <div className="mt-4 flex flex-col xs:grid xs:grid-cols-2 ">
           <button
-            className="mx-auto disabled:bg-gray-800 hidden w-3/5 rounded-lg bg-black py-1 text-primary-400 hover:bg-gray-800 xs:me-1 xs:ms-auto xs:block"
+            className="modalCloseButton"
             onClick={() => setCreating(false)}
             disabled={loading}
           >
             Cancel
           </button>
           <button
-            className="mx-auto disabled:bg-gray-800 w-3/5 rounded-lg bg-black py-1 text-green-400 hover:bg-gray-800 xs:me-auto xs:ms-1"
+            className="modalActionButton"
             onClick={handleSubmit}
             disabled={loading}
           >

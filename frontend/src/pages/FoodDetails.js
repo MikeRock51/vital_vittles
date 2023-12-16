@@ -29,67 +29,74 @@ export default function FoodDetails() {
   if (!foodDetails) return <Loader />;
 
   return (
-    <div className="mx-auto mt-14 rounded-2xl bg-slate-200 px-4 py-8 font-sans sm:px-6 md:px-8 lg:px-12">
-      <div className="flex flex-col-reverse gap-6 md:flex-row">
+    <div className="mx-auto mt-14 rounded-2xl bg-slate-200 px-8 py-16 font-sans sm:px-6 md:px-8 lg:px-12">
+      <div className="flex flex-col-reverse gap-12 md:flex-row">
         <img
-          className="w-full rounded-2xl md:w-1/2"
+          className="w-full rounded-2xl md:w-1/2 object-cover h-[600px]"
           src="https://images.pexels.com/photos/11638817/pexels-photo-11638817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-          alt="Food Image"
+          alt={foodDetails.data.name}
         />
-        <div className="leading-6 md:leading-8">
-          <h1 className="py-4 text-2xl font-bold md:text-3xl md:tracking-widest lg:text-4xl">
-            {foodDetails.data.name}
-          </h1>
-          <ul className="text-left">
-            <li>
-              <span className="text-[1.1rem] font-bold">Cuisine:</span>{" "}
-              {foodDetails.data.cuisine}
-            </li>
-            <li>
-              <span className="text-[1.1rem] font-bold">
-                Preparation Time(Minutes):{" "}
-              </span>
-              {foodDetails.data.prep_time_minutes}
-            </li>
-            <li>
-              <span className="text-[1.1rem] font-bold">
-                Cooking Time(minutes):{" "}
-              </span>
-              {foodDetails.data.cook_time_minutes}
-            </li>
-            <li>
-              <span className="text-[1.1rem] font-bold">
-                Total Time (minutes):{" "}
-              </span>
-              {foodDetails.data.total_time_minutes}
-            </li>
-            <li>
-              <span className="text-[1.1rem] font-bold">
-                Calories Per Serving:
-              </span>
-              {foodDetails.data.calories_per_serving}
-            </li>
-            <li>
-              <span className="text-[1.1rem] font-bold">Serving Size:</span>
-              {foodDetails.data.serving_size}
-            </li>
-            <li className="mt-5 text-left">
-              <span className=" text-[1.1rem] font-bold ">Ingredients: </span>
-              <ul className=" list-disc pl-4 text-left">
-                {foodDetails.data.ingredients.map((ingredient) => (
-                  <li>{ingredient}</li>
-                ))}
-              </ul>
-            </li>
-          </ul>
+        <div className="w-full">
+          <div className="bg-gray-50 p-12 rounded-lg w-100">
+            <p className="py-4 text-xl font-bold md:text-2xl md:tracking-widest lg:text-2xl text-orange-700">
+              {foodDetails.data.name}
+            </p>
+            <ul className="text-left">
+              <li className="mt-2">
+                <span className="text-[1.1rem] font-bold">Cuisine:</span>{" "}
+                {foodDetails.data.cuisine}
+              </li>
+              <li className="mt-2">
+                <span className="text-[1.1rem] font-bold">
+                  Preparation Time(Minutes):{" "}
+                </span>
+                {foodDetails.data.prep_time_minutes}
+              </li>
+              <li className="mt-2">
+                <span className="text-[1.1rem] font-bold">
+                  Cooking Time(minutes):{" "}
+                </span>
+                {foodDetails.data.cook_time_minutes}
+              </li>
+              <li className="mt-2">
+                <span className="text-[1.1rem] font-bold">
+                  Total Time (minutes):{" "}
+                </span>
+                {foodDetails.data.total_time_minutes}
+              </li>
+              <li className="mt-2">
+                <span className="text-[1.1rem] font-bold">
+                  Calories Per Serving:
+                </span>
+                {foodDetails.data.calories_per_serving}
+              </li>
+              <li className="mt-2">
+                <span className="text-[1.1rem] font-bold">Serving Size:</span>
+                {foodDetails.data.serving_size}
+              </li>
+            </ul>
+          </div>
+
+          <div className="p-6">
+            <ul>
+              <li className="mt-5 text-left">
+                <span className=" text-[1.1rem] font-bold ">Ingredients: </span>
+                <ul className=" list-disc pl-4 text-left">
+                  {foodDetails.data.ingredients.map((ingredient, index) => (
+                    <li key={index}>{ingredient}</li>
+                  ))}
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-      <h2 className="mb-4 mt-6 text-center text-xl font-semibold underline md:text-2xl lg:text-3xl">
+      <h2 className="mb-4 mt-16 text-center text-xl font-semibold  md:text-2xl lg:text-3xl">
         Instructions
       </h2>
       <ul className="list-item text-left text-sm md:text-base lg:text-lg">
-        {foodDetails.data.instructions.map((instruction) => (
-          <li className="list-disc pl-4">{instruction}</li>
+        {foodDetails.data.instructions.map((instruction, index) => (
+          <li key={index} className="list-disc pl-4">{instruction}</li>
         ))}
       </ul>
 

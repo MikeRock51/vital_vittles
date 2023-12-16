@@ -1,9 +1,25 @@
+import { useState } from "react";
 import Modal from "react-modal";
+import { deleteChatSession } from "../../../utils/ChatConnector";
+import { useUserStore } from "../../../stateProvider/authStore";
+import { useChatStore, usePChatStore } from "../../../stateProvider/chatStore";
 
-function DeleteModal({ deleting, setDeleting }) {
-  function handleDelete(e) {
+function DeleteModal({ deleting, setDeleting, session }) {
+  const [ loading, setLoading ] = useState(false);
+  const { authToken } = useUserStore();
+  const { chatSessions, setChatSessions } = useChatStore();
+  const { setCurrentChat } = usePChatStore();
+
+  async function handleDelete(e) {
     e.preventDefault();
-    alert("Handling Delete...");
+    setLoading(true);
+    const success = await deleteChatSession(session.id, authToken)
+    if (success) {
+      setChatSessions(chatSessions.filter((chat) => chat.id !== session.id));
+      setCurrentChat(null);
+    }
+    setLoading(false);
+    setDeleting(false);
   }
 
   return (
@@ -25,14 +41,16 @@ function DeleteModal({ deleting, setDeleting }) {
         </p>
         <div className="mt-6 flex flex-col xs:grid xs:grid-cols-2 ">
           <button
-            className="mx-auto mb-2 w-3/5 rounded-lg bg-black py-1 text-primary-400 hover:bg-gray-800 xs:mb-0 xs:me-1 xs:ms-auto xs:block"
+            className="mx-auto mb-2 w-3/5 rounded-lg disabled:bg-gray-800 bg-black py-1 text-primary-400 hover:bg-gray-800 xs:mb-0 xs:me-1 xs:ms-auto xs:block"
             onClick={() => setDeleting(false)}
+            disabled={loading}
           >
             Close
           </button>
           <button
-            className="mx-auto w-3/5 rounded-lg bg-[red] py-1 text-white hover:bg-red-500 xs:me-auto xs:ms-1"
+            className="mx-auto w-3/5 rounded-lg disabled:bg-gray-800 bg-[red] py-1 text-white hover:bg-red-500 xs:me-auto xs:ms-1"
             onClick={handleDelete}
+            disabled={loading}
           >
             Delete
           </button>

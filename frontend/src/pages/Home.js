@@ -72,7 +72,7 @@ export default function Home() {
         <div className="flex flex-col items-center">
           <ul className="flex flex-wrap items-center justify-center gap-20 ">
             {recipes?.map((recipe) => (
-              <CardItem key={recipe.id} id={recipe.id} name={recipe.name} />
+              <CardItem key={recipe.id} id={recipe.id} name={recipe.name} src={recipe.dps[0]?.filePath} />
             ))}
           </ul>
 

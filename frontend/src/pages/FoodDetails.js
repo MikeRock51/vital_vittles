@@ -33,7 +33,7 @@ export default function FoodDetails() {
       <div className="flex flex-col-reverse gap-12 md:flex-row">
         <img
           className="w-full rounded-2xl md:w-1/2 object-cover h-[600px]"
-          src="https://images.pexels.com/photos/11638817/pexels-photo-11638817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          src={foodDetails.data.dps[0]?.filePath}
           alt={foodDetails.data.name}
         />
         <div className="w-full">

@@ -62,106 +62,106 @@ function LandingPage() {
       </section>
 
       { /* Featured Recipes Section */}
-        <section className="py-16 bg-gray-100">
-          <div className="container mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">Featured Recipes</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Featured Recipe 1 */}
-              <div className="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://images.pexels.com/photos/1239423/pexels-photo-1239423.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Featured Recipe 1" className="w-full h-48 object-cover" />
-                <div className="p-6">
-                  <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Delicious Pasta</h3>
-                  <p className="text-gray-600">Indulge in the rich flavors of this mouthwatering pasta dish. Perfect for a cozy dinner with loved ones.</p>
-                </div>
+      <section className="py-16 bg-gray-100">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">Featured Recipes</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Featured Recipe 1 */}
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="https://images.pexels.com/photos/1239423/pexels-photo-1239423.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Featured Recipe 1" className="w-full h-48 object-cover" />
+              <div className="p-6">
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Delicious Pasta</h3>
+                <p className="text-gray-600">Indulge in the rich flavors of this mouthwatering pasta dish. Perfect for a cozy dinner with loved ones.</p>
               </div>
-              {/* Featured Recipe 2 */}
-              <div className="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://images.pexels.com/photos/3764649/pexels-photo-3764649.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Featured Recipe 2" className="w-full h-48 object-cover" />
-                <div className="p-6">
-                  <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Savory Tacos</h3>
-                  <p className="text-gray-600">Explore the delightful combination of flavors with these savory and delicious tacos. A perfect treat for any occasion.</p>
-                </div>
+            </div>
+            {/* Featured Recipe 2 */}
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="https://images.pexels.com/photos/3764649/pexels-photo-3764649.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Featured Recipe 2" className="w-full h-48 object-cover" />
+              <div className="p-6">
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Savory Tacos</h3>
+                <p className="text-gray-600">Explore the delightful combination of flavors with these savory and delicious tacos. A perfect treat for any occasion.</p>
               </div>
-              {/* Featured Recipe 3 */}
-              <div className="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Featured Recipe 3" className="w-full h-48 object-cover" />
-                <div className="p-6">
-                  <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Fresh Salads</h3>
-                  <p className="text-gray-600">Enjoy the crispness and freshness of these vibrant salads. A healthy and tasty choice for a light meal.</p>
-                </div>
+            </div>
+            {/* Featured Recipe 3 */}
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Featured Recipe 3" className="w-full h-48 object-cover" />
+              <div className="p-6">
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Fresh Salads</h3>
+                <p className="text-gray-600">Enjoy the crispness and freshness of these vibrant salads. A healthy and tasty choice for a light meal.</p>
               </div>
             </div>
           </div>
-        </section>
-
-{/* Popular Recipes Section */}
-<section id="popular-recipes" className="py-16 bg-gray-100" style={{ backgroundImage: 'url("https://images.pexels.com/photos/67100/pexels-photo-67100.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-  <div className="container mx-auto text-center">
-    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 text-white">Popular Recipes</h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {/* Recipe Card 1 */}
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        <img src="https://images.pexels.com/photos/1239425/pexels-photo-1239425.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Recipe 1" className="w-full h-48 object-cover" />
-        <div className="p-6">
-          <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Grilled Chicken Skewers</h3>
-          <p className="text-gray-600">Delicious and juicy grilled chicken skewers marinated in a flavorful blend of spices.</p>
         </div>
-      </div>
-      {/* Recipe Card 2 */}
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        <img src="https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Recipe 2" className="w-full h-48 object-cover" />
-        <div className="p-6">
-          <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Baked Salmon</h3>
-          <p className="text-gray-600">A healthy and flavorful baked salmon recipe with a perfect balance of herbs and spices.</p>
-        </div>
-      </div>
-      {/* Recipe Card 3 */}
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        <img src="https://images.pexels.com/photos/4114677/pexels-photo-4114677.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Recipe 3" className="w-full h-48 object-cover" />
-        <div className="p-6">
-          <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Vegetarian Pasta</h3>
-          <p className="text-gray-600">A delicious and hearty vegetarian pasta dish loaded with fresh vegetables and savory sauce.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
-
-
-     
-        {/* Fun Facts Section */}
-        <section className="py-16 bg-gray-900 text-white">
-          <div className="container mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">Fascinating African Food Facts</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Fact Card 1 */}
-              <div className="bg-purple-800 rounded-lg shadow-md p-6">
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2">Did You Know?</h3>
-                <p className="text-gray-300">
-                  Injera, a sourdough flatbread, is a staple in Ethiopian and Eritrean cuisine. It's not only delicious but also serves as both a plate and utensil!
-                </p>
+      {/* Popular Recipes Section */}
+      <section id="popular-recipes" className="py-16 bg-gray-100" style={{ backgroundImage: 'url("https://images.pexels.com/photos/67100/pexels-photo-67100.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 text-white">Popular Recipes</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Recipe Card 1 */}
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="https://images.pexels.com/photos/1239425/pexels-photo-1239425.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Recipe 1" className="w-full h-48 object-cover" />
+              <div className="p-6">
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Grilled Chicken Skewers</h3>
+                <p className="text-gray-600">Delicious and juicy grilled chicken skewers marinated in a flavorful blend of spices.</p>
               </div>
-              {/* Fact Card 2 */}
-              <div className="bg-purple-800 rounded-lg shadow-md p-6">
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2">Discover Unique Flavors</h3>
-                <p className="text-gray-300">
-                  Berbere, a spice blend from North Africa, adds a rich and spicy flavor to dishes. It typically includes chili peppers, garlic, ginger, basil, and more.
-                </p>
+            </div>
+            {/* Recipe Card 2 */}
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Recipe 2" className="w-full h-48 object-cover" />
+              <div className="p-6">
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Baked Salmon</h3>
+                <p className="text-gray-600">A healthy and flavorful baked salmon recipe with a perfect balance of herbs and spices.</p>
               </div>
-              {/* Fact Card 3 */}
-              <div className="bg-purple-800 rounded-lg shadow-md p-6">
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2">Culinary Diversity</h3>
-                <p className="text-gray-300">
-                  Africa is home to a diverse range of culinary traditions, from the savory tagines of North Africa to the vibrant jollof rice of West Africa.
-                </p>
+            </div>
+            {/* Recipe Card 3 */}
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="https://images.pexels.com/photos/4114677/pexels-photo-4114677.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Recipe 3" className="w-full h-48 object-cover" />
+              <div className="p-6">
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Vegetarian Pasta</h3>
+                <p className="text-gray-600">A delicious and hearty vegetarian pasta dish loaded with fresh vegetables and savory sauce.</p>
               </div>
-              {/* Add more Fact Cards as needed */}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-         {/* Culinary Tips Section */}
+
+
+
+      {/* Fun Facts Section */}
+      <section className="py-16 bg-gray-900 text-white">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">Fascinating African Food Facts</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Fact Card 1 */}
+            <div className="bg-purple-800 rounded-lg shadow-md p-6">
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2">Did You Know?</h3>
+              <p className="text-gray-300">
+                Injera, a sourdough flatbread, is a staple in Ethiopian and Eritrean cuisine. It's not only delicious but also serves as both a plate and utensil!
+              </p>
+            </div>
+            {/* Fact Card 2 */}
+            <div className="bg-purple-800 rounded-lg shadow-md p-6">
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2">Discover Unique Flavors</h3>
+              <p className="text-gray-300">
+                Berbere, a spice blend from North Africa, adds a rich and spicy flavor to dishes. It typically includes chili peppers, garlic, ginger, basil, and more.
+              </p>
+            </div>
+            {/* Fact Card 3 */}
+            <div className="bg-purple-800 rounded-lg shadow-md p-6">
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2">Culinary Diversity</h3>
+              <p className="text-gray-300">
+                Africa is home to a diverse range of culinary traditions, from the savory tagines of North Africa to the vibrant jollof rice of West Africa.
+              </p>
+            </div>
+            {/* Add more Fact Cards as needed */}
+          </div>
+        </div>
+      </section>
+
+      {/* Culinary Tips Section */}
       <section className="bg-gray-100 py-16">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">Culinary Tips</h2>
@@ -194,43 +194,43 @@ function LandingPage() {
         </div>
       </section>
 
-          
-               
 
-        {/* Featured Highlights Section */}
-<section className="py-16 bg-gray-100">
-  <div className="container mx-auto text-center">
-    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">Featured Highlights</h2>
-    <div className="flex justify-center gap-8">
-      {/* Circle Card 1: Key Feature */}
-      <div className="bg-blue-500 rounded-full shadow-md overflow-hidden w-32 h-32 flex items-center justify-center">
-        <div>
-          <h3 className="text-lg md:text-xl lg:text-2xl font-semibold mb-2 text-white">Key Feature</h3>
-          <p className="text-sm md:text-base lg:text-lg text-gray-200">Explore the unique and powerful features that set Vittle-Vitles apart.</p>
+
+
+      {/* Featured Highlights Section */}
+      <section className="py-16 bg-gray-100">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">Featured Highlights</h2>
+          <div className="flex justify-center gap-8">
+            {/* Circle Card 1: Key Feature */}
+            <div className="bg-blue-500 rounded-full shadow-md overflow-hidden w-48 h-48 flex items-center justify-center">
+              <div>
+                <h3 className="text-lg md:text-xl lg:text-2xl font-semibold mb-2 text-white">Key Feature</h3>
+                <p className="text-sm md:text-base lg:text-lg text-gray-200">Explore the unique and powerful features that set Vittle-Vitles apart.</p>
+              </div>
+            </div>
+
+            {/* Circle Card 2: Special Aspect */}
+            <div className="bg-yellow-700 rounded-full shadow-md overflow-hidden w-48 h-48 flex items-center justify-center">
+              <div>
+                <h3 className="text-lg md:text-xl lg:text-2xl font-semibold mb-2 text-white">Special Aspect</h3>
+                <p className="text-sm md:text-base lg:text-lg text-gray-200">Discover a special and unique aspect that makes Vittle-Vitles stand out.</p>
+                <p className="text-sm md:text-base lg:text-lg text-gray-200">Customize this card to showcase the uniqueness of your platform!</p>
+              </div>
+            </div>
+
+            {/* Circle Card 3: Notable Achievement */}
+            <div className="bg-green-700 rounded-full shadow-md overflow-hidden w-48 h-48 flex items-center justify-center">
+              <div>
+                <h3 className="text-lg md:text-lg lg:text-xl font-bold mb-2 text-white">Notable Achievement</h3>
+                <p className="text-sm md:text-base lg:text-lg text-gray-200">Celebrate a notable achievement or recognition received by Vittle-Vitles.</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Circle Card 2: Special Aspect */}
-      <div className="bg-yellow-500 rounded-full shadow-md overflow-hidden w-32 h-32 flex items-center justify-center">
-        <div>
-          <h3 className="text-lg md:text-xl lg:text-2xl font-semibold mb-2 text-white">Special Aspect</h3>
-          <p className="text-sm md:text-base lg:text-lg text-gray-200">Discover a special and unique aspect that makes Vittle-Vitles stand out.</p>
-          <p className="text-sm md:text-base lg:text-lg text-gray-200">Customize this card to showcase the uniqueness of your platform!</p>
-        </div>
-      </div>
 
-      {/* Circle Card 3: Notable Achievement */}
-      <div className="bg-green-500 rounded-full shadow-md overflow-hidden w-32 h-32 flex items-center justify-center">
-        <div>
-          <h3 className="text-lg md:text-xl lg:text-2xl font-semibold mb-2 text-white">Notable Achievement</h3>
-          <p className="text-sm md:text-base lg:text-lg text-gray-200">Celebrate a notable achievement or recognition received by Vittle-Vitles.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-       
 
 
       {/* Join the Community Section */}

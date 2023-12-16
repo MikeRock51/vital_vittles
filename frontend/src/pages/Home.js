@@ -63,7 +63,7 @@ export default function Home() {
       <Toast />
 
 
-      <div className=" flex justify-between mx-36 py-10">
+      <div className=" flex md:flex-row flex-col justify-between lg:mx-36  py-10">
 
         <h1 className="mb-4 text-3xl font-bold text-orange-700">
           Amazing Recipes in Africa

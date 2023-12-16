@@ -10,4 +10,14 @@ export const useRecipeStore = create(
       setCurrentPage: (page) => set({ currentPage: page}),
       filtersOpen: false,
       setFiltersOpen: (open) => set({filtersOpen: open}),
+      filters: {},
+      setFilters: (params) => set({filters: params})
     }),);
+
+export const useFilters = create(
+  (set) => ({
+    filters: {},
+    setFilters: (params) => set({filters: params}),
+    // cui
+  })
+);

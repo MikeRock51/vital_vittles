@@ -3,11 +3,12 @@
 
 from os import getenv
 from sqlalchemy.orm import scoped_session, sessionmaker
-from sqlalchemy import create_engine, and_
+from sqlalchemy import create_engine, and_, func
 from typing import Dict
 from dotenv import load_dotenv
 from math import ceil
 from sqlalchemy.exc import ArgumentError, NoResultFound, IntegrityError
+from sqlalchemy.sql.sqltypes import JSON
 
 load_dotenv()
 
@@ -68,6 +69,7 @@ class DBStorage:
     def getPaginatedData(self, obj=None, page: int = 1,
                          size: int = 10, search="", filterColumns={}) -> Dict:
         """Retrieves paginated data"""
+        Recipe = self.allModels()['Recipe']
         if obj:
             # Set the starting point of data to retrieve
             offset = (page - 1) * size
@@ -77,11 +79,23 @@ class DBStorage:
                 query = self.__session.query(obj)
                 if tableName == 'recipes':
                     # Filter data by search keyword
-                    query = query.filter(obj.name.like(f"%{search}%"))
+                    query = query.filter(obj.name.ilike(f"%{search}%"))
                 if filterColumns != {}:
                     # Create a list of filter conditions based on specified columns
-                    filterConditions = [(key.in_(value)
-                                         for key, value in filterColumns.items())]
+                    print(filterColumns)
+                    
+                    # filterConditions = [(key.in_(value)
+                    #                      for key, value in filterColumns.items())]
+                    filterConditions = []
+
+                    for key, value in filterColumns.items():
+                        if isinstance(key.type, JSON):
+                            for val in value:
+                                searchTerm = f'%{val}%'
+                                filterConditions.append(key.ilike(searchTerm))
+                        else:
+                            filterConditions.append(key.in_(value))
+
                     # Filter data by specified columns
                     query = query.filter(and_(*filterConditions))
 
@@ -142,13 +156,14 @@ class DBStorage:
         if obj in models.values():
             instance = self.__session.query(obj).filter(obj.id == id).first()
             return instance
-        
+
     def getByItemID(self, obj, item, id: str):
         """Retrieves all obj instances with the given item id"""
         models = self.allModels()
 
         if obj in models.values():
-            instance = self.__session.query(obj).filter(getattr(obj, item) == id).all()
+            instance = self.__session.query(obj).filter(
+                getattr(obj, item) == id).all()
             return instance
 
     def getByEmail(self, email: str):
@@ -159,7 +174,7 @@ class DBStorage:
             return user
         except NoResultFound:
             raise ValueError("User does not exist")
-            
+
     def createChatSession(self, userID, topic=None):
         """Creates a chat sessiion for new users and prepopulates the chat history with system message"""
         from api.v1.utils import VError
@@ -169,7 +184,8 @@ class DBStorage:
         systemMessage = "Your name is Yishu. You are a food and nutrition specialist bot for Vital Vittles (Vital vittles is a food and nutrition web application, we provide assistance to users on african cuisines primarily, as well as other cuisines in the world.). You provide expert assistance on all matters related to food, nutrition and health"
         try:
             session = ChatSession(userID=userID, topic=topic)
-            chat = Chat(userID=userID, sessionID=session.id, content=systemMessage, role="system")
+            chat = Chat(userID=userID, sessionID=session.id,
+                        content=systemMessage, role="system")
             session.save()
             chat.save()
             return [session.toDict()]
@@ -180,21 +196,24 @@ class DBStorage:
         """Retrieves the chat history based on sessionID"""
         from api.v1.utils import VError
         ChatSession = self.allModels()['ChatSession']
-        session = self.__session.query(ChatSession).filter_by(id=sessionID).first()
-        
+        session = self.__session.query(
+            ChatSession).filter_by(id=sessionID).first()
+
         if not session:
             raise VError("Chat session not found", 404)
         elif session.userID != userID:
-            raise VError("You are not authorized to access this chat session", 401)
-        
+            raise VError(
+                "You are not authorized to access this chat session", 401)
+
         history = [chat.toDict() for chat in session.chats]
         return sorted(history, key=lambda x: x.get('createdAt', ''))
-    
+
     def getUserSessions(self, userID):
         """Retrieves all chat sessions based on userID"""
         try:
             ChatSession = self.allModels()['ChatSession']
-            chatHistory = self.__session.query(ChatSession).filter_by(userID=userID).order_by(ChatSession.updatedAt.desc()).all()
+            chatHistory = self.__session.query(ChatSession).filter_by(
+                userID=userID).order_by(ChatSession.updatedAt.desc()).all()
             return [chat.toDict() for chat in chatHistory]
         except Exception as e:
             raise ValueError(e)

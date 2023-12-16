@@ -2,7 +2,6 @@ import axios from "axios";
 import { useState } from "react";
 import { useRecipeStore } from "../stateProvider/recipeStore";
 import RecipeFilters from "./RecipeFilters";
-// import { FunnelIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { FunnelIcon, MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
 function RecipeFilteredSearch() {

@@ -8,6 +8,7 @@ from flask import abort
 import json
 from json.decoder import JSONDecodeError
 import os
+from sqlalchemy.sql.sqltypes import JSON
 
 
 def allowedFile(filename, allowedExt):
@@ -85,10 +86,14 @@ class Utils:
             filterBy = json.loads(filterBy)
             for key, value in filterBy.items():
                 filterColumns[getattr(Recipe, key)] = value
+                print(type(getattr(Recipe, key).type))
+                if isinstance(getattr(Recipe, key).type, JSON):
+                    print(f'{key} is a list')
         except AttributeError as e:
             raise ValueError(str(e))
         except (ValueError, JSONDecodeError):
             raise ValueError('Invalid filters')
+        
 
         return filterColumns
 

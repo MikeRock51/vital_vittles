@@ -66,7 +66,6 @@ export default function Home() {
         <h1 className="mb-4 text-3xl font-bold text-orange-700">
           Amazing Recipes in Africa
         </h1> */}
-
       </div>
       {recipes ? (
         <div className="flex flex-col items-center">

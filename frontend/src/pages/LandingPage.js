@@ -49,7 +49,7 @@ function LandingPage() {
         </div>
         <div className="container mx-auto flex flex-wrap justify-center md:justify-between">
           {/* Question Cards */}
-          <div className="mb-8 w-full pr-8 md:mb-0 md:w-1/2 lg:w-1/3">
+          <div className="mb-8 w-full px-8 md:mb-0 md:w-1/2 lg:w-1/3">
             <div className="rounded-lg bg-gradient-to-r from-purple-800 to-indigo-900 p-6 shadow-lg">
               <h3 className="mb-2 text-xl font-semibold text-white md:text-2xl lg:text-3xl">
                 Discover African Culinary Delights
@@ -68,7 +68,7 @@ function LandingPage() {
               </a>
             </div>
           </div>
-          <div className="mb-8 w-full pr-8 md:mb-0 md:w-1/2 lg:w-1/3">
+          <div className="mb-8 w-full px-8 md:mb-0 md:w-1/2 lg:w-1/3">
             <div className="rounded-lg bg-gradient-to-r from-purple-800 to-indigo-900 p-6 shadow-lg">
               <h3 className="mb-2 text-xl font-semibold text-white md:text-2xl lg:text-3xl">
                 How Vittle-Vitles Works
@@ -92,7 +92,7 @@ function LandingPage() {
 
         <a
           href="/signup"
-          className="animate-vibrate rounded-full bg-yellow-500 px-12 py-6 font-semibold text-purple-900 transition duration-300 hover:bg-yellow-400"
+          className="hover:animate-vibrate block mt-5 w-4/5 mx-auto font-bold rounded-full bg-yellow-500 px-12 py-6  text-purple-900 transition duration-300 hover:bg-yellow-400"
         >
           Get Started
         </a>

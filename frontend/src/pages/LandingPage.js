@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Typed from "typed.js";
+import { TeamMembers } from "../utils/appData";
 
 function LandingPage() {
   useEffect(() => {
@@ -272,52 +273,9 @@ function LandingPage() {
           <h2 className="mb-8 text-3xl font-bold md:text-4xl lg:text-5xl">
             Team Members
           </h2>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 w-fit mx-auto">
             {/* List of team members with their details */}
-            {[
-              {
-                id: 1,
-                name: "Success",
-                role: "Interface Virtuoso",
-                passion: "Fullstack dev",
-                image: "success.jpg",
-              },
-              {
-                id: 2,
-                name: "Mike",
-                role: "Backend Architect",
-                passion: "fullstack Dev",
-                image: "mike.jpg",
-              },
-              {
-                id: 3,
-                name: "Sunkanmi",
-                role: "Server-side Sage",
-                passion: "Fullstack Dev",
-                image: "sunkanmi.JPG",
-              },
-              {
-                id: 4,
-                name: "George",
-                role: "Algorithm Architect",
-                passion: "Fullstack dev",
-                image: "Gorge.JPG",
-              },
-              {
-                id: 5,
-                name: "Felicia",
-                role: "Data Sorceress",
-                passion: "Data Scientist",
-                image: "felicia.jpg",
-              },
-              {
-                id: 6,
-                name: "Sani",
-                role: "Access Control Guru",
-                passion: "Fullstack dev",
-                image: "sani.jpg",
-              },
-            ].map((member) => (
+            {TeamMembers.map((member) => (
               <div key={member.id} className="flex flex-col items-center">
                 <div className="flex h-32 w-32 items-center justify-center overflow-hidden rounded-full bg-blue-500 shadow-md">
                   <img

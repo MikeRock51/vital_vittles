@@ -35,7 +35,7 @@ function LandingPage() {
           <p className="text-md md:text-lg lg:text-xl mb-8">
             <span className="typed-text"></span>
           </p>
-          
+
         </div>
         <div className="container mx-auto flex flex-wrap justify-center md:justify-between">
 
@@ -130,37 +130,37 @@ function LandingPage() {
       </section>
 
       {/* Culinary Tips Section */}
-<section className="bg-gray-100 py-16">
-  <div className="container mx-auto text-center">
-    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">Culinary Tips</h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {/* Tip Card 1 */}
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Tip 1" className="w-full h-48 object-cover" />
-        <div className="p-6">
-          <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Perfecting Flavors</h3>
-          <p className="text-gray-600">Learn how to balance and enhance flavors to create memorable and delicious dishes.</p>
+      <section className="bg-gray-100 py-16">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">Culinary Tips</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Tip Card 1 */}
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Tip 1" className="w-full h-48 object-cover" />
+              <div className="p-6">
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Perfecting Flavors</h3>
+                <p className="text-gray-600">Learn how to balance and enhance flavors to create memorable and delicious dishes.</p>
+              </div>
+            </div>
+            {/* Tip Card 2 */}
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="https://images.pexels.com/photos/1843653/pexels-photo-1843653.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Tip 2" className="w-full h-48 object-cover" />
+              <div className="p-6">
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Knife Skills</h3>
+                <p className="text-gray-600">Master the art of knife handling and slicing techniques for efficient and safe cooking.</p>
+              </div>
+            </div>
+            {/* Tip Card 3 */}
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="https://images.pexels.com/photos/2306282/pexels-photo-2306282.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Tip 3" className="w-full h-48 object-cover" />
+              <div className="p-6">
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Presentation Matters</h3>
+                <p className="text-gray-600">Discover tips on plating and presentation to make your dishes visually appealing.</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      {/* Tip Card 2 */}
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        <img src="https://images.pexels.com/photos/1843653/pexels-photo-1843653.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Tip 2" className="w-full h-48 object-cover" />
-        <div className="p-6">
-          <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Knife Skills</h3>
-          <p className="text-gray-600">Master the art of knife handling and slicing techniques for efficient and safe cooking.</p>
-        </div>
-      </div>
-      {/* Tip Card 3 */}
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        <img src="https://images.pexels.com/photos/2306282/pexels-photo-2306282.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Tip 3" className="w-full h-48 object-cover" />
-        <div className="p-6">
-          <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Presentation Matters</h3>
-          <p className="text-gray-600">Discover tips on plating and presentation to make your dishes visually appealing.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* Team Members Section */}
 <section className="py-16 bg-gray-100">
@@ -188,16 +188,12 @@ function LandingPage() {
             <h3 className="text-lg md:text-xl lg:text-2xl font-semibold mb-2">{member.name}</h3>
             <p className="text-gray-600">Role: {member.role}</p>
             <p className="text-gray-600">Passionate about: {member.passion}</p>
-            
           </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
 
 
-       
+
       {/* Join the Community Section */}
       <section className="bg-purple-800 text-white py-16">
         <div className="container mx-auto text-center">

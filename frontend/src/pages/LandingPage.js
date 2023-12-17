@@ -92,7 +92,7 @@ function LandingPage() {
 
         <a
           href="/signup"
-          className="hover:animate-vibrate block mt-5 w-4/5 mx-auto font-bold rounded-full bg-yellow-500 px-12 py-6  text-purple-900 transition duration-300 hover:bg-yellow-400"
+          className="hover:animate-vibrate block mt-20 w-4/5 md:w-86 xl:w-[500px] mx-auto font-bold rounded-full bg-yellow-500 px-12 py-6  text-purple-900 transition duration-300 hover:bg-yellow-400"
         >
           Get Started
         </a>

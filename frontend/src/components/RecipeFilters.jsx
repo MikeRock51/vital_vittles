@@ -136,7 +136,7 @@ export default function RecipeFilters() {
                               </Disclosure.Button>
                             </h3>
                             <Disclosure.Panel className="pt-6">
-                              <div className="space-y-6">
+                              <div className="grid grid-cols-2 gap-y-2">
                                 {section.options.map((option, optionIdx) => (
                                   <div
                                     key={option.value}

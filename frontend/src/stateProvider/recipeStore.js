@@ -18,6 +18,13 @@ export const useFilters = create(
   (set) => ({
     filters: {},
     setFilters: (params) => set({filters: params}),
-    // cui
+    cuisines: null,
+    setCuisines: (values) => set({cusines: values}),
+    ingredients: null,
+    setIngredients: (values) => set({ingredients: values}),
+    calories: null,
+    setCalories: (values) => set({calories: values}),
+    cookTimes: null,
+    setCookTimes: (values) => set({cookTimes: values}),
   })
 );

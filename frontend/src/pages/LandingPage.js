@@ -26,8 +26,8 @@ function LandingPage() {
     };
   }, []);
 
-  // Culinary Tips data
-  const culinaryTips = [
+   // Culinary Tips data
+   const culinaryTips = [
     {
       title: 'Perfecting Flavors',
       description: 'Explore the art of combining flavors to create harmonious and exciting taste experiences. Provide insights into classic pairings and encourage users to experiment with their own combinations.',
@@ -58,19 +58,19 @@ function LandingPage() {
       description: 'Educate users on proper food storage practices to maintain freshness and prevent waste. Include tips on storing different types of ingredients.',
       image: 'https://images.pexels.com/photos/4440172/pexels-photo-4440172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     },
-
+    
     {
       title: 'Healthy cooking tips',
       description: 'Share tips for making recipes healthier without compromising flavor. Highlight ingredients and techniques that contribute to healthier meals.',
       image: 'https://media.istockphoto.com/id/482817556/photo/choice-between-fast-food-and-healthy-food.jpg?s=1024x1024&w=is&k=20&c=BBMyRYoeBp6by4HTnewiM7FoJg1qCick-WiIz1fLRMo=',
     },
-
+    
     {
       title: 'Time-saving Hacks',
       description: ' Offer practical tips for saving time in the kitchen, making meal preparation more efficient. Cater to users with busy schedules.',
       image: 'https://images.pexels.com/photos/191703/pexels-photo-191703.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     },
-
+    
   ];
 
   const slickSettings = {
@@ -104,7 +104,7 @@ function LandingPage() {
           <p className="text-md mb-8 md:text-lg lg:text-xl">
             <span className="typed-text"></span>
           </p>
-
+          
         </div>
         <div className="container mx-auto flex flex-wrap justify-center md:justify-between">
           {/* Question Cards */}
@@ -276,14 +276,14 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* Culinary Tips Section */}
-      <section className="bg-gray-100 py-16">
+       {/* Culinary Tips Section */}
+       <section className="bg-gray-100 py-16">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">Culinary Tips</h2>
           <Slider {...slickSettings} className="slick-container">
             {culinaryTips.map((tip, index) => (
               <div key={index} className="slick-slide">
-                <img src={tip.image} alt={`Tip ${index + 1}`} className="w-full h-48 object-cover" />
+                 <img src={tip.image} alt={`Tip ${index + 1}`} className="w-full h-48 object-cover" />
                 <div className="p-6">
                   <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">{tip.title}</h3>
                   <p className="text-gray-600">{tip.description}</p>
@@ -350,52 +350,65 @@ function LandingPage() {
         </div>
       </section>
 
-
+    
       {/* Team Members Section */}
-      <section className="py-16 bg-gray-100">
+<section className="py-16 bg-gray-100">
+  <div className="container mx-auto text-center">
+    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">Team Members</h2>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
+      {/* List of team members with their details */}
+      {TeamMembers.map(member => (
+        <div key={member.id} className="flex flex-col items-center">
+          <div className="bg-blue-500 rounded-full shadow-md overflow-hidden w-32 h-32 flex items-center justify-center">
+            <img
+              src={`../teamMembersPictures/${member.image}`}
+              alt={`Team Member ${member.id}`}
+              className="w-full h-full object-cover rounded-full"
+            />
+          </div>
+          <div className="mt-4 text-center">
+            <h3 className="text-lg md:text-xl lg:text-2xl font-semibold mb-2">{member.name}</h3>
+            <p className="text-gray-600">Role: {member.role}</p>
+            <p className="text-gray-600">Passionate about: {member.passion}</p>
+            
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+      <section className="bg-gray-100 py-16">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">Team Members</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
+          <h2 className="mb-8 text-3xl font-bold md:text-4xl lg:text-5xl">
+            Team Members
+          </h2>
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 w-fit mx-auto">
             {/* List of team members with their details */}
-            {TeamMembers.map(member => (
+            {TeamMembers.map((member) => (
               <div key={member.id} className="flex flex-col items-center">
-                <div className="bg-blue-500 rounded-full shadow-md overflow-hidden w-32 h-32 flex items-center justify-center">
+                <div className="flex h-32 w-32 items-center justify-center overflow-hidden rounded-full bg-blue-500 shadow-md">
                   <img
                     src={`../teamMembersPictures/${member.image}`}
                     alt={`Team Member ${member.id}`}
-                    className="w-full h-full object-cover rounded-full"
+                    className="h-full w-full rounded-full object-cover"
                   />
                 </div>
                 <div className="mt-4 text-center">
-                  <h3 className="text-lg md:text-xl lg:text-2xl font-semibold mb-2">{member.name}</h3>
+                  <h3 className="mb-2 text-lg font-semibold md:text-xl lg:text-2xl">
+                    {member.name}
+                  </h3>
                   <p className="text-gray-600">Role: {member.role}</p>
-                  <p className="text-gray-600">Passionate about: {member.passion}</p>
-
+                  <p className="text-gray-600">
+                    Passionate about: {member.passion}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </section>
-      {/* Join the Community Section */}
-      <section className="bg-purple-800 py-16 text-white">
-        <div className="container mx-auto text-center">
-          <h2 className="mb-8 text-3xl font-bold md:text-4xl lg:text-5xl">
-            Join the Vittle-Vitles Community
-          </h2>
-          <p className="mb-8 text-xl text-gray-300 md:text-2xl lg:text-3xl">
-            Connect with food enthusiasts, share your culinary journey, and
-            explore a world of flavors together.
-          </p>
-          <a
-            href="/signup"
-            className="rounded-full bg-yellow-500 px-6 py-3 font-semibold text-purple-900 transition duration-300 hover:bg-yellow-400"
-          >
-            Sign Up Now
-          </a>
-        </div>
-      </section>
-
       {/* Testimonials Section */}
       <section className="bg-gray-100 py-16">
         <div className="container mx-auto text-center">

@@ -196,23 +196,6 @@ function LandingPage() {
                 <p className="text-gray-600">Embark on an exciting journey to the southern part of Nigeria and explore the nutricious fisherman soup</p>
               </div>
             </div>
-            {/* Featured Recipe 3 */}
-            <div className="overflow-hidden rounded-lg bg-white shadow-md">
-              <img
-                src="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                alt="Featured Recipe 3"
-                className="h-48 w-full object-cover"
-              />
-              <div className="p-6">
-                <h3 className="mb-2 text-xl font-semibold text-purple-900 md:text-2xl lg:text-3xl">
-                  Fresh Salads
-                </h3>
-                <p className="text-gray-600">
-                  Enjoy the crispness and freshness of these vibrant salads. A
-                  healthy and tasty choice for a light meal.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -285,7 +268,7 @@ function LandingPage() {
           <h2 className="mb-8 text-3xl font-bold md:text-4xl lg:text-5xl">
             Team Members
           </h2>
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 w-fit mx-auto">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 xxl:grid-cols-6 w-fit mx-auto">
             {/* List of team members with their details */}
             {TeamMembers.map((member) => (
               <div key={member.id} className="flex flex-col items-center">

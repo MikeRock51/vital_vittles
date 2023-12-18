@@ -291,66 +291,7 @@ function LandingPage() {
               </div>
             ))}
           </Slider>
-          <h2 className="mb-8 text-3xl font-bold md:text-4xl lg:text-5xl">
-            Culinary Tips
-          </h2>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {/* Tip Card 1 */}
-            <div className="overflow-hidden rounded-lg bg-white shadow-md">
-              <img
-                src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Tip 1"
-                className="h-48 w-full object-cover"
-              />
-              <div className="p-6">
-                <h3 className="mb-2 text-xl font-semibold text-purple-900 md:text-2xl lg:text-3xl">
-                  Perfecting Flavors
-                </h3>
-                <p className="text-gray-600">
-                  Learn how to balance and enhance flavors to create memorable
-                  and delicious dishes.
-                </p>
-              </div>
-            </div>
-            {/* Tip Card 2 */}
-            <div className="overflow-hidden rounded-lg bg-white shadow-md">
-              <img
-                src="https://images.pexels.com/photos/1843653/pexels-photo-1843653.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Tip 2"
-                className="h-48 w-full object-cover"
-              />
-              <div className="p-6">
-                <h3 className="mb-2 text-xl font-semibold text-purple-900 md:text-2xl lg:text-3xl">
-                  Knife Skills
-                </h3>
-                <p className="text-gray-600">
-                  Master the art of knife handling and slicing techniques for
-                  efficient and safe cooking.
-                </p>
-              </div>
-            </div>
-            {/* Tip Card 3 */}
-            <div className="overflow-hidden rounded-lg bg-white shadow-md">
-              <img
-                src="https://images.pexels.com/photos/2306282/pexels-photo-2306282.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Tip 3"
-                className="h-48 w-full object-cover"
-              />
-              <div className="p-6">
-                <h3 className="mb-2 text-xl font-semibold text-purple-900 md:text-2xl lg:text-3xl">
-                  Presentation Matters
-                </h3>
-                <p className="text-gray-600">
-                  Discover tips on plating and presentation to make your dishes
-                  visually appealing.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* Team Membes */}
+      {/* Team Members */}
       <section className="bg-gray-100 py-16">
         <div className="container mx-auto text-center">
           <h2 className="mb-8 text-3xl font-bold md:text-4xl lg:text-5xl">

@@ -291,6 +291,8 @@ function LandingPage() {
               </div>
             ))}
           </Slider>
+          </div>
+          </section>
       {/* Team Members */}
       <section className="bg-gray-100 py-16">
         <div className="container mx-auto text-center">

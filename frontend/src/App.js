@@ -14,13 +14,16 @@ import MyRecipes from "./pages/MyRecipes";
 import Toast from "./providers/ToastProvider";
 import SignInPage from "./pages/SignIn";
 import ChatPage from "./pages/ChatPage";
+import { useUserStore } from "./stateProvider/authStore";
+import toast from "react-hot-toast";
+import NoSessionModal from "./components/modals/NoSessionModal";
 
 // import { lazy } from "react";
 
 // const Home = lazy(() => import("./pages/Home"));
 
 export default function App() {
-  // const { currentUser } = useUserStore()
+  const { currentUser } = useUserStore()
 
   useEffect(() => {}, []);
   // console.log(currentUser)
@@ -45,6 +48,7 @@ export default function App() {
             <Route path="/yishu" element={<ChatPage />} />
           </Routes>
         </div>
+        <NoSessionModal />
       </Suspense>
     </Router>
   );

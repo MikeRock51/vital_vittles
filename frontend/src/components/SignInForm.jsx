@@ -1,18 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { validateSignInInput } from "../utils/Validators";
 import { LoginUser } from "../utils/Connector";
 import { useUserStore } from "../stateProvider/authStore";
+import toast from "react-hot-toast";
 
 function SignInForm() {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-  const { setCurrentUser, setAuthToken } = useUserStore();
+  const { setCurrentUser, setAuthToken, setTokenExp, noSession } = useUserStore();
   const userFields = {
     email: "",
     password: "",
   };
+
+  // useEffect(() => {
+  //   noSession && toast.error("You do not have an active session, please log in to continue...")
+  // }, [noSession]);
 
   return (
     <div className="xs:w-4/6 mt-20 w-11/12 bg-[#e2e8f0] py-10 sm:py-14 text-center sm:w-4/6 md:w-5/12">
@@ -24,10 +29,11 @@ function SignInForm() {
           return errors;
         }}
         onSubmit={async (values, { setSubmitting }) => {
-          const { user, token } = await LoginUser(values, setError);
+          const { user, token, exp } = await LoginUser(values, setError);
           if (user) {
             setCurrentUser(user);
             setAuthToken(token);
+            setTokenExp(exp);
             setSubmitting(false);
             navigate("/recipes");
           }

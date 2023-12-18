@@ -14,10 +14,17 @@ export const useRecipeStore = create(
       setFilters: (params) => set({filters: params})
     }),);
 
-export const useFilters = create(
+export const useFiltersStore = create(
   (set) => ({
     filters: {},
     setFilters: (params) => set({filters: params}),
-    // cui
+    cuisines: [],
+    setCuisines: (values) => set({cusines: values}),
+    ingredients: [],
+    setIngredients: (values) => set({ingredients: values}),
+    calories: [],
+    setCalories: (values) => set({calories: values}),
+    cookTimes: [],
+    setCookTimes: (values) => set({cookTimes: values}),
   })
 );

@@ -9,60 +9,25 @@ import {
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
 import RecipeFilteredSearch from "./RecipeFilteredSearch";
-import { useRecipeStore } from "../stateProvider/recipeStore";
+import { useRecipeStore, useFiltersStore } from "../stateProvider/recipeStore";
+import { filters } from "../utils/appData";
 
-const sortOptions = [
-  { name: "Most Popular", href: "#", current: true },
-  { name: "Best Rating", href: "#", current: false },
-  { name: "Newest", href: "#", current: false },
-  { name: "Price: Low to High", href: "#", current: false },
-  { name: "Price: High to Low", href: "#", current: false },
-];
 
-const filters = [
-  {
-    id: "cuisines",
-    name: "Cuisines",
-    options: [
-      { value: "nigerian", label: "Nigerian", checked: false },
-      { value: "ghanaian", label: "Ghanaian", checked: false },
-      { value: "west african", label: "West African", checked: true },
-      { value: "kenyan", label: "Kenyan", checked: false },
-      { value: "south african", label: "South African", checked: false },
-      { value: "ivorian", label: "Ivorian", checked: false },
-    ],
-  },
-  {
-    id: "ingreddients",
-    name: "Ingredients",
-    options: [
-      { value: "onion", label: "Onion", checked: false },
-      { value: "tomato", label: "Tomato", checked: false },
-      { value: "vegetable", label: "Vegetable", checked: true },
-      { value: "ginger", label: "Ginger", checked: false },
-      { value: "curry", label: "Curry", checked: false },
-    ],
-  },
-  {
-    id: "cook_time",
-    name: "Cooking Time",
-    options: [
-      { value: "10", label: "10 Minutes", checked: false },
-      { value: "15", label: "15 Minutes", checked: false },
-      { value: "20", label: "20 Minutes", checked: false },
-      { value: "30", label: "30 Minutes", checked: false },
-      { value: "45", label: "45 Minutes", checked: false },
-      { value: "60", label: "60 Minutes", checked: true },
-    ],
-  },
-];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+// function classNames(...classes) {
+//   return classes.filter(Boolean).join(" ");
+// }
 
 export default function RecipeFilters() {
   const { filtersOpen, setFiltersOpen } = useRecipeStore();
+  const { cuisines, calories, cookTime, ingredients } = useFiltersStore();
+
+  function handleCuisineFilters(e) {
+    console.log("Changed", e.target.id);
+    console.log(['cuisines'])
+    e.target.checked ? cuisines.push(e.target.value) : cuisines.pop(e.target.value);
+
+    console.log(cuisines)
+  }
 
   return (
     <div className="bg-white">
@@ -97,10 +62,10 @@ export default function RecipeFilters() {
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
+                <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-lg flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
                   <div className="flex items-center justify-between px-4">
                     <h2 className="text-lg font-medium text-gray-900">
-                      Filters
+                      Filters By
                     </h2>
                     <button
                       type="button"
@@ -144,7 +109,7 @@ export default function RecipeFilters() {
                               </Disclosure.Button>
                             </h3>
                             <Disclosure.Panel className="pt-6">
-                              <div className="space-y-6">
+                              <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                                 {section.options.map((option, optionIdx) => (
                                   <div
                                     key={option.value}
@@ -155,7 +120,8 @@ export default function RecipeFilters() {
                                       name={`${section.id}[]`}
                                       defaultValue={option.value}
                                       type="checkbox"
-                                      defaultChecked={option.checked}
+                                      defaultChecked={cuisines.includes(option.value)}
+                                      onChange={handleCuisineFilters}
                                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                     />
                                     <label

@@ -268,7 +268,7 @@ function LandingPage() {
           <h2 className="mb-8 text-3xl font-bold md:text-4xl lg:text-5xl">
             Team Members
           </h2>
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 w-fit mx-auto">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 xxl:grid-cols-6 w-fit mx-auto">
             {/* List of team members with their details */}
             {TeamMembers.map((member) => (
               <div key={member.id} className="flex flex-col items-center">

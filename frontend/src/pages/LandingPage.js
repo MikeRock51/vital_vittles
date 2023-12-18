@@ -174,13 +174,6 @@ function LandingPage() {
               <div className="p-6">
                 <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Yoruba Amala & Ewedu</h3>
                 <p className="text-gray-600">Embark on a culinary journey with our Yoruba Amala and Ewedu, a dish that encapsulates the essence of Yoruba tradition. Taste the dark, smooth, and elastic allure of Amala...</p>
-                <h3 className="mb-2 text-xl font-semibold text-purple-900 md:text-2xl lg:text-3xl">
-                  Yoruba Amala & Ewedu
-                </h3>
-                <p className="text-gray-600">
-                  Indulge in the rich flavors of this mouthwatering pasta dish.
-                  Perfect for a cozy dinner with loved ones.
-                </p>
               </div>
             </div>
             {/* Featured Recipe 2 */}
@@ -200,14 +193,7 @@ function LandingPage() {
               <img src="https://scontent.fabb1-2.fna.fbcdn.net/v/t1.6435-9/68826375_2107429039563083_2148256127932956672_n.jpg?stp=dst-jpg_p526x296&_nc_cat=111&ccb=1-7&_nc_sid=dd63ad&_nc_eui2=AeGk4vEI2PVt-U2fuj9QcfVS8ZMJrdUZv8Lxkwmt1Rm_whpX3umix2C_nJfkHWEripcgwmLmmM3-Hgkj2PhVTI3L&_nc_ohc=2n8y85CS33YAX9d8WFs&_nc_ht=scontent.fabb1-2.fna&oh=00_AfBzhiuaw5G0uoYzyXWhvZ3KCm2u2Ia7FAFlpiCROlevHQ&oe=65A6DB79" alt="Featured Recipe 3" className="w-full h-48 object-cover" />
               <div className="p-6">
                 <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Calabar fisherman Soup</h3>
-                <p className="text-gray-600">embark on an exciting journey to the southern part of Nigeria and explore the nutricious fisherman soup</p>
-                <h3 className="mb-2 text-xl font-semibold text-purple-900 md:text-2xl lg:text-3xl">
-                  Delta Banga Soup & Starch
-                </h3>
-                <p className="text-gray-600">
-                  Explore the delightful combination of flavors with these
-                  savory and delicious tacos. A perfect treat for any occasion.
-                </p>
+                <p className="text-gray-600">Embark on an exciting journey to the southern part of Nigeria and explore the nutricious fisherman soup</p>
               </div>
             </div>
             {/* Featured Recipe 3 */}

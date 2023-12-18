@@ -118,7 +118,7 @@ export const filters = [
     ],
   },
   {
-    id: "cookTime",
+    id: "cookTimes",
     name: "Cooking Time",
     options: [
       { value: "10", label: "10 Minutes", checked: false },

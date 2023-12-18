@@ -349,36 +349,8 @@ function LandingPage() {
           </div>
         </div>
       </section>
-
-    
-      {/* Team Members Section */}
-<section className="py-16 bg-gray-100">
-  <div className="container mx-auto text-center">
-    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">Team Members</h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
-      {/* List of team members with their details */}
-      {TeamMembers.map(member => (
-        <div key={member.id} className="flex flex-col items-center">
-          <div className="bg-blue-500 rounded-full shadow-md overflow-hidden w-32 h-32 flex items-center justify-center">
-            <img
-              src={`../teamMembersPictures/${member.image}`}
-              alt={`Team Member ${member.id}`}
-              className="w-full h-full object-cover rounded-full"
-            />
-          </div>
-          <div className="mt-4 text-center">
-            <h3 className="text-lg md:text-xl lg:text-2xl font-semibold mb-2">{member.name}</h3>
-            <p className="text-gray-600">Role: {member.role}</p>
-            <p className="text-gray-600">Passionate about: {member.passion}</p>
-            
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-
+      
+      {/* Team Membes */}
       <section className="bg-gray-100 py-16">
         <div className="container mx-auto text-center">
           <h2 className="mb-8 text-3xl font-bold md:text-4xl lg:text-5xl">

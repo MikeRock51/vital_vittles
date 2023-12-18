@@ -53,10 +53,12 @@ export default function Navbar() {
     if (protectedRoutes.includes(location.pathname)) {
       if (!currentUser) {
         setAuthToken(null);
+        setNoSession(true);
         navigate('/signin');
       }
       if (tokenExp <= new Date()) {
         console.log("Expired!");
+        setNoSession(true);
         setCurrentUser(null);
         setAuthToken(null);
         navigate('/signin');

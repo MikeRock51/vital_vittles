@@ -1,5 +1,9 @@
-import React, { useEffect } from "react";
-import Typed from "typed.js";
+import React, { useEffect } from 'react';
+import Typed from 'typed.js';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 import { TeamMembers } from "../utils/appData";
 
 function LandingPage() {
@@ -22,6 +26,60 @@ function LandingPage() {
     };
   }, []);
 
+   // Culinary Tips data
+   const culinaryTips = [
+    {
+      title: 'Perfecting Flavors',
+      description: 'Explore the art of combining flavors to create harmonious and exciting taste experiences. Provide insights into classic pairings and encourage users to experiment with their own combinations.',
+      image: 'https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    },
+    {
+      title: 'Knife Skills',
+      description: 'Master the art of knife handling and slicing techniques for efficient and safe cooking.',
+      image: 'https://images.pexels.com/photos/9986235/pexels-photo-9986235.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    },
+    {
+      title: 'Presentation Matters',
+      description: 'Discover tips on plating and presentation to make your dishes visually appealing.',
+      image: 'https://images.pexels.com/photos/2306282/pexels-photo-2306282.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    },
+    {
+      title: 'Ingredient Substitution',
+      description: 'Help users adapt to unforeseen circumstances in the kitchen by suggesting alternatives for ingredients. This is particularly useful for users who may not have access to certain items.',
+      image: 'https://images.pexels.com/photos/1988624/pexels-photo-1988624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    },
+    {
+      title: 'cooking techniques',
+      description: 'Introduce users to various cooking methods, explaining when and how to use them. This empowers users to choose the right technique for different recipes.',
+      image: 'https://images.pexels.com/photos/12179060/pexels-photo-12179060.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    },
+    {
+      title: 'food storage tips',
+      description: 'Educate users on proper food storage practices to maintain freshness and prevent waste. Include tips on storing different types of ingredients.',
+      image: 'https://images.pexels.com/photos/4440172/pexels-photo-4440172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    },
+    
+    {
+      title: 'Healthy cooking tips',
+      description: 'Share tips for making recipes healthier without compromising flavor. Highlight ingredients and techniques that contribute to healthier meals.',
+      image: 'https://media.istockphoto.com/id/482817556/photo/choice-between-fast-food-and-healthy-food.jpg?s=1024x1024&w=is&k=20&c=BBMyRYoeBp6by4HTnewiM7FoJg1qCick-WiIz1fLRMo=',
+    },
+    
+    {
+      title: 'Time-saving Hacks',
+      description: ' Offer practical tips for saving time in the kitchen, making meal preparation more efficient. Cater to users with busy schedules.',
+      image: 'https://images.pexels.com/photos/191703/pexels-photo-191703.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    },
+    
+  ];
+
+  const slickSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3, // Display three tips at a time
+    slidesToScroll: 1,
+  };
   return (
     <div>
       {/* Navigation Bar */}
@@ -46,6 +104,7 @@ function LandingPage() {
           <p className="text-md mb-8 md:text-lg lg:text-xl">
             <span className="typed-text"></span>
           </p>
+          
         </div>
         <div className="container mx-auto flex flex-wrap justify-center md:justify-between">
           {/* Question Cards */}
@@ -113,13 +172,8 @@ function LandingPage() {
                 className="h-48 w-full object-cover"
               />
               <div className="p-6">
-                <h3 className="mb-2 text-xl font-semibold text-purple-900 md:text-2xl lg:text-3xl">
-                  Yoruba Amala & Ewedu
-                </h3>
-                <p className="text-gray-600">
-                  Indulge in the rich flavors of this mouthwatering pasta dish.
-                  Perfect for a cozy dinner with loved ones.
-                </p>
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Yoruba Amala & Ewedu</h3>
+                <p className="text-gray-600">Embark on a culinary journey with our Yoruba Amala and Ewedu, a dish that encapsulates the essence of Yoruba tradition. Taste the dark, smooth, and elastic allure of Amala...</p>
               </div>
             </div>
             {/* Featured Recipe 2 */}
@@ -130,30 +184,16 @@ function LandingPage() {
                 className="h-48 w-full object-cover"
               />
               <div className="p-6">
-                <h3 className="mb-2 text-xl font-semibold text-purple-900 md:text-2xl lg:text-3xl">
-                  Delta Banga Soup & Starch
-                </h3>
-                <p className="text-gray-600">
-                  Explore the delightful combination of flavors with these
-                  savory and delicious tacos. A perfect treat for any occasion.
-                </p>
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Delta Banga Soup & Starch</h3>
+                <p className="text-gray-600">Embark on a culinary voyage with the Niger Delta Banga Soup and Starch—a gastronomic delight that captures the essence of Delta's rich culinary heritage.</p>
               </div>
             </div>
             {/* Featured Recipe 3 */}
-            <div className="overflow-hidden rounded-lg bg-white shadow-md">
-              <img
-                src="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                alt="Featured Recipe 3"
-                className="h-48 w-full object-cover"
-              />
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="https://scontent.fabb1-2.fna.fbcdn.net/v/t1.6435-9/68826375_2107429039563083_2148256127932956672_n.jpg?stp=dst-jpg_p526x296&_nc_cat=111&ccb=1-7&_nc_sid=dd63ad&_nc_eui2=AeGk4vEI2PVt-U2fuj9QcfVS8ZMJrdUZv8Lxkwmt1Rm_whpX3umix2C_nJfkHWEripcgwmLmmM3-Hgkj2PhVTI3L&_nc_ohc=2n8y85CS33YAX9d8WFs&_nc_ht=scontent.fabb1-2.fna&oh=00_AfBzhiuaw5G0uoYzyXWhvZ3KCm2u2Ia7FAFlpiCROlevHQ&oe=65A6DB79" alt="Featured Recipe 3" className="w-full h-48 object-cover" />
               <div className="p-6">
-                <h3 className="mb-2 text-xl font-semibold text-purple-900 md:text-2xl lg:text-3xl">
-                  Fresh Salads
-                </h3>
-                <p className="text-gray-600">
-                  Enjoy the crispness and freshness of these vibrant salads. A
-                  healthy and tasty choice for a light meal.
-                </p>
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">Calabar fisherman Soup</h3>
+                <p className="text-gray-600">Embark on an exciting journey to the southern part of Nigeria and explore the nutricious fisherman soup</p>
               </div>
             </div>
           </div>
@@ -205,75 +245,30 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* Culinary Tips Section */}
-      <section className="bg-gray-100 py-16">
+       {/* Culinary Tips Section */}
+       <section className="bg-gray-100 py-16">
         <div className="container mx-auto text-center">
-          <h2 className="mb-8 text-3xl font-bold md:text-4xl lg:text-5xl">
-            Culinary Tips
-          </h2>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {/* Tip Card 1 */}
-            <div className="overflow-hidden rounded-lg bg-white shadow-md">
-              <img
-                src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Tip 1"
-                className="h-48 w-full object-cover"
-              />
-              <div className="p-6">
-                <h3 className="mb-2 text-xl font-semibold text-purple-900 md:text-2xl lg:text-3xl">
-                  Perfecting Flavors
-                </h3>
-                <p className="text-gray-600">
-                  Learn how to balance and enhance flavors to create memorable
-                  and delicious dishes.
-                </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">Culinary Tips</h2>
+          <Slider {...slickSettings} className="slick-container">
+            {culinaryTips.map((tip, index) => (
+              <div key={index} className="slick-slide">
+                 <img src={tip.image} alt={`Tip ${index + 1}`} className="w-full h-48 object-cover" />
+                <div className="p-6">
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">{tip.title}</h3>
+                  <p className="text-gray-600">{tip.description}</p>
+                </div>
               </div>
-            </div>
-            {/* Tip Card 2 */}
-            <div className="overflow-hidden rounded-lg bg-white shadow-md">
-              <img
-                src="https://images.pexels.com/photos/1843653/pexels-photo-1843653.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Tip 2"
-                className="h-48 w-full object-cover"
-              />
-              <div className="p-6">
-                <h3 className="mb-2 text-xl font-semibold text-purple-900 md:text-2xl lg:text-3xl">
-                  Knife Skills
-                </h3>
-                <p className="text-gray-600">
-                  Master the art of knife handling and slicing techniques for
-                  efficient and safe cooking.
-                </p>
-              </div>
-            </div>
-            {/* Tip Card 3 */}
-            <div className="overflow-hidden rounded-lg bg-white shadow-md">
-              <img
-                src="https://images.pexels.com/photos/2306282/pexels-photo-2306282.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Tip 3"
-                className="h-48 w-full object-cover"
-              />
-              <div className="p-6">
-                <h3 className="mb-2 text-xl font-semibold text-purple-900 md:text-2xl lg:text-3xl">
-                  Presentation Matters
-                </h3>
-                <p className="text-gray-600">
-                  Discover tips on plating and presentation to make your dishes
-                  visually appealing.
-                </p>
-              </div>
-            </div>
+            ))}
+          </Slider>
           </div>
-        </div>
-      </section>
-
-      {/* Team Members Section */}
+          </section>
+      {/* Team Members */}
       <section className="bg-gray-100 py-16">
         <div className="container mx-auto text-center">
           <h2 className="mb-8 text-3xl font-bold md:text-4xl lg:text-5xl">
             Team Members
           </h2>
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 w-fit mx-auto">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 xxl:grid-cols-6 w-fit mx-auto">
             {/* List of team members with their details */}
             {TeamMembers.map((member) => (
               <div key={member.id} className="flex flex-col items-center">
@@ -298,26 +293,6 @@ function LandingPage() {
           </div>
         </div>
       </section>
-
-      {/* Join the Community Section */}
-      <section className="bg-purple-800 py-16 text-white">
-        <div className="container mx-auto text-center">
-          <h2 className="mb-8 text-3xl font-bold md:text-4xl lg:text-5xl">
-            Join the Vittle-Vitles Community
-          </h2>
-          <p className="mb-8 text-xl text-gray-300 md:text-2xl lg:text-3xl">
-            Connect with food enthusiasts, share your culinary journey, and
-            explore a world of flavors together.
-          </p>
-          <a
-            href="/signup"
-            className="rounded-full bg-yellow-500 px-6 py-3 font-semibold text-purple-900 transition duration-300 hover:bg-yellow-400"
-          >
-            Sign Up Now
-          </a>
-        </div>
-      </section>
-
       {/* Testimonials Section */}
       <section className="bg-gray-100 py-16">
         <div className="container mx-auto text-center">

@@ -17,9 +17,12 @@ function Profile() {
     <h2 className="text-2xl sm:text-5xl py-5" >
       Good {getTimeOfDay()} {currentUser?.firstname} {currentUser?.lastname}!
     </h2>
-    <p style={{ fontWeight: 'bold' }}>First Name: {currentUser?.firstname}</p>
-    <p style={{ fontWeight: 'bold' }}>Last Name: {currentUser?.lastname}</p>
-    <p style={{ fontWeight: 'bold' }}>Username: {currentUser?.username}</p>
+    <div>
+  <p style={{ fontWeight: 'bold', marginBottom: '10px', color: 'white', fontSize: '30px' }}>First Name: {currentUser?.firstname}</p>
+  <p style={{ fontWeight: 'bold', marginBottom: '10px', color: 'white', fontSize: '30px' }}>Last Name: {currentUser?.lastname}</p>
+  <p style={{ fontWeight: 'bold', marginBottom: '10px', color: 'white', fontSize: '30px' }}>Username: {currentUser?.username}</p>
+</div>
+
   </div>
 </div>
 

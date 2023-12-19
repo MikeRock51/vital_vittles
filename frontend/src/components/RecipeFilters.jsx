@@ -88,11 +88,12 @@ export default function RecipeFilters({loading}) {
                       </h2>
                       <button
                         className="mr-8 text-sm hover:underline"
-                        onClick={() => {
+                        onClick={(e) => {
                           console.log("clear...");
                           resetFilterBy();
                           resetFilters();
                           console.log(filterBy);
+                          setFiltersOpen(false);
                         }}
                       >
                         Clear Filters

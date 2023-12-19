@@ -45,7 +45,7 @@ function RecipeFilteredSearch({ submitFilters, loading }) {
           <input
             type="text"
             placeholder="Search recipes"
-            className="h-10 rounded-l border-2 border-gray-500 px-3 focus:border-gray-400 focus:outline-none disabled:border-gray-500"
+            className="h-12 w-5/6 sm:w-auto rounded-l border-2 border-gray-500 px-3 focus:border-gray-400 focus:outline-none disabled:border-gray-500"
             disabled={loading}
             onChange={(e) => {
               setSearchTerm(e.target.value);

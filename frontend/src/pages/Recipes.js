@@ -15,7 +15,7 @@ import RecipeFilters from "../components/RecipeFilters";
 const API_URL = "https://acr-api.mikerock.tech/api/v1/recipes";
 const PAGE_SIZE = 10;
 
-export default function Home() {
+export default function Recipes() {
   // const [recipes, setRecipes] = useState({ data: [] });
   // const [currentPage, setCurrentPage] = useState(1);
   const {
@@ -32,8 +32,11 @@ export default function Home() {
 
   const handleLoadMore = () => {
     // dispatch({ type: "NEXT_PAGE", payload: currentPage + 1 });
+    // console.log(currentPage);
     setCurrentPage(currentPage + 1);
   };
+
+  console.log(currentPage);
 
   // console.log(searchTerm);
   const fetchData = async () => {

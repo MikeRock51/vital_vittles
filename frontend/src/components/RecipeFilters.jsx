@@ -29,9 +29,6 @@ export default function RecipeFilters() {
     console.log(filterBy);
   }
 
-  console.log(filterBy, emptyFilters);
-  console.log(JSON.stringify(filterBy) === JSON.stringify(emptyFilters));
-
   useEffect(() => {
   }, [filterBy]);
 

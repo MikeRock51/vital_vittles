@@ -1,7 +1,7 @@
 import { Suspense, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
+import Recipes from "./pages/Recipes";
 import FoodDetails from "./pages/FoodDetails";
 import Error from "./ui/Error";
 import SignUpPage from "./pages/SignUp";
@@ -38,7 +38,7 @@ export default function App() {
           <Toast />
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route path="/recipes" element={<Home />} />
+            <Route path="/recipes" element={<Recipes />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/signin" element={<SignInPage />} />
             <Route path="/food/:id" element={<FoodDetails />} />

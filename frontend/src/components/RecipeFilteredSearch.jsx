@@ -40,7 +40,7 @@ function RecipeFilteredSearch() {
       console.log(filters)
 
       const response = await axios.get(
-        `https://acr-api.mikerock.tech/api/v1/recipes?page=1&pageSize=10&search=${searchTerm}&filter_by=${JSON.stringify(filters)}`,
+        `https://acr-api.mikerock.tech/api/v1/recipes?page=${currentPage}&search=${searchTerm}&filter_by=${JSON.stringify(filters)}`,
       );
 
       const searchData = response?.data?.data;

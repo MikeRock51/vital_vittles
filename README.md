@@ -1,4 +1,4 @@
-# Vital Vittles Recipe Project
+# Vital Vittles
 
 ## Table of Contents
 a. About The Project 

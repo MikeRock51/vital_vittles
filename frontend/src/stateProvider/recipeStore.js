@@ -17,25 +17,25 @@ export const useRecipeStore = create(
 export const useFiltersStore = create(
   (set) => ({
     filterBy: {
-      cuisines: [],
+      cuisine: [],
       ingredients: [],
-      calories: [],
-      cookTimes: [],
+      calories_per_serving: [],
+      cook_time_minutes: [],
     },
     setFilterBy: (params) => set({filters: params}),
     emptyFilters: {
-      cuisines: [],
+      cuisine: [],
       ingredients: [],
-      calories: [],
-      cookTimes: [],
+      calories_per_serving: [],
+      cook_time_minutes: [],
     },
     cuisines: [],
     setCuisines: (values) => set({cusines: values}),
     ingredients: [],
     setIngredients: (values) => set({ingredients: values}),
-    calories: [],
-    setCalories: (values) => set({calories: values}),
-    cookTimes: [],
-    setCookTimes: (values) => set({cookTimes: values}),
+    calories_per_serving: [],
+    setCalories: (values) => set({calories_per_serving: values}),
+    cook_time_minutes: [],
+    setCookTimes: (values) => set({cook_time_minutes: values}),
   })
 );

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useRecipeStore } from "../stateProvider/recipeStore";
+import { useFiltersStore, useRecipeStore } from "../stateProvider/recipeStore";
 import RecipeFilters from "./RecipeFilters";
 import { FunnelIcon, MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
@@ -14,21 +14,33 @@ function RecipeFilteredSearch() {
     setCurrentPage,
     recipes,
     setRecipes,
-    setFiltersOpen
+    setFiltersOpen,
   } = useRecipeStore();
+  const {filterBy, emptyFilters } = useFiltersStore();
+  const filters = {};
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (!searchTerm) return;
+    // console.log(filterBy, emptyFilters);
+
+    if (!searchTerm && JSON.stringify(filterBy) === JSON.stringify(emptyFilters)) return;
     console.log(searchTerm);
 
     try {
       setLoading(true);
       setError(null);
 
+      for (let key in filterBy ) {
+        if (filterBy[key].length > 0) {
+          filters[key] = filterBy[key];
+        }
+      }
+
+      console.log(filters)
+
       const response = await axios.get(
-        `https://acr-api.mikerock.tech/api/v1/recipes?page=1&pageSize=10&search=${searchTerm}`,
+        `https://acr-api.mikerock.tech/api/v1/recipes?page=1&pageSize=10&search=${searchTerm}&filter_by=${JSON.stringify(filters)}`,
       );
 
       const searchData = response?.data?.data;
@@ -60,7 +72,7 @@ function RecipeFilteredSearch() {
             <button
               type="button"
               className="px-3 py-1 bg-gray-500 text-primary-40 hover:opacity-75 disabled:bg-gray-500 border-r border-primary-40"
-              title="Apply filters"
+              title="Apply filterBy"
               onClick={() => setFiltersOpen(true)}
             >
               <span className="sr-only">Filters</span>

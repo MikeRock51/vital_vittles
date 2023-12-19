@@ -11,6 +11,7 @@ import {
 import RecipeFilteredSearch from "./RecipeFilteredSearch";
 import { useRecipeStore, useFiltersStore } from "../stateProvider/recipeStore";
 import { filters } from "../utils/appData";
+import { _ } from "lodash";
 
 // function classNames(...classes) {
 //   return classes.filter(Boolean).join(" ");
@@ -28,8 +29,13 @@ export default function RecipeFilters() {
     console.log(filterBy);
   }
 
+  console.log(filterBy, emptyFilters);
+  console.log(JSON.stringify(filterBy) === JSON.stringify(emptyFilters));
+
   useEffect(() => {
   }, [filterBy]);
+
+  // console.log(filterBy)
 
   return (
     <div className="bg-white">

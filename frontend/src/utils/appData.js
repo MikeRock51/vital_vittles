@@ -101,7 +101,7 @@ export const africanCuisines = [
 
 export const filters = [
   {
-    id: "cuisines",
+    id: "cuisine",
     name: "Cuisines",
     options: africanCuisines,
   },
@@ -117,7 +117,7 @@ export const filters = [
     ],
   },
   {
-    id: "cookTimes",
+    id: "cook_time_minutes",
     name: "Cooking Time",
     options: [
       { value: "10", label: "10 Minutes", checked: false },

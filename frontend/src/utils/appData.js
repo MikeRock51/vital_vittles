@@ -99,7 +99,7 @@ export const africanCuisines = [
   { value: "zimbabwean", label: "Zimbabwean", checked: false },
 ];
 
-export const filters = [
+export const filterFields = [
   {
     id: "cuisine",
     name: "Cuisines",

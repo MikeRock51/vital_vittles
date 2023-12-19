@@ -10,16 +10,20 @@ import {
 } from "@heroicons/react/20/solid";
 import RecipeFilteredSearch from "./RecipeFilteredSearch";
 import { useRecipeStore, useFiltersStore } from "../stateProvider/recipeStore";
-import { filters } from "../utils/appData";
-import { _ } from "lodash";
+import { filterFields } from "../utils/appData";
+import { useUIStore } from "../stateProvider/uiStore";
 
 // function classNames(...classes) {
 //   return classes.filter(Boolean).join(" ");
 // }
 
-export default function RecipeFilters() {
-  const { filtersOpen, setFiltersOpen } = useRecipeStore();
-  const { filterBy, setFilterBy, emptyFilters } = useFiltersStore();
+export default function RecipeFilters({loading}) {
+  const { filtersOpen, setFiltersOpen, resetFilters,
+    setCurrentPage, resetRecipes,
+    searchTerm, setFilters, filters } = useRecipeStore();
+  const { filterBy, setFilterBy, emptyFilters, resetFilterBy } =
+    useFiltersStore();
+  const { render, setRender } = useUIStore();
 
   function handleFilters(e) {
     e.target.checked
@@ -29,8 +33,23 @@ export default function RecipeFilters() {
     console.log(filterBy);
   }
 
-  useEffect(() => {
-  }, [filterBy]);
+  function handleFilter(e) {
+    e.preventDefault();
+    resetRecipes();
+
+    if (!searchTerm && JSON.stringify(filterBy) === JSON.stringify(emptyFilters)) return;
+    setCurrentPage(1);
+
+    for (let key in filterBy ) {
+      if (filterBy[key].length > 0) {
+        setFilters({...filters, [key]: filterBy[key]})
+      }
+    }
+    setRender(!render)
+  }
+
+  // useEffect(() => {
+  // }, [filterBy]);
 
   // console.log(filterBy)
 
@@ -67,14 +86,15 @@ export default function RecipeFilters() {
                   <div className="flex items-center justify-between px-4">
                     <div className="flex w-full justify-between">
                       <h2 className="text-lg font-medium text-gray-900">
-                        Filters By
+                        Filters
                       </h2>
                       <button
                         className="mr-8 text-sm hover:underline"
                         onClick={() => {
-                          console.log("cleared")
-                          setFilterBy(emptyFilters);
-                          console.log(filterBy)
+                          console.log("clear...");
+                          resetFilterBy();
+                          console.log(filterBy);
+                          resetFilters();
                         }}
                       >
                         Clear Filters
@@ -93,7 +113,7 @@ export default function RecipeFilters() {
                   {/* Filters */}
                   <form className="mt-4 border-t border-gray-200">
                     <h3 className="sr-only">Categories</h3>
-                    {filters.map((section) => (
+                    {filterFields.map((section) => (
                       <Disclosure
                         as="div"
                         key={section.id}
@@ -166,7 +186,7 @@ export default function RecipeFilters() {
               Amazing Recipes in Africa
             </h1>
             <div className="">
-              <RecipeFilteredSearch />
+              <RecipeFilteredSearch handleFilter={handleFilter} loading={loading} />
             </div>
           </div>
         </main>

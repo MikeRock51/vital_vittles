@@ -7,13 +7,14 @@ import Loader from "../ui/Loader";
 import axios from "axios";
 // import { useRecipesContext } from "../context/RecipesContext";
 import SearchRecipe from "../components/SearchRecipe";
-import { useRecipeStore } from "../stateProvider/recipeStore";
+import { useFiltersStore, useRecipeStore } from "../stateProvider/recipeStore";
 import RecipeFilteredSearch from "../components/RecipeFilteredSearch";
 import RecipeFilters from "../components/RecipeFilters";
+import { useUIStore } from "../stateProvider/uiStore";
+import { fetchRecipes } from "../utils/DataFetcher";
 // toast.success("Toast setup successfully!");
 
 const API_URL = "https://acr-api.mikerock.tech/api/v1/recipes";
-const PAGE_SIZE = 10;
 
 export default function Recipes() {
   // const [recipes, setRecipes] = useState({ data: [] });
@@ -25,68 +26,88 @@ export default function Recipes() {
     setCurrentPage,
     searchTerm,
     setSearchTerm,
+    setTotalPages,
+    filters,
+    setFilters,
+    totalPages,
   } = useRecipeStore();
+  const { filterBy, emptyFilters } = useFiltersStore();
   const [fetch, setFetch] = useState(false);
+  const { render, setRender } = useUIStore();
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  // const { recipes, currentPage, dispatch } = useRecipesContext();
-
-  const handleLoadMore = () => {
-    // dispatch({ type: "NEXT_PAGE", payload: currentPage + 1 });
-    // console.log(currentPage);
-    setCurrentPage(currentPage + 1);
-  };
-
-  console.log(currentPage);
-
-  // console.log(searchTerm);
-  const fetchData = async () => {
-    setSearchTerm("");
-    try {
-      const response = await axios.get(
-        `${API_URL}?page=${currentPage}&pageSize=${PAGE_SIZE}${searchTerm ? `&search=${searchTerm}` : ""
-        })}`,
-      );
-      const newData = response?.data?.data;
-      console.log(newData);
-      setCurrentPage(Number(response?.data?.page));
-      setRecipes([...recipes, ...newData]);
-    } catch (error) {
-      console.log("Error fetching recipes", error);
+  async function getRecipes() {
+    setError(null);
+    setLoading(true);
+    const recipeData = await fetchRecipes(currentPage, searchTerm, filters);
+    if (recipeData) {
+      setRecipes(recipeData.recipes);
+      setCurrentPage(recipeData.page);
+      setTotalPages(recipeData.totalPages);
     }
-  };
+    setLoading(false)
+  }
 
   useEffect(() => {
-    fetchData();
-  }, [currentPage]);
+    getRecipes();
+    window.scrollTo(0, 0);
+  }, [render]);
+
+  // console.log(recipes)
+  console.log(currentPage, searchTerm, filters);
 
   return (
     <div className="mt-20">
       <Toast />
       {/* <RecipeFilteredSearch /> */}
-      <RecipeFilters />
-      <div className=" flex sm:justify-center  lg:mx-36 py-5">
-        {/* 
-        <h1 className="mb-4 text-3xl font-bold text-orange-700">
-          Amazing Recipes in Africa
-        </h1> */}
-      </div>
-      {recipes ? (
-        <div className="flex flex-col items-center">
+      <RecipeFilters
+        fetchRecipes={fetchRecipes}
+        loading={loading}
+        setLoading={setLoading}
+        setError={setError}
+      />
+      {loading && <Loader />}
+      {!loading && recipes?.length > 0 ? (
+        <div className="mt-10 flex flex-col items-center">
           <ul className="flex flex-wrap items-center justify-center gap-20 ">
             {recipes?.map((recipe) => (
-              <CardItem key={recipe.id} id={recipe.id} name={recipe.name} src={recipe.dps[0]?.filePath} />
+              <CardItem
+                key={recipe.id}
+                name={recipe.name}
+                id={recipe.id}
+                src={recipe.dps[0]?.filePath}
+              />
             ))}
           </ul>
 
-          <button
-            className="mx-auto mt-6 rounded-lg bg-orange-300 px-7 py-2.5 text-center text-sm font-bold text-stone-800 outline-none drop-shadow-xl transition-colors duration-300 hover:bg-orange-400 focus:outline-none focus:ring focus:ring-orange-400 focus:ring-offset-2"
-            onClick={handleLoadMore}
-          >
-            Load More...
-          </button>
+          <div className="my-12">
+            {currentPage > 1 && (
+              <button
+                className="mx-8 my-3 rounded-lg bg-orange-300 px-7 py-2.5 text-center text-sm font-bold text-stone-800 outline-none drop-shadow-xl transition-colors duration-300 hover:bg-orange-400 focus:outline-none focus:ring focus:ring-orange-400 focus:ring-offset-2"
+                onClick={() => {
+                  setCurrentPage(currentPage - 1);
+                  setRender(!render);
+                }}
+              >
+                Prev Page
+              </button>
+            )}
+            {totalPages > currentPage && (
+              <button
+                className="mx-8 my-3 rounded-lg bg-orange-300 px-7 py-2.5 text-center text-sm font-bold text-stone-800 outline-none drop-shadow-xl transition-colors duration-300 hover:bg-orange-400 focus:outline-none focus:ring focus:ring-orange-400 focus:ring-offset-2"
+                onClick={() => {
+                  setCurrentPage(currentPage + 1);
+                  setRender(!render);
+                }}
+              >
+                Next Page
+              </button>
+            )}
+          </div>
         </div>
       ) : (
-        <Loader />
+        <div className="mt-40 text-xl">No match found!</div>
       )}
     </div>
   );

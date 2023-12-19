@@ -33,7 +33,7 @@ export default function RecipeFilters({loading}) {
     console.log(filterBy);
   }
 
-  function handleFilter(e) {
+  function submitFilters(e) {
     e.preventDefault();
     resetRecipes();
 
@@ -48,10 +48,8 @@ export default function RecipeFilters({loading}) {
     setRender(!render)
   }
 
-  // useEffect(() => {
-  // }, [filterBy]);
-
-  // console.log(filterBy)
+  useEffect(() => {
+  }, [filterBy, resetFilterBy]);
 
   return (
     <div className="bg-white">
@@ -93,8 +91,8 @@ export default function RecipeFilters({loading}) {
                         onClick={() => {
                           console.log("clear...");
                           resetFilterBy();
-                          console.log(filterBy);
                           resetFilters();
+                          console.log(filterBy);
                         }}
                       >
                         Clear Filters
@@ -109,6 +107,15 @@ export default function RecipeFilters({loading}) {
                       <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                     </button>
                   </div>
+                  <button
+                        className="bg-primary-50 w-3/5 py-2 rounded mx-auto hover:bg-primary-40"
+                        onClick={(e) => {
+                          submitFilters(e);
+                          setFiltersOpen(false);
+                        }}
+                      >
+                        Apply Filters
+                      </button>
 
                   {/* Filters */}
                   <form className="mt-4 border-t border-gray-200">
@@ -186,7 +193,7 @@ export default function RecipeFilters({loading}) {
               Amazing Recipes in Africa
             </h1>
             <div className="">
-              <RecipeFilteredSearch handleFilter={handleFilter} loading={loading} />
+              <RecipeFilteredSearch submitFilters={submitFilters} loading={loading} />
             </div>
           </div>
         </main>

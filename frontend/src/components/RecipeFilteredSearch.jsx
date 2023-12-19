@@ -5,7 +5,7 @@ import RecipeFilters from "./RecipeFilters";
 import { FunnelIcon, MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { useUIStore } from "../stateProvider/uiStore";
 
-function RecipeFilteredSearch({ handleFilter, loading }) {
+function RecipeFilteredSearch({ submitFilters, loading }) {
   const {
     searchTerm,
     setSearchTerm,
@@ -40,7 +40,7 @@ function RecipeFilteredSearch({ handleFilter, loading }) {
 
   return (
     <div className="md:p-0">
-      <form className="flex flex-col gap-3 md:flex-row" onSubmit={handleFilter}>
+      <form className="flex flex-col gap-3 md:flex-row" onSubmit={submitFilters}>
         <div className="flex">
           <input
             type="text"

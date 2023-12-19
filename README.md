@@ -84,24 +84,24 @@ Follow these steps to have a local copy up and running.
 Step 1
 
 -	Click on this link to our website : https://vital-vittles.vercel.app/
-![Homepage](home.png)
+![Homepage](/README/home.png)
 
 -	Sign up with your email and password
- ![signuppage](signup.png)
+ ![signuppage](README/signup.png)
 
 -	Then you can sign in with the registered email
- ![signinpage](signin.png)
+ ![signinpage](/README/signin.png)
 
 -	The home page after login
- ![homepageafterlogin](homeafterlogin.png)
+ ![homepageafterlogin](/README/homeafterlogin.png)
 
 -	Recipe Tab: where you are able to access the vast database of African Recipes 
- ![recipepage](afterlogin.png)
+ ![recipepage](/README/afterlogin.png)
 -	Create your Recipe
- ![createrecipe](createrecipe.png)
+ ![createrecipe](/README/createrecipe.png)
 
 -	Chatbot
- ![chatbotpage](chatbot.png)
+ ![chatbotpage](/README/chatbot.png)
 Feel Free to Explore the Vital Vittles Robust Website.
 
 ### Prerequisites

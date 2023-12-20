@@ -5,19 +5,27 @@ a. About The Project
 b. Built With
 c. Getting Started  
 d. Prerequisites
-e. Installation
-f. Usage
-g. Endpoints
-h. Roadmap
-i. Contributing
-j. License
-k. Contact
-l. Acknowledgments
+e. Roadmap
+f. Contributing Team Members (Core Team)
+
 
 ## About The Project
 
 ### Vital Vittles Recipe Website
 Vital Vittles is your go-to destination for discovering the richness of African cuisine. Explore a diverse range of traditional and modern recipes that showcase the unique flavors of African dishes. Whether you're a seasoned chef or a passionate home cook, Vital Vittles brings you on a culinary journey filled with delights. Have questions? Our community is here to guide you through this exciting adventure!
+
+### Vital Vittles API
+
+The Vital Vittles API Project stands at the forefront of culinary innovation, offering a robust and comprehensive solution tailored for developers, enthusiasts, and culinary explorers alike. With a singular focus on delivering an unparalleled experience in retrieving and managing culinary recipes, this API emerges as a versatile platform catering to a spectrum of applications—from cooking apps to meal planners and beyond.
+
+At its core, the Vital Vittles API is crafted to be more than just a repository of recipes; it's an interactive and user-friendly culinary companion. Developers will find a seamless integration process, allowing them to harness the power of diverse recipes effortlessly. Whether you're embarking on the creation of a specialized cooking application or a personalized meal planner, the API's design philosophy centers around adaptability and ease of use.
+
+What sets the Vital Vittles API apart is its commitment to user-friendliness. The interface is intuitive, ensuring that developers can efficiently integrate it into a variety of applications without unnecessary complexity. The API's architecture, built with Flask in Python, provides a solid foundation that developers can rely on for the smooth retrieval and management of recipe data. Its versatility is further highlighted by its compatibility with both web and mobile applications.
+
+The Vital Vittles API isn't just a tool; it's a culinary partner. It invites developers to explore, experiment, and create with an extensive collection of recipes that spans classic dishes to innovative culinary creations. The API is structured to be easily extensible, encouraging developers to contribute and enhance its features. Open source and community-driven, it thrives on collaborative efforts, ensuring it evolves with the collective wisdom of its users.
+
+In conclusion, the Vital Vittles API Project is not just a repository—it's an ecosystem. It simplifies the integration of diverse recipes into applications, offering a versatile and user-friendly experience. Whether you're a seasoned developer, a passionate home cook, or a curious explorer of culinary delights, this API opens the door to a world of possibilities in the realm of gastronomy.
+
 
 ### Vital Vittles API
 
@@ -134,3 +142,103 @@ Start the server:
 -	npm start
 Ensure all prerequisites are met to smoothly run and develop on the Vital Vittles project.
 This section provides a clear guide on the prerequisites, installation steps, and necessary dependencies for working on the Vital Vittles project. Feel free to adjust any details based on your specific project requirements.
+
+
+### Usage 
+Kindly refer to the Backend and Frontend README.md files 
+
+### Roadmap
+-    Create Signup/Signin Forms:
+        Develop user-friendly and secure forms for user registration and authentication.
+        Implement validation to ensure data integrity and user security.
+
+-    Integrate Signup/Signin Functionalities with API:
+        Connect the signup and signin forms to the API for seamless user authentication.
+        Implement token-based authentication for secure user sessions.
+
+-   Paginate Recipes Page UI:
+        Enhance the user interface of the recipes page by implementing pagination.
+        Optimize the display of recipes to improve user experience.
+
+-   Add Sliding Image to the Recipe Page:
+        Integrate a dynamic and visually appealing sliding image feature on the recipe detail page.
+        Enhance the presentation of recipes with captivating images.
+
+-   Create Chat Interface:
+        Develop a chat interface for users to engage with each other and share culinary experiences.
+        Implement real-time messaging functionalities for an interactive experience.
+
+-   Integrate Chat Interface:
+        Connect the chat interface to the API to enable real-time communication.
+        Implement user authentication for secure and personalized chatting.
+
+-   Create Update Recipe Functionality:
+        Develop a feature that allows users to update and edit existing recipes.
+        Implement validation checks to ensure data accuracy.
+
+-   Add Swagger Documentation for New API Routes:
+        Document the new API routes using Swagger to provide clear and standardized documentation.
+        Include details on request and response formats, authentication requirements, and example usage.
+
+-   Add Postman Documentation for New API Routes:
+        Create Postman collections and documentation for testing and exploring the API.
+        Include examples and guidelines for making requests to the new routes.
+
+-   Working on the Navbar:
+        Enhance the navigation bar for improved user experience and easy access to key features.
+        Implement responsiveness for various device screen sizes.
+
+-   Implement User Authorization and Roles:
+        Introduce role-based access control to manage user permissions.
+        Define user roles (e.g., admin, regular user) and restrict access to certain functionalities accordingly.
+
+-   Implement Recipe Categories:
+        Categorize recipes to facilitate easier navigation and exploration.
+        Allow users to filter recipes based on categories such as cuisine type, dietary preferences, etc.
+
+-   Implement Recipe Ratings and Reviews:
+        Introduce a rating and review system for users to provide feedback on recipes.
+        Display average ratings and user reviews on recipe pages.
+
+-   Enhance Search Functionality:
+        Improve the search feature to enable users to find recipes quickly and efficiently.
+        Implement filters and sorting options for search results.
+
+-   Optimize API Performance:
+        Conduct performance testing and optimization for the API.
+        Implement caching mechanisms and database indexing for improved speed.
+
+Remember to adapt and prioritize these roadmap items based on the project's specific goals, user feedback, and development team capacity.
+
+
+### Contributing Team Members (Core Team)
+
+1. Michael Adebayo
+   Role: Team Lead/Fullstack Developer
+   Passionate about: Backend Development
+
+
+2. George Iheanyi
+   Role: Algorithm Architect
+   Passionate about: Fullstack Development
+
+
+3. Success Ogheneovo
+   Role: Interface Virtuoso
+   Passionate about: Fullstack Development
+
+
+4. Felicia Oke
+   Role: Data Scientist
+   Passionate about: Data Science
+
+
+5. Sani Muhammed
+   Role: Access Control Guru
+   Passionate about: Frontend Development
+
+
+6. Sunkanmi Adebiyi 
+   Role: Server-side Sage
+   Passionate about: Fullstack Development.
+

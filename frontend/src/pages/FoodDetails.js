@@ -29,50 +29,47 @@ export default function FoodDetails() {
   if (!foodDetails) return <Loader />;
 
   return (
-    <div className="mx-auto mt-14 rounded-2xl bg-slate-200 px-8 py-16 font-sans sm:px-6 md:px-8 lg:px-12">
+    <div className="mx-auto mt-10 px-4 py-16 sm:px-8 md:px-8 lg:px-12">
+      <h1 className="mb-5 sm:mb-10 text-xl font-bold text-black sm:text-3xl md:tracking-widest lg:text-4xl">
+        {foodDetails.data.name}
+      </h1>
       <div className="flex flex-col-reverse gap-12 md:flex-row">
         <img
-          className="w-full rounded-2xl md:w-1/2 object-cover h-[600px]"
+          className="h-[600px] w-full rounded-2xl object-cover md:w-1/2"
           src={foodDetails.data.dps[0]?.filePath}
           alt={foodDetails.data.name}
         />
         <div className="w-full">
-          <div className="bg-gray-50 p-12 rounded-lg w-100">
-            <p className="py-4 text-xl font-bold md:text-2xl md:tracking-widest lg:text-2xl text-orange-700">
-              {foodDetails.data.name}
-            </p>
-            <ul className="text-left">
-              <li className="mt-2">
-                <span className="text-[1.1rem] font-bold">Cuisine:</span>{" "}
-                {foodDetails.data.cuisine}
+          <div className="w-100 shadow-lg bg-primary-40 rounded-lg p-8 sm:px-12 relative">
+            <h4 className="text-2xl font-bold bg-primary-100 w-full rounded-t-lg absolute top-0 left-0 py-3 mb-8">Dish Information</h4>
+            <ul className="xs:grid grid-cols-2 text-left col-span-1 mt-10 sm:mt-5">
+              <li className="mt-5 text-center">
+                <h5 className="recipeInfo">Cuisine:</h5>
+                <p>{foodDetails.data.cuisine}</p>
               </li>
-              <li className="mt-2">
-                <span className="text-[1.1rem] font-bold">
-                  Preparation Time(Minutes):{" "}
-                </span>
-                {foodDetails.data.prep_time_minutes}
+              <li className="mt-5 text-center">
+                <h5 className="recipeInfo">Prep Time:</h5>
+                <p>{foodDetails.data.prep_time_minutes} Mins</p>
               </li>
-              <li className="mt-2">
-                <span className="text-[1.1rem] font-bold">
-                  Cooking Time(minutes):{" "}
-                </span>
-                {foodDetails.data.cook_time_minutes}
+              <li className="mt-5 text-center">
+                <h5 className="recipeInfo">Cooking Time:</h5>
+                <p>{foodDetails.data.cook_time_minutes} Mins</p>
               </li>
-              <li className="mt-2">
-                <span className="text-[1.1rem] font-bold">
-                  Total Time (minutes):{" "}
-                </span>
-                {foodDetails.data.total_time_minutes}
+              <li className="mt-5 text-center">
+                <h5 className="recipeInfo">Total Time:</h5>
+                <p>{foodDetails.data.total_time_minutes} Mins</p>
               </li>
-              <li className="mt-2">
-                <span className="text-[1.1rem] font-bold">
-                  Calories Per Serving:
-                </span>
-                {foodDetails.data.calories_per_serving}
+              <li className="mt-5 text-center">
+                <h5 className="recipeInfo">Calories:</h5>
+                <p>{foodDetails.data.calories_per_serving} (KCal) Per Serving</p>
               </li>
-              <li className="mt-2">
-                <span className="text-[1.1rem] font-bold">Serving Size:</span>
-                {foodDetails.data.serving_size}
+              <li className="mt-5 text-center">
+                <h5 className="recipeInfo">Serving Size:</h5>
+                <p>{foodDetails.data.serving_size}</p>
+              </li>
+              <li className="mt-5 col-span-2 text-center">
+                <h5 className="recipeInfo">Nutritional Values:</h5>
+                <p>Coming soon...</p>
               </li>
             </ul>
           </div>
@@ -96,7 +93,9 @@ export default function FoodDetails() {
       </h2>
       <ul className="list-item text-left text-sm md:text-base lg:text-lg">
         {foodDetails.data.instructions.map((instruction, index) => (
-          <li key={index} className="list-disc pl-4">{instruction}</li>
+          <li key={index} className="list-disc pl-4">
+            {instruction}
+          </li>
         ))}
       </ul>
 

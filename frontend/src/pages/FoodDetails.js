@@ -92,7 +92,7 @@ export default function FoodDetails() {
         </div>
       </div>
       <h2 className="mb-4 mt-16 text-center text-xl font-semibold  md:text-2xl lg:text-3xl">
-        Instructions
+        Step by Step Instructions
       </h2>
       <ul className="list-item text-left text-sm md:text-base lg:text-lg">
         {foodDetails.data.instructions.map((instruction, index) => (

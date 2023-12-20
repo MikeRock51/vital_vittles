@@ -93,6 +93,7 @@ export default function RecipeFilters({loading}) {
                           resetFilterBy();
                           resetFilters();
                           console.log(filterBy);
+                          setRender(!render);
                           setFiltersOpen(false);
                         }}
                       >
@@ -109,7 +110,7 @@ export default function RecipeFilters({loading}) {
                     </button>
                   </div>
                   <button
-                        className="bg-primary-50 w-3/5 py-2 rounded mx-auto hover:bg-primary-40"
+                        className="bg-primary-50 w-5/6 sm:w-3/5 py-2 rounded mx-auto mt-4 hover:bg-primary-40"
                         onClick={(e) => {
                           submitFilters(e);
                           setFiltersOpen(false);

@@ -85,6 +85,9 @@ code {
   @apply mx-auto disabled:bg-gray-800 w-3/5 rounded-lg bg-black py-1 text-green-400 hover:bg-gray-800 xs:me-auto xs:ms-1;
 }
 
+.recipeInfo {
+  @apply text-lg text-primary-900 font-extrabold;
+}
 
 /* ::-webkit-scrollbar {
   width: 5px;

@@ -45,3 +45,15 @@ export function timeAgo(dateString) {
     return years === 1 ? '1 year ago' : `${years} years ago`;
   }
 }
+
+export function calcTokenExp() {
+  const currentDate = new Date();
+  currentDate.setHours(currentDate.getHours() + 23);
+  currentDate.setMinutes(currentDate.getMinutes() + 59);
+
+  return currentDate;
+}
+
+export function toTitleCase(str) {
+  return str.replace(/\b\w/g, match => match.toUpperCase());
+}

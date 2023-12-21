@@ -6,6 +6,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useUserStore } from "../stateProvider/authStore";
 import { LogoutUser } from "../utils/Connector";
 import { usePChatStore } from "../stateProvider/chatStore";
+import { protectedRoutes } from "../utils/appData";
+import toast from "react-hot-toast";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -14,7 +16,7 @@ function classNames(...classes) {
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 export default function Navbar() {
-  const { currentUser, setCurrentUser, authToken, setAuthToken } = useUserStore()
+  const { currentUser, setCurrentUser, authToken, setAuthToken, tokenExp, setTokenExp, setNoSession } = useUserStore()
   const { setCurrentChat } = usePChatStore();
   const location = useLocation();
   const navigate = useNavigate();
@@ -47,6 +49,23 @@ export default function Navbar() {
 
   // TODO
     // Check if user token is valid, otherwise redirect to login page
+  useEffect(() => {
+    if (protectedRoutes.includes(location.pathname)) {
+      if (!currentUser) {
+        setAuthToken(null);
+        setNoSession(true);
+        navigate('/signin');
+      }
+      if (tokenExp <= new Date()) {
+        console.log("Expired!");
+        setNoSession(true);
+        setCurrentUser(null);
+        setAuthToken(null);
+        navigate('/signin');
+      }
+    }
+  }, []);
+
 
   async function signOut() {
     await LogoutUser(authToken);

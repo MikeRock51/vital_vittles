@@ -287,7 +287,7 @@ function LandingPage() {
 
         </div>
       </section>
-
+                    
       {/* Testimonials Section */}
       <section className="bg-gray-100 py-16">
         <div className="container mx-auto text-center">

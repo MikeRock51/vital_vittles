@@ -8,6 +8,10 @@ export const useUserStore = create(
       setCurrentUser: (user) => set({ currentUser: user }),
       authToken: null,
       setAuthToken: (token) => set({ authToken: token }),
+      tokenExp: null,
+      setTokenExp: (expTime) => set({tokenExp: expTime}),
+      noSession: false,
+      setNoSession: (state) => ({noSession: state}),
     }),
     { 
       storage: createJSONStorage(() => localStorage),

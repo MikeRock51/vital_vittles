@@ -1,5 +1,6 @@
 import axios from "axios";
 import toast from "react-hot-toast";
+import { calcTokenExp } from "./Utilities";
 
 
 // const API_URL = "https://acr-api.mikerock.tech/api/v1";
@@ -22,8 +23,9 @@ export async function LoginUser(userData, setError) {
   try {
     const response = await axios.post(API_URL + "/login", userData);
     console.log(response);
+    const tokenExp = calcTokenExp();
     toast.success(response.data.message);
-    return { token: response.data["auth-token"], user: response.data.data };
+    return { token: response.data["auth-token"], exp: tokenExp, user: response.data.data };
   } catch (error) {
     console.log(error);
     setError(error.response.data.message);

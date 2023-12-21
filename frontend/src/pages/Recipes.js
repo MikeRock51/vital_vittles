@@ -70,7 +70,7 @@ export default function Recipes() {
       {loading && <Loader />}
       {!loading && recipes?.length > 0 ? (
         <div className="mt-10 flex flex-col items-center">
-          <ul className="flex flex-wrap items-center justify-center gap-10 lg:gap-x-20 ">
+          <ul className="flex flex-wrap items-center justify-center gap-10 lg:gap-x-20">
             {recipes?.map((recipe) => (
               <CardItem
                 key={recipe.id}

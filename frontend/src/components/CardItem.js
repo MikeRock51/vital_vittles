@@ -6,7 +6,7 @@ export default function CardItem({ src, name, id }) {
       <div className="">
         <Link to={`/food/${id}`}>
           <img
-            className="m-auto w-[250px] h-[250px] rounded-md object-cover"
+            className="m-auto w-[250px] h-[250px] rounded-md object-cover mb-auto"
             src={src}
             alt={name}
           />

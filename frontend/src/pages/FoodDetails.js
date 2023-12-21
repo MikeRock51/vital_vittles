@@ -30,7 +30,7 @@ export default function FoodDetails() {
   if (!foodDetails) return <Loader />;
 
   return (
-    <div className="mx-auto mt-10 px-4 py-16 sm:px-8 md:px-8 lg:px-12">
+    <div className="mx-auto mt-10 px-4 py-16 sm:px-8 md:px-8 lg:px-12 bg-slate-100">
       <h1 className="mb-5 text-xl font-bold text-black sm:mb-10 sm:text-3xl md:tracking-widest lg:text-4xl">
         {foodDetails.data.name}
       </h1>

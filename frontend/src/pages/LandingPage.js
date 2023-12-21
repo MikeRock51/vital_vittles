@@ -102,7 +102,7 @@ function LandingPage() {
    // Function to handle the click event of the "Get Started" link
    const handleGetStartedClick = () => {
      // Redirect to /signup if not authenticated, or to /recipe if authenticated
-     const redirectPath = isAuthenticated ? '/recipe' : '/signup';
+     const redirectPath = isAuthenticated ? '/recipes' : '/signup';
      window.location.href = redirectPath;
    };
 
@@ -152,7 +152,7 @@ function LandingPage() {
 
 
         <a
-            href={isAuthenticated ? '/recipe' : '/signup'}
+            href={isAuthenticated ? '/recipes' : '/signup'}
             onClick={handleGetStartedClick}
             className="bg-yellow-500 text-purple-900 px-6 py-3 rounded-full font-semibold hover:bg-yellow-400 transition duration-300"
           >Get Started</a>
@@ -284,6 +284,7 @@ function LandingPage() {
             Connect with food enthusiasts, share your culinary journey, and explore a world of flavors together.
           </p>
           <a href="/signup" className="bg-yellow-500 text-purple-900 px-6 py-3 rounded-full font-semibold hover:bg-yellow-400 transition duration-300">Sign Up Now</a>
+
         </div>
       </section>
 

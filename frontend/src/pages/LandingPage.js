@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useState } from 'react';
 import Typed from 'typed.js';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -69,13 +70,32 @@ function LandingPage() {
     
   ];
 
+
+  const [slidesToShow, setSlidesToShow] = useState(3);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setSlidesToShow(window.innerWidth > 600 ? 3 : 1);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   const slickSettings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3, // Display three tips at a time
+    slidesToShow: slidesToShow,
     slidesToScroll: 1,
+    autoplay: true, // Enable autoplay
+    autoplaySpeed: 3000, // Set autoplay speed to 5000 milliseconds (5 seconds)
   };
+
+
   return (
     <div>
       {/* Navigation Bar */}
@@ -193,7 +213,7 @@ function LandingPage() {
           <Slider {...slickSettings} className="slick-container">
             {culinaryTips.map((tip, index) => (
               <div key={index} className="slick-slide">
-                 <img src={tip.image} alt={`Tip ${index + 1}`} className="w-full h-48 object-cover" />
+                <img src={tip.image} alt={`Tip ${index + 1}`} className="w-full h-48 object-cover" />
                 <div className="p-6">
                   <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">{tip.title}</h3>
                   <p className="text-gray-600">{tip.description}</p>
@@ -203,7 +223,6 @@ function LandingPage() {
           </Slider>
         </div>
       </section>
-
     
       {/* Team Members Section */}
 <section className="py-16 bg-gray-100">

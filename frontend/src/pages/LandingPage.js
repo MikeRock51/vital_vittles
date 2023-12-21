@@ -96,6 +96,17 @@ function LandingPage() {
   };
 
 
+   // Assume isAuthenticated is a state variable indicating whether the user is logged in or not
+   const [isAuthenticated, setIsAuthenticated] = useState(/* Logic to determine authentication status */);
+
+   // Function to handle the click event of the "Get Started" link
+   const handleGetStartedClick = () => {
+     // Redirect to /signup if not authenticated, or to /recipe if authenticated
+     const redirectPath = isAuthenticated ? '/recipe' : '/signup';
+     window.location.href = redirectPath;
+   };
+
+
   return (
     <div>
       {/* Navigation Bar */}
@@ -139,7 +150,12 @@ function LandingPage() {
           </div>
         </div>
 
-        <a href="/signup" className="bg-yellow-500 text-purple-900 px-12 py-6 rounded-full font-semibold hover:bg-yellow-400 transition duration-300 animate-vibrate">Get Started</a>
+
+        <a
+            href={isAuthenticated ? '/recipe' : '/signup'}
+            onClick={handleGetStartedClick}
+            className="bg-yellow-500 text-purple-900 px-6 py-3 rounded-full font-semibold hover:bg-yellow-400 transition duration-300"
+          >Get Started</a>
       </section>
 
       {/* Featured Recipes Section */}

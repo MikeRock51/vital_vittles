@@ -4,6 +4,7 @@ import Typed from 'typed.js';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { TeamMembers } from "../utils/appData";
 
 
 function LandingPage() {
@@ -89,7 +90,8 @@ function LandingPage() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: slidesToShow,
+    // slidesToShow: slidesToShow,
+    slidesToShow: window.innerWidth < 610 ? 1 : window.innerWidth < 1000 ? 2 : 3,
     slidesToScroll: 1,
     autoplay: true, // Enable autoplay
     autoplaySpeed: 3000, // Set autoplay speed to 5000 milliseconds (5 seconds)
@@ -244,33 +246,29 @@ function LandingPage() {
 <section className="py-16 bg-gray-100">
   <div className="container mx-auto text-center">
     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">Team Members</h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
-      {/* List of team members with their details */}
-      {[
-        { id: 1, name: 'Success', role: 'Interface Virtuoso', passion: 'Fullstack dev', image: 'success.jpg' },
-        { id: 2, name: 'Mike', role: 'Backend Architect', passion: 'fullstack Dev', image: 'mike.jpg' },
-        { id: 3, name: 'Sunkanmi', role: 'Server-side Sage', passion: 'Fullstack Dev', image: 'sunkanmi.JPG' },
-        { id: 4, name: 'George', role: 'Algorithm Architect', passion: 'Fullstack dev', image: 'Gorge.JPG' },
-        { id: 5, name: 'Felicia', role: 'Data Sorceress', passion: 'Data Scientist', image: 'felicia.jpg' },
-        { id: 6, name: 'Sani', role: 'Access Control Guru', passion: 'Fullstack dev', image: 'sani.jpg' },
-      ].map(member => (
-        <div key={member.id} className="flex flex-col items-center">
-          <div className="bg-blue-500 rounded-full shadow-md overflow-hidden w-32 h-32 flex items-center justify-center">
-            <img
-              src={`../teamMembersPictures/${member.image}`}
-              alt={`Team Member ${member.id}`}
-              className="w-full h-full object-cover rounded-full"
-            />
+    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 xxl:grid-cols-6 w-fit mx-auto">
+            {/* List of team members with their details */}
+            {TeamMembers.map((member) => (
+              <div key={member.id} className="flex flex-col items-center">
+                <div className="flex h-32 w-32 items-center justify-center overflow-hidden rounded-full bg-blue-500 shadow-md">
+                  <img
+                    src={`../teamMembersPictures/${member.image}`}
+                    alt={`Team Member ${member.id}`}
+                    className="h-full w-full rounded-full object-cover"
+                  />
+                </div>
+                <div className="mt-4 text-center">
+                  <h3 className="mb-2 text-lg font-semibold md:text-xl lg:text-2xl">
+                    {member.name}
+                  </h3>
+                  <p className="text-gray-600">Role: {member.role}</p>
+                  <p className="text-gray-600">
+                    Passionate about: {member.passion}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="mt-4 text-center">
-            <h3 className="text-lg md:text-xl lg:text-2xl font-semibold mb-2">{member.name}</h3>
-            <p className="text-gray-600">Role: {member.role}</p>
-            <p className="text-gray-600">Passionate about: {member.passion}</p>
-            
-          </div>
-        </div>
-      ))}
-    </div>
   </div>
 </section>
 

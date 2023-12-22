@@ -76,7 +76,7 @@ function LandingPage() {
 
   useEffect(() => {
     const handleResize = () => {
-      setSlidesToShow(window.innerWidth > 600 ? 3 : 1);
+      setSlidesToShow(window.innerWidth < 610 ? 1 : window.innerWidth < 1000 ? 2 : 3);
     };
 
     window.addEventListener('resize', handleResize);
@@ -90,8 +90,8 @@ function LandingPage() {
     dots: true,
     infinite: true,
     speed: 500,
-    // slidesToShow: slidesToShow,
-    slidesToShow: window.innerWidth < 610 ? 1 : window.innerWidth < 1000 ? 2 : 3,
+    slidesToShow: slidesToShow,
+    // slidesToShow: window.innerWidth < 610 ? 1 : window.innerWidth < 1000 ? 2 : 3,
     slidesToScroll: 1,
     autoplay: true, // Enable autoplay
     autoplaySpeed: 3000, // Set autoplay speed to 5000 milliseconds (5 seconds)
@@ -230,7 +230,7 @@ function LandingPage() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">Culinary Tips</h2>
           <Slider {...slickSettings} className="slick-container">
             {culinaryTips.map((tip, index) => (
-              <div key={index} className="slick-slide">
+              <div key={index} className="slick-slide md:px-1 lg:px-0">
                 <img src={tip.image} alt={`Tip ${index + 1}`} className="w-full h-48 object-cover" />
                 <div className="p-6">
                   <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-purple-900">{tip.title}</h3>

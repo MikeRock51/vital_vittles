@@ -37,11 +37,17 @@ for recipe in data:
         newRecipe = Recipe(**recipe)
         newRecipe.userID = user.id
         newRecipe.save()
-        dp = RecipeDP(recipeID=newRecipe.id, userID=user.id)
-        dp.save()
+        if recipe.get("images"):
+            for image in recipe["images"]:
+                dp = RecipeDP(recipeID=newRecipe.id, userID=user.id, fileType="link", filePath=image)
+                dp.save()
+        else:
+            dp = RecipeDP(recipeID=newRecipe.id, userID=user.id)
+            dp.save()
+            print("No image")
     except Exception as e:
         print(e)
-        print(recipe)
+        # print(recipe)
         error = True
         break
 

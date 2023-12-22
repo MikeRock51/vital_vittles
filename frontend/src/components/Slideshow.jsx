@@ -14,9 +14,9 @@ const Slideshow = ({ images }) => {
   }, [images.length]);
 
   return (
-    <div className="w-full mx-auto md:px-8 mb-8 md:mb-0">
+    <div className="w-fit mx-auto md:px-8 mb-8 md:mb-0">
       <img
-        className="w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-primary-40 object-cover"
+        className="w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] rounded-lg bg-primary-40 object-cover"
         src={images[currentImageIndex]?.filePath}
         alt={images[currentImageIndex]?.name}
       />
